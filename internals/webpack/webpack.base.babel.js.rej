@@ -1,0 +1,20 @@
+diff a/internals/webpack/webpack.base.babel.js b/internals/webpack/webpack.base.babel.js	(rejected hunks)
+@@ -30,9 +30,9 @@ module.exports = options => ({
+-//      {
+-//        enforce: 'pre',
+-//        test: /\.js?$/,
+-//        exclude: [/node_modules/],
+-//        loader: 'eslint-loader',
+-//        options: {
+-//          quiet: true,
+-//        }
+-//      },
++      //      {
++      //        enforce: 'pre',
++      //        test: /\.js?$/,
++      //        exclude: [/node_modules/],
++      //        loader: 'eslint-loader',
++      //        options: {
++      //          quiet: true,
++      //        }
++      //      },
