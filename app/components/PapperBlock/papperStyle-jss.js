@@ -47,7 +47,7 @@ const styles = theme => ({
     backgroundColor: theme.palette.background.default,
     [theme.breakpoints.up('lg')]: {
       padding: theme.spacing(2)
-    }
+    },
   },
   whiteBg: {
     backgroundColor: 'transparent',
@@ -70,6 +70,9 @@ const styles = theme => ({
   overflowX: {
     width: '100%',
     overflowX: 'auto',
+  },
+  hidePapperBlockSection: {
+    display: 'none',
   },
   iconTitle: {
     borderRadius: theme.rounded.small,

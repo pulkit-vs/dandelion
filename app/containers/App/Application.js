@@ -16,7 +16,7 @@ import {
   Autocomplete, Upload, TextEditor,
   Avatars, Accordion, Badges,
   List, PopoverTooltip, Snackbar,
-  Typography, Tabs, Cards,
+  Typography, Tabs, Cards, 
   ImageGrid, Progress, DialogModal,
   Steppers, Paginations, DrawerMenu,
   Breadcrumbs, Icons, IonIcons,
@@ -30,7 +30,7 @@ import {
   ProductPage, Invoice, Profile, BlankPage,
   Photos, Pricing, CheckoutPage, Error, Settings,
   HelpSupport, MapMarker, MapDirection, SearchMap,
-  TrafficIndicator, StreetViewMap, NotFound
+  TrafficIndicator, StreetViewMap, NotFound, ProjectHome
 } from '../pageListAsync';
 
 class Application extends React.Component {
@@ -88,6 +88,7 @@ class Application extends React.Component {
           <Route path="/app/ui/typography" component={Typography} />
           <Route path="/app/ui/tabs" component={Tabs} />
           <Route path="/app/ui/card-papper" component={Cards} />
+          <Route path="/app/ui/project-home" component={ProjectHome} />
           <Route path="/app/ui/image-grid" component={ImageGrid} />
           <Route path="/app/ui/progress" component={Progress} />
           <Route path="/app/ui/dialog-modal" component={DialogModal} />

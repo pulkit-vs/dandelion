@@ -19,7 +19,8 @@ class PapperBlock extends React.Component {
       noMargin,
       colorMode,
       overflowX,
-      icon
+      icon,
+      hideButton
     } = this.props;
     return (
       <div>
@@ -37,7 +38,7 @@ class PapperBlock extends React.Component {
               </Typography>
             </div>
           </div>
-          <section className={classNames(classes.content, whiteBg && classes.whiteBg, overflowX && classes.overflowX)}>
+          <section className={classNames(classes.content, whiteBg && classes.whiteBg, overflowX && classes.overflowX && classes.hidePapperBlockSection)}>
             {children}
           </section>
         </Paper>

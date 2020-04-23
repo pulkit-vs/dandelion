@@ -433,3 +433,7 @@ export const HelpSupport = loadable(() =>
   import ('./Pages/HelpSupport'), {
     fallback: <Loading />,
   });
+  export const ProjectHome = loadable(() =>
+  import ('../src/ProjectHome'), {
+    fallback: <Loading />,
+  });

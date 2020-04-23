@@ -118,7 +118,7 @@ class SourceReader extends Component {
     if (codePreview.enable) {
       return (
         <div>
-          <Button onClick={this.sourceOpen} color="secondary" className={classes.button} size="small">
+          <Button hideButton={true} onClick={this.sourceOpen} color="secondary" className={classes.button} size="small">
             { open ? (
               <Close className={classNames(classes.leftIcon, classes.iconSmall)} />
             ) : (
