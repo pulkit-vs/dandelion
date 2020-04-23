@@ -17,15 +17,15 @@ import dummy from 'dan-api/dummy/dummyContents';
 import DetailSettings from './DetailSettings';
 import styles from './settings-jss';
 
-class Settings extends React.Component {
+export class Settings extends React.Component {
   state = {
     open: false,
     checked: ['switch', 'check2'],
     keyword: '',
-    settingTitle: 'Settings'
+    settingTitle: 'Settings',
   };
 
-  handleToggle = value => () => {
+  handleToggle = (value) => () => {
     const { checked } = this.state;
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
@@ -41,7 +41,7 @@ class Settings extends React.Component {
     });
   };
 
-  handleChange = name => event => {
+  handleChange = (name) => (event) => {
     this.setState({
       [name]: event.target.value,
     });
@@ -55,9 +55,9 @@ class Settings extends React.Component {
     this.setState({ open: false });
   };
 
-  handleSearch = event => {
+  handleSearch = (event) => {
     this.setState({ keyword: event.target.value.toLowerCase() });
-  }
+  };
 
   render() {
     const title = brand.name;
@@ -112,14 +112,22 @@ class Settings extends React.Component {
           </Grid>
         </Paper>
         <Paper className={classes.root} elevation={4}>
-          <AppBar position="static" color="inherit" className={classes.searchSettings}>
+          <AppBar
+            position="static"
+            color="inherit"
+            className={classes.searchSettings}
+          >
             <Toolbar>
               <div className={classes.flex}>
                 <div className={classes.wrapper}>
                   <div className={classes.search}>
                     <SearchIcon />
                   </div>
-                  <input className={classes.input} placeholder="Find a settings" onChange={(event) => this.handleSearch(event)} />
+                  <input
+                    className={classes.input}
+                    placeholder="Find a settings"
+                    onChange={(event) => this.handleSearch(event)}
+                  />
                 </div>
               </div>
             </Toolbar>
@@ -133,7 +141,11 @@ class Settings extends React.Component {
                 }
                 return (
                   <Grid item key={index.toString()} sm={4} xs={12}>
-                    <Button onClick={() => this.handleClickOpen(menu.name)} color="secondary" className={classes.button}>
+                    <Button
+                      onClick={() => this.handleClickOpen(menu.name)}
+                      color="secondary"
+                      className={classes.button}
+                    >
                       <Icon className={classes.icon}>{menu.icon}</Icon>
                       <span className={classes.text}>
                         {menu.name}
@@ -148,7 +160,11 @@ class Settings extends React.Component {
             </Grid>
           </section>
         </Paper>
-        <DetailSettings open={open} handleClose={this.handleClose} title={settingTitle} />
+        <DetailSettings
+          open={open}
+          handleClose={this.handleClose}
+          title={settingTitle}
+        />
       </div>
     );
   }
