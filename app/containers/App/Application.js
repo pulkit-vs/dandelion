@@ -90,7 +90,7 @@ import {
   NotFound,
   Configurations,
   ManageTeam,
-  ProjectHome
+  ProjectHome,
 } from '../pageListAsync';
 
 class Application extends React.Component {
@@ -105,7 +105,7 @@ class Application extends React.Component {
           <Route path="/mywork/starred" component={CryptoDashboard} />
           {/* Projects */}
           <Route path="/projects/add-project" component={Infographics} />
-          <Route path="/projects/project-board" component={MiniApps} />
+          <Route path="/projects/project-board" component={ProjectHome} />
           <Route path="/projects/backlog" component={Analytics} />
           <Route path="/projects/project-settings" component={InfoUpdates} />
           <Route path="/projects/project-access" component={Status} />
@@ -214,8 +214,6 @@ class Application extends React.Component {
           <Route path="/maps/map-searchbox" component={SearchMap} />
           <Route path="/maps/map-traffic" component={TrafficIndicator} />
           <Route path="/maps/street-view" component={StreetViewMap} />
-          {/* Project Home */}
-          <Route path="/app/ui/project-home" component={ProjectHome} />
           {/* Default */}
           <Route component={NotFound} />
         </Switch>

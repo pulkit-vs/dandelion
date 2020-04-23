@@ -385,7 +385,9 @@ export const Settings = loadable(() => import("./Pages/Settings"), {
 export const HelpSupport = loadable(() => import("./Pages/HelpSupport"), {
   fallback: <Loading />,
 });
-export const ProjectHome = loadable(() =>
-import ('../src/ProjectHome'), {
-  fallback: <Loading />,
-});
+export const ProjectHome = loadable(
+  () => import("../src/projects/projectHome"),
+  {
+    fallback: <Loading />,
+  }
+);
