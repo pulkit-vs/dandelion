@@ -1,78 +1,63 @@
 const settingList = [
   {
-    icon: 'chrome_reader_mode',
-    name: 'General',
+    icon: 'assignment',
+    name: 'Project Template',
     caption: 'Lorem ipsum dolor sit amet',
   },
   {
     icon: 'computer',
-    name: 'Screen',
+    name: 'Project Type',
     caption: 'Fusce placerat enim et odio molestie sagittis.',
   },
   {
-    icon: 'language',
-    name: 'Language',
+    icon: 'category',
+    name: 'Project Category',
     caption: 'Vestibulum bibendum',
   },
   {
     icon: 'security',
-    name: 'Security',
+    name: 'Issue Types',
     caption: 'Pellentesque ullamcorper aliquet ultrices',
   },
   {
     icon: 'power',
-    name: 'Power',
+    name: 'Ticket Stage Config',
     caption: 'Nam posuere accumsan porta',
   },
   {
     icon: 'keyboard',
-    name: 'Keyboard',
+    name: 'Ticket Workflow',
     caption: 'Nulla vehicula leo ut augue tincidunt',
   },
   {
     icon: 'print',
-    name: 'Printer',
+    name: 'Labels',
     caption: 'Aenean facilisis vitae purus facilisis semper',
   },
   {
-    icon: 'audiotrack',
-    name: 'Audio',
+    icon: 'bug_report',
+    name: 'Linked Issue Types',
     caption: 'Sed imperdiet enim ligula',
   },
   {
     icon: 'cloud',
-    name: 'Cloud',
+    name: 'Resolution',
     caption: 'Nam posuere accumsan porta',
   },
   {
     icon: 'mail',
-    name: 'Email',
+    name: 'Components',
     caption: 'Sed imperdiet enim ligula',
   },
   {
-    icon: 'bluetooth_connected',
-    name: 'Bluetooth',
+    icon: 'priority_high',
+    name: 'Issue Priority',
     caption: 'Aenean facilisis vitae purus facilisis semper',
   },
   {
-    icon: 'share',
-    name: 'Sharing',
+    icon: 'chrome_reader_mode',
+    name: 'Issue Variables',
     caption: 'Sed imperdiet enim ligula',
-  },
-  {
-    icon: 'supervisor_account',
-    name: 'Account',
-    caption: 'Lorem ipsum dolor sit amet',
-  },
-  {
-    icon: 'access_time',
-    name: 'Date and Time',
-    caption: 'Fusce placerat enim et odio molestie sagittis.',
-  },
-  {
-    icon: 'accessibility',
-    name: 'Accessibility',
-    caption: 'Vestibulum bibendum',
   },
 ];
 
