@@ -18,7 +18,7 @@ export default class ProjectHome extends React.Component {
             <br />
           </Grid>
           <Grid container item sm={12}>
-            <EnhancedTable />
+            <EnhancedTable heading={"Projects"}/>
           </Grid>
         </Grid>
       </div>

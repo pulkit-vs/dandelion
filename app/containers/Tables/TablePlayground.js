@@ -25,17 +25,17 @@ function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
 }
 
-const rows = [
-  createData('AMN Wonolo', 'AWON', 'Software Project', 'Nikhil Agarwal', '2 April, 2019'),
-  createData('AMN Wonolo', 'AWON', 'Software Project', 'Nikhil Agarwal', '2 April, 2019'),
-  createData('AMN Wonolo', 'AWON', 'Software Project', 'Nikhil Agarwal', '2 April, 2019'),
-  createData('AMN Wonolo', 'AWON', 'Software Project', 'Nikhil Agarwal', '2 April, 2019'),
-  createData('AMN Wonolo', 'AWON', 'Software Project', 'Nikhil Agarwal', '2 April, 2019'),
-  createData('AMN Wonolo', 'AWON', 'Software Project', 'Nikhil Agarwal', '2 April, 2019'),
-  createData('AMN Wonolo', 'AWON', 'Software Project', 'Nikhil Agarwal', '2 April, 2019'),
-  createData('AMN Wonolo', 'AWON', 'Software Project', 'Nikhil Agarwal', '2 April, 2019'),
+// const rows = [
+//   createData('AMN Wonolo', 'AWON', 'Software Project', 'Nikhil Agarwal', '2 April, 2019'),
+//   createData('AMN Wonolo', 'AWON', 'Software Project', 'Nikhil Agarwal', '2 April, 2019'),
+//   createData('AMN Wonolo', 'AWON', 'Software Project', 'Nikhil Agarwal', '2 April, 2019'),
+//   createData('AMN Wonolo', 'AWON', 'Software Project', 'Nikhil Agarwal', '2 April, 2019'),
+//   createData('AMN Wonolo', 'AWON', 'Software Project', 'Nikhil Agarwal', '2 April, 2019'),
+//   createData('AMN Wonolo', 'AWON', 'Software Project', 'Nikhil Agarwal', '2 April, 2019'),
+//   createData('AMN Wonolo', 'AWON', 'Software Project', 'Nikhil Agarwal', '2 April, 2019'),
+//   createData('AMN Wonolo', 'AWON', 'Software Project', 'Nikhil Agarwal', '2 April, 2019'),
  
-];
+// ];
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -63,13 +63,13 @@ function stableSort(array, comparator) {
   return stabilizedThis.map((el) => el[0]);
 }
 
-const headCells = [
-  { id: 'name', numeric: false, disablePadding: true, label: 'Name' },
-  { id: 'calories', numeric: true, disablePadding: false, label: 'Key' },
-  { id: 'fat', numeric: true, disablePadding: false, label: 'Type' },
-  { id: 'carbs', numeric: true, disablePadding: false, label: 'Lead' },
-  { id: 'protein', numeric: true, disablePadding: false, label: 'Start Date' },
-];
+// const headCells = [
+//   { id: 'name', numeric: false, disablePadding: true, label: 'Name' },
+//   { id: 'calories', numeric: true, disablePadding: false, label: 'Key' },
+//   { id: 'fat', numeric: true, disablePadding: false, label: 'Type' },
+//   { id: 'carbs', numeric: true, disablePadding: false, label: 'Lead' },
+//   { id: 'protein', numeric: true, disablePadding: false, label: 'Start Date' },
+// ];
 
 function EnhancedTableHead(props) {
   const { classes, onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
@@ -88,7 +88,7 @@ function EnhancedTableHead(props) {
             inputProps={{ 'aria-label': 'select all desserts' }}
           />
         </TableCell> */}
-        {headCells.map((headCell) => (
+        {props.headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
             align={headCell.numeric ? 'right' : 'left'}
@@ -146,7 +146,7 @@ const useToolbarStyles = makeStyles((theme) => ({
 
 const EnhancedTableToolbar = (props) => {
   const classes = useToolbarStyles();
-  const { numSelected } = props;
+  const { numSelected, heading } = props;
 
   return (
     <Toolbar
@@ -160,7 +160,7 @@ const EnhancedTableToolbar = (props) => {
         </Typography>
       ) : (
         <Typography className={classes.title} variant="h6" id="tableTitle" component="div">
-          Projects
+          {heading}
         </Typography>
       )}
 
@@ -209,7 +209,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function EnhancedTable() {
+export default function EnhancedTable(
+  props
+) {
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
@@ -223,6 +225,8 @@ export default function EnhancedTable() {
     setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
   };
+
+  const {rows} = props
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
@@ -273,7 +277,7 @@ export default function EnhancedTable() {
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
-        <EnhancedTableToolbar numSelected={selected.length} />
+        <EnhancedTableToolbar heading={props.heading} numSelected={selected.length} />
         <TableContainer>
           <Table
             className={classes.table}
@@ -289,6 +293,7 @@ export default function EnhancedTable() {
               onSelectAllClick={handleSelectAllClick}
               onRequestSort={handleRequestSort}
               rowCount={rows.length}
+              headCells={props.headCells}
             />
             <TableBody>
               {stableSort(rows, getComparator(order, orderBy))
@@ -307,19 +312,16 @@ export default function EnhancedTable() {
                       key={row.name}
                       selected={isItemSelected}
                     >
-                      {/* <TableCell padding="checkbox">
-                        <Checkbox
-                          checked={isItemSelected}
-                          inputProps={{ 'aria-labelledby': labelId }}
-                        />
-                      </TableCell> */}
-                      <TableCell component="th" id={labelId} scope="row" padding="1%">
+                    {rows.map(data =>{
+                       return<TableCell align="right">{data.id}</TableCell>
+                    })}
+                      {/* <TableCell component="th" id={labelId} scope="row" padding="1%">
                       <img src={require('../../src/mui.png')} style={{width:"30px", marginRight:"1%"}}/> {row.name}
                       </TableCell>
-                      <TableCell align="right">{row.calories}</TableCell>
+                      <TableCell align="right">{row.tickedId}</TableCell>
                       <TableCell align="right">{row.fat}</TableCell>
                       <TableCell align="right"> <img src={require('../../src/nikhilsir.png')} style={{width:"30px", marginRight:"1%", borderRadius: "50%", height:"30px"}}/> {row.carbs}</TableCell>
-                      <TableCell align="right">{row.protein}</TableCell>
+                      <TableCell align="right">{row.protein}</TableCell> */}
                     </TableRow>
                   );
                 })}

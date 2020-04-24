@@ -391,3 +391,10 @@ export const ProjectHome = loadable(
     fallback: <Loading />,
   }
 );
+export const AssignedToMe = loadable(
+  () => import("../src/myWork/assigned-to-me"),
+  {
+    fallback: <Loading />,
+  }
+);
+

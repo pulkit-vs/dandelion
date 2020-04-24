@@ -91,6 +91,7 @@ import {
   Configurations,
   ManageTeam,
   ProjectHome,
+  AssignedToMe
 } from "../pageListAsync";
 
 class Application extends React.Component {
@@ -101,7 +102,7 @@ class Application extends React.Component {
         <Switch>
           {/* My work */}
           <Route exact path="/" component={PersonalDashboard} />
-          <Route path="/mywork/assigned-task" component={PersonalDashboard} />
+          <Route path="/mywork/assigned-task" component={AssignedToMe} />
           <Route path="/mywork/starred" component={CryptoDashboard} />
           {/* Projects */}
           <Route path="/projects/add-project" component={Infographics} />
