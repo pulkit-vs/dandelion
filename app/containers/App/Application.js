@@ -1,7 +1,7 @@
-import React from 'react';
-import { PropTypes } from 'prop-types';
-import { Switch, Route } from 'react-router-dom';
-import Dashboard from '../Templates/Dashboard';
+import React from "react";
+import { PropTypes } from "prop-types";
+import { Switch, Route } from "react-router-dom";
+import Dashboard from "../Templates/Dashboard";
 import {
   PersonalDashboard,
   CryptoDashboard,
@@ -91,7 +91,7 @@ import {
   Configurations,
   ManageTeam,
   ProjectHome,
-} from '../pageListAsync';
+} from "../pageListAsync";
 
 class Application extends React.Component {
   render() {
@@ -109,7 +109,7 @@ class Application extends React.Component {
           <Route path="/projects/backlog" component={Analytics} />
           <Route path="/projects/project-settings" component={InfoUpdates} />
           <Route path="/projects/project-access" component={Status} />
-          <Route exact path="/projects/sprint-board" component={Parent} />
+          <Route exact path="/projects/sprint-board" component={TaskBoard} />
           <Route path="/projects/roadmap" component={Grid} />
           <Route path="/projects/release" component={AppLayout} />
           {/* Table */}
@@ -195,7 +195,6 @@ class Application extends React.Component {
           <Route path="/pages/product-detail" component={ProductPage} />
           <Route path="/pages/checkout" component={CheckoutPage} />
           <Route path="/pages/calendar" component={Calendar} />
-          <Route path="/pages/taskboard" component={TaskBoard} />
           <Route path="/pages/invoice" component={Invoice} />
           {/* Pages */}
           <Route exact path="/pages" component={Parent} />

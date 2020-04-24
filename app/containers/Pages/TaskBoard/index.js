@@ -1,12 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import { Helmet } from 'react-helmet';
-import brand from 'dan-api/dummy/brand';
-import data from 'dan-api/apps/taskBoardData';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import { TaskBoard, AddBoard, Notification } from 'dan-components';
+import React from "react";
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
+import { Helmet } from "react-helmet";
+import brand from "dan-api/dummy/brand";
+import data from "dan-api/apps/taskBoardData";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import { TaskBoard, AddBoard, Notification } from "dan-components";
 import {
   fetchAction,
   addAction,
@@ -14,19 +14,19 @@ import {
   submitAction,
   deleteAction,
   closeNotifAction,
-} from 'dan-actions/TaskBoardActions';
-const styles = theme => ({
+} from "dan-actions/TaskBoardActions";
+const styles = (theme) => ({
   root: {
-    display: 'block',
+    display: "block",
     width: `calc(100% + ${theme.spacing(2)}px)`,
-    marginLeft: theme.spacing(1) * -1
-  }
+    marginLeft: theme.spacing(1) * -1,
+  },
 });
 
-class TaskBoardContainer extends React.Component {
+export class TaskBoardContainer extends React.Component {
   state = {
     stateData: { lanes: [] },
-  }
+  };
 
   async componentWillMount() {
     const response = await this.getBoard();
@@ -35,7 +35,7 @@ class TaskBoardContainer extends React.Component {
   }
 
   getBoard() {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       resolve(data);
       this.setState({ dataLoaded: true });
     });
@@ -46,8 +46,10 @@ class TaskBoardContainer extends React.Component {
     this.setState({ stateData: this.props.boardData.toJS() }); // eslint-disable-line
 
     // Scroll to right-end
-    const taskWrap = document.getElementById('task_wrap').firstElementChild.firstElementChild;
-    taskWrap.scrollLeft = taskWrap.firstElementChild.offsetWidth - taskWrap.offsetWidth;
+    const taskWrap = document.getElementById("task_wrap").firstElementChild
+      .firstElementChild;
+    taskWrap.scrollLeft =
+      taskWrap.firstElementChild.offsetWidth - taskWrap.offsetWidth;
   }
 
   async handleDelete(id) {
@@ -57,7 +59,7 @@ class TaskBoardContainer extends React.Component {
   }
 
   render() {
-    const title = brand.name + ' - Task Board';
+    const title = brand.name + " - Task Board";
     const description = brand.desc;
     const { stateData, dataLoaded } = this.state;
     const {
@@ -80,7 +82,11 @@ class TaskBoardContainer extends React.Component {
         </Helmet>
         <Notification close={() => closeNotif()} message={messageNotif} />
         <div className={classes.root} id="task_wrap">
-          <TaskBoard dataLoaded={dataLoaded} data={stateData} removeBoard={(id) => this.handleDelete(id)} />
+          <TaskBoard
+            dataLoaded={dataLoaded}
+            data={stateData}
+            removeBoard={(id) => this.handleDelete(id)}
+          />
           <AddBoard
             openForm={openFrm}
             addEvent={addBoard}
@@ -106,15 +112,15 @@ TaskBoardContainer.propTypes = {
   messageNotif: PropTypes.string.isRequired,
 };
 
-const reducer = 'taskboard';
-const mapStateToProps = state => ({
+const reducer = "taskboard";
+const mapStateToProps = (state) => ({
   force: state, // force state from reducer
-  boardData: state.getIn([reducer, 'boardData']),
-  openFrm: state.getIn([reducer, 'openFrm']),
-  messageNotif: state.getIn([reducer, 'notifMsg']),
+  boardData: state.getIn([reducer, "boardData"]),
+  openFrm: state.getIn([reducer, "openFrm"]),
+  messageNotif: state.getIn([reducer, "notifMsg"]),
 });
 
-const constDispatchToProps = dispatch => ({
+const constDispatchToProps = (dispatch) => ({
   fetchBoardData: bindActionCreators(fetchAction, dispatch),
   submit: bindActionCreators(submitAction, dispatch),
   deleteBoard: bindActionCreators(deleteAction, dispatch),
