@@ -397,4 +397,9 @@ export const AssignedToMe = loadable(
     fallback: <Loading />,
   }
 );
-
+export const AddProject = loadable(
+  () => import("../src/projects/add-project"),
+  {
+    fallback: <Loading />,
+  }
+);
