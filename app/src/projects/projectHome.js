@@ -1,27 +1,29 @@
-import React from 'react';
-import { SourceReader, PapperBlock } from 'dan-components';
-import Grid from '@material-ui/core/Grid';
-import { PaperSheet } from '../../containers/UiElements/demos';
-import EnhancedTable from '../../containers/Tables/TablePlayground';
-import MediaCard from '../Cards';
+import Grid from "@material-ui/core/Grid";
+import React from "react";
+
+import EnhancedTable from "../../containers/Tables/TablePlayground";
+import MediaCard from "../Cards";
+import { headCells, rows } from "../../utils/constants";
+
+const heading = "Tickets";
 
 export default class ProjectHome extends React.Component {
   render() {
-    const docSrc = '../containers/UiElements/demos/Cards/';
     return (
-      <div>
-        <Grid container>
-          <Grid xs={12} sm={4}>
-            <MediaCard />
-          </Grid>
-          <Grid xs={12} sm={12}>
-            <br />
-          </Grid>
-          <Grid container item sm={12}>
-            <EnhancedTable heading={"Projects"}/>
-          </Grid>
+      <Grid container>
+        <Grid item xs={12} sm={4}>
+          <MediaCard />
         </Grid>
-      </div>
+        <div style={{ width: "100%", marginTop: 30 }}>
+          <Grid item sm={12}>
+            <EnhancedTable
+              headCells={headCells}
+              heading={heading}
+              rows={rows}
+            />
+          </Grid>
+        </div>
+      </Grid>
     );
   }
 }
