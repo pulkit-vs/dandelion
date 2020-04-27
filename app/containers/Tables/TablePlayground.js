@@ -113,7 +113,7 @@ const useToolbarStyles = makeStyles((theme) => ({
 
 const EnhancedTableToolbar = (props) => {
   const classes = useToolbarStyles();
-  const { numSelected, heading } = props;
+  const { numSelected, heading, onDeleteClicked } = props;
 
   return (
     <Toolbar
@@ -143,7 +143,7 @@ const EnhancedTableToolbar = (props) => {
 
       {numSelected > 0 ? (
         <Tooltip title="Delete">
-          <IconButton aria-label="delete">
+          <IconButton aria-label="delete" onClick={onDeleteClicked}>
             <DeleteIcon />
           </IconButton>
         </Tooltip>
@@ -187,7 +187,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const EnhancedTable = (props) => {
-  const { headCells, rows } = props;
+  const { headCells, rows, updateTasks } = props;
   const classes = useStyles();
   const [order, setOrder] = React.useState("asc");
   const [orderBy, setOrderBy] = React.useState("ticketId");
@@ -201,6 +201,12 @@ const EnhancedTable = (props) => {
     setOrder(isAsc ? "desc" : "asc");
     setOrderBy(property);
   };
+
+  function onDeleteClicked() {
+    const updatedRows = rows.filter((el, index) => !selected.includes(index)); //Deleted rows
+    updateTasks(updatedRows);
+    setSelected([]);
+  }
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
@@ -226,7 +232,6 @@ const EnhancedTable = (props) => {
         selected.slice(selectedIndex + 1)
       );
     }
-
     setSelected(newSelected);
   };
 
@@ -243,7 +248,7 @@ const EnhancedTable = (props) => {
     setDense(event.target.checked);
   };
 
-  const isSelected = (name) => selected.indexOf(name) !== -1;
+  const isSelected = (index) => selected.indexOf(index) !== -1;
 
   const emptyRows =
     rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
@@ -254,6 +259,7 @@ const EnhancedTable = (props) => {
         <EnhancedTableToolbar
           heading={props.heading}
           numSelected={selected.length}
+          onDeleteClicked={onDeleteClicked}
         />
         <TableContainer>
           <Table
@@ -276,13 +282,13 @@ const EnhancedTable = (props) => {
               {stableSort(rows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
-                  const isItemSelected = isSelected(row.name);
+                  const isItemSelected = isSelected(index);
                   const labelId = `enhanced-table-checkbox-${index}`;
 
                   return (
                     <TableRow
                       hover
-                      onClick={(event) => handleClick(event, row.id)}
+                      onClick={(event) => handleClick(event, index)}
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
