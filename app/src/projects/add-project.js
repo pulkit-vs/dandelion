@@ -1,6 +1,6 @@
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -31,6 +31,13 @@ function getSteps() {
 }
 
 function getStepContent(stepIndex) {
+  const [shadowChange, onShadowChange] = React.useState(false);
+  const onShadowChangeClicked = (shadowChange) => {
+    return () => {
+      onShadowChange(shadowChange);
+      console.log("Calling", shadowChange);
+    };
+  };
   switch (stepIndex) {
     case 0:
       return (
@@ -50,7 +57,7 @@ function getStepContent(stepIndex) {
       return (
         <Grid container spacing={2}>
           <Grid item xs={12} sm={3}>
-            <Card className={styles.cardShadow}>
+            <Card className={shadowChange ? styles.selectedCardShadow : styles.cardShadow} onClick={onShadowChangeClicked(!shadowChange)}>
               <CardContent>
                 <Typography color="textSecondary" gutterBottom className={styles.textCenter}> Software </Typography>
                 <img src={require('../img-software.png')} className={styles.img} />
@@ -65,6 +72,7 @@ function getStepContent(stepIndex) {
               </CardContent>
             </Card>
           </Grid>
+          <Grid item xs={12} sm={12}><br></br></Grid>
         </Grid>
       );
     case 2:
