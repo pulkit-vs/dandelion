@@ -5,7 +5,7 @@ export const DAEMON = "@@saga-injector/daemon";
 export const ONCE_TILL_UNMOUNT = "@@saga-injector/once-till-unmount";
 
 export const headCells = [
-  { id: "tickedId", numeric: false, disablePadding: true, label: "Ticket Id" },
+  { id: "ticketId", numeric: false, disablePadding: true, label: "Ticket Id" },
   { id: "type", numeric: true, disablePadding: false, label: "Type" },
   { id: "reporter", numeric: true, disablePadding: false, label: "Reporter" },
   { id: "title", numeric: true, disablePadding: false, label: "Title" },
@@ -71,39 +71,41 @@ export const rows = [
 
 export const projectCardData = [
   {
-    "projectId": 1,
-    "projectName": "Project 1",
-    "projectKey": "PRO1",
-    "projectDescription": "abcd  efg",
-    "projectType": "Classic",
-    "projectCategory": "Software",
-    "projectTemplateId": "Kanban",
-    "projectOwner": "Nikhil",
-    "projectLead": "Afzal",
-    "projectIcon": "http://cwdncjwn/cjdwji/jj.jpg"
+    projectId: 1,
+    projectName: "Project 1",
+    projectKey: "PRO1",
+    projectDescription: "abcd  efg",
+    projectType: "Classic",
+    projectCategory: "Software",
+    projectTemplateId: "Kanban",
+    projectOwner: "Nikhil",
+    projectLead: "Afzal",
+    projectIcon: "http://cwdncjwn/cjdwji/jj.jpg",
   },
   {
-    "projectId": 2,
-    "projectName": "Project 2",
-    "projectKey": "PRO2",
-    "projectDescription": "abcd  efg",
-    "projectType": "Classic",
-    "projectCategory": "Software",
-    "projectTemplateId": "Kanban",
-    "projectOwner": "Nikhil",
-    "projectLead": "Shubham",
-    "projectIcon": "http://cwdncjwn/cjdwji/jj.jpg"
+    projectId: 2,
+    projectName: "Project 2",
+    projectKey: "PRO2",
+    projectDescription: "abcd  efg",
+    projectType: "Classic",
+    projectCategory: "Software",
+    projectTemplateId: "Kanban",
+    projectOwner: "Nikhil",
+    projectLead: "Shubham",
+    projectIcon: "http://cwdncjwn/cjdwji/jj.jpg",
   },
   {
-    "projectId": 2,
-    "projectName": "Project 2",
-    "projectKey": "PRO2",
-    "projectDescription": "abcd  efg",
-    "projectType": "Classic",
-    "projectCategory": "Software",
-    "projectTemplateId": "Kanban",
-    "projectOwner": "Nikhil",
-    "projectLead": "Shubham",
-    "projectIcon": "http://cwdncjwn/cjdwji/jj.jpg"
-  }
+    projectId: 2,
+    projectName: "Project 2",
+    projectKey: "PRO2",
+    projectDescription: "abcd  efg",
+    projectType: "Classic",
+    projectCategory: "Software",
+    projectTemplateId: "Kanban",
+    projectOwner: "Nikhil",
+    projectLead: "Shubham",
+    projectIcon: "http://cwdncjwn/cjdwji/jj.jpg",
+  },
 ];
+
+export const STARRED_TICKETS = "Starred Tickets";

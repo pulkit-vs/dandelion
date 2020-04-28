@@ -9,8 +9,8 @@ const heading = "My Tasks";
 export default class AssignedToMe extends React.Component {
   render() {
     return (
-      <div>
-        <Grid container>
+      <Grid container>
+        <div style={{ width: "100%", marginTop: 30 }}>
           <Grid item sm={12}>
             <EnhancedTable
               headCells={headCells}
@@ -18,8 +18,8 @@ export default class AssignedToMe extends React.Component {
               rows={rows}
             />
           </Grid>
-        </Grid>
-      </div>
+        </div>
+      </Grid>
     );
   }
 }
