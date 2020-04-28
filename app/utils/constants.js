@@ -68,3 +68,42 @@ export const rows = [
     "2 April, 2019"
   ),
 ];
+
+export const projectCardData = [
+  {
+    "projectId": 1,
+    "projectName": "Project 1",
+    "projectKey": "PRO1",
+    "projectDescription": "abcd  efg",
+    "projectType": "Classic",
+    "projectCategory": "Software",
+    "projectTemplateId": "Kanban",
+    "projectOwner": "Nikhil",
+    "projectLead": "Afzal",
+    "projectIcon": "http://cwdncjwn/cjdwji/jj.jpg"
+  },
+  {
+    "projectId": 2,
+    "projectName": "Project 2",
+    "projectKey": "PRO2",
+    "projectDescription": "abcd  efg",
+    "projectType": "Classic",
+    "projectCategory": "Software",
+    "projectTemplateId": "Kanban",
+    "projectOwner": "Nikhil",
+    "projectLead": "Shubham",
+    "projectIcon": "http://cwdncjwn/cjdwji/jj.jpg"
+  },
+  {
+    "projectId": 2,
+    "projectName": "Project 2",
+    "projectKey": "PRO2",
+    "projectDescription": "abcd  efg",
+    "projectType": "Classic",
+    "projectCategory": "Software",
+    "projectTemplateId": "Kanban",
+    "projectOwner": "Nikhil",
+    "projectLead": "Shubham",
+    "projectIcon": "http://cwdncjwn/cjdwji/jj.jpg"
+  }
+];

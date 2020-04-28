@@ -6,6 +6,7 @@ import EnhancedTable from "../../containers/Tables/TablePlayground";
 import MediaCard from "../Cards";
 import { headCells, rows } from "../../utils/constants";
 import { updateTasks } from "../../actions/projectActions";
+import { projectCardData } from '../../utils/constants';
 
 const heading = "Tickets";
 
@@ -16,12 +17,14 @@ export class ProjectHome extends React.Component {
   render() {
     const { updateTasks } = this.props;
     return (
-      <Grid container>
-        <Grid item xs={12} sm={4}>
-          <MediaCard />
+      <Grid container spacing={2}>
+        {projectCardData.map((data) => (
+        <Grid item xs={12} sm={12} md={4}>
+            <MediaCard projectName={data.projectName} projectCategory={data.projectCategory} projectIconUrl={data.projectIcon}/>
         </Grid>
+        ))}
         <div style={{ width: "100%", marginTop: 30 }}>
-          <Grid item sm={12}>
+          <Grid item sm={12} xs={12} md={12}>
             <EnhancedTable
               headCells={headCells}
               heading={heading}
