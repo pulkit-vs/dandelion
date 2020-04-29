@@ -19,54 +19,60 @@ export const headCells = [
 ];
 
 export const rows = [
-  createData(
-    "1",
-    "AMN Scheduling",
-    "AWON",
-    "Software Project",
-    "Nikhil Agarwal",
-    "2 April, 2019"
-  ),
-  createData(
-    "2",
-    "AMN Scheduling",
-    "AWON",
-    "Software Project",
-    "Nikhil Agarwal",
-    "2 April, 2019"
-  ),
-  createData(
-    "3",
-    "AMN Scheduling",
-    "AWON",
-    "Software Project",
-    "Nikhil Agarwal",
-    "2 April, 2019"
-  ),
-  createData(
-    "4",
-    "AMN Scheduling",
-    "AWON",
-    "Software Project",
-    "Nikhil Agarwal",
-    "2 April, 2019"
-  ),
-  createData(
-    "5",
-    "AMN Wonolo",
-    "AWON",
-    "Software Project",
-    "Nikhil Agarwal",
-    "2 April, 2019"
-  ),
-  createData(
-    "6",
-    "AMN Wonolo",
-    "AWON",
-    "Software Project",
-    "Nikhil Agarwal",
-    "2 April, 2019"
-  ),
+  {
+    ticketId: "1",
+    type: "AMN Scheduling",
+    reporter: "AWON",
+    title: "Software Project",
+    priority: "Nikhil Agarwal",
+    assignedDate: "2 April, 2019",
+    starredTicket: true,
+  },
+  {
+    ticketId: "2",
+    type: "AMN Scheduling",
+    reporter: "AWON",
+    title: "Software Project",
+    priority: "Nikhil Agarwal",
+    assignedDate: "2 April, 2019",
+    starredTicket: true,
+  },
+  {
+    ticketId: "3",
+    type: "AMN Scheduling",
+    reporter: "AWON",
+    title: "Software Project",
+    priority: "Nikhil Agarwal",
+    assignedDate: "2 April, 2019",
+    starredTicket: false,
+  },
+  {
+    ticketId: "4",
+    type: "AMN Scheduling",
+    reporter: "AWON",
+    title: "Software Project",
+    priority: "Nikhil Agarwal",
+    assignedDate: "2 April, 2019",
+    starredTicket: true,
+  },
+  {
+    ticketId: "5",
+    type: "AMN Scheduling",
+    reporter: "AWON",
+    title: "Software Project",
+    priority: "Nikhil Agarwal",
+    assignedDate: "2 April, 2019",
+    starredTicket: false,
+  },
+  {
+    ticketId: "6",
+    type: "AMN Scheduling",
+    reporter: "AWON",
+    title: "Software Project",
+    priority: "Nikhil Agarwal",
+    assignedDate: "2 April, 2019",
+    starredTicket: false,
+  },
 ];
 
 export const projectCardData = [

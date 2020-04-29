@@ -1,29 +1,75 @@
-import { fromJS } from "immutable";
-import { get, clonedeep } from "lodash";
 import { types } from "../../actions/projectActions";
+import { rows } from "../../utils/constants";
 
 const initialState = {
   rows: [],
   starredTask: [],
 };
 
-const initialImmutableState = fromJS(initialState);
-export default function reducer(state = initialImmutableState, action = {}) {
+export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
-    case types.UPDATE_TASKS: {
-      return state.withMutations((mutableState) => {
-        const rows = action.payload.rows.rows;
-        mutableState.set("rows", rows);
-      });
-    }
     case types.SET_STARRED_TASK: {
-      return state.withMutations((mutableState) => {
-        const copyState = clonedeep(fromJS(state));
-        const starredTask = get(copyState, "starredTask", []);
-        const row = action.payload.starredTask.rows;
-        mutableState.set("starredTask", starredTask.push(row));
-      });
+      let updatedTask = [];
+      const rowData = action.payload.starredTask.rows;
+      const sameRow = state.starredTask.find(
+        ({ ticketId }) => ticketId === rowData.ticketId
+      );
+      if (sameRow) {
+        updatedTask = state.starredTask.filter(
+          ({ ticketId }) => ticketId !== sameRow.ticketId
+        );
+      } else {
+        updatedTask = [...state.starredTask, rowData];
+      }
+      return { ...state, starredTask: updatedTask };
     }
+
+    case types.SET_STARRED_TICKET_STATUS: {
+      const status = action.payload.status.status;
+      const id = action.payload.status.ticketId;
+      state.rows
+        .filter((data) => data.ticketId === id)
+        .map((item) => (item.starredTicket = status));
+      return {
+        ...state,
+        rows: rows,
+      };
+    }
+
+    case types.INIT: {
+      const updatedTask = state.rows.filter(
+        (item) => item.starredTicket === true
+      );
+      return {
+        ...state,
+        rows: action.rows.rows,
+        starredTask: updatedTask,
+      };
+    }
+
+    case types.SET_ALL_STARRED_TASK: {
+      const status = action.status.status;
+      let updatedTask = [];
+      if (status) {
+        updatedTask = state.rows;
+      }
+      return {
+        ...state,
+        starredTask: updatedTask,
+      };
+    }
+
+    case types.SET_ALL_STARRED_TICKET_STATUS: {
+      const status = action.status.status;
+      state.rows.map((data) => {
+        data.starredTicket = status;
+      });
+      return {
+        ...state,
+        rows: rows,
+      };
+    }
+
     default:
       return state;
   }

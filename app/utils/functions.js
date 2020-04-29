@@ -7,5 +7,12 @@ export function createData(
   priority,
   assignedDate
 ) {
-  return { ticketId, type, reporter, title, priority, assignedDate };
+  return {
+    ticketId,
+    type,
+    reporter,
+    title,
+    priority,
+    assignedDate,
+  };
 }

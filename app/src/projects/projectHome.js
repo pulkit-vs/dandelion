@@ -1,11 +1,18 @@
 import Grid from "@material-ui/core/Grid";
 import React from "react";
 import { connect } from "react-redux";
+import { get } from "lodash";
 
 import EnhancedTable from "../../containers/Tables/TablePlayground";
 import MediaCard from "../Cards";
 import { headCells, rows } from "../../utils/constants";
-import { updateTasks, setStarredTask } from "../../actions/projectActions";
+import {
+  setAllStarredTask,
+  setRows,
+  setStarredTask,
+  toggleAllStarredStatus,
+  toggleStarredStatus,
+} from "../../actions/projectActions";
 import { projectCardData } from "../../utils/constants";
 
 const heading = "Tickets";
@@ -14,13 +21,26 @@ export class ProjectHome extends React.Component {
   constructor(props) {
     super(props);
   }
+
+  componentDidMount() {
+    this.props.setRows(); //TODO: Remove after API integration
+  }
+
   render() {
-    const { updateTasks, setStarredTask, starredTask } = this.props;
-    console.log("starredTask", starredTask);
+    const {
+      projects,
+      setAllStarredTask,
+      setStarredTask,
+      toggleAllStarredStatus,
+      toggleStarredStatus,
+    } = this.props;
+    const starredTask = get(projects, "starredTask", []);
+    const rows = get(projects, "rows", []);
+
     return (
       <Grid container spacing={2}>
-        {projectCardData.map((data) => (
-          <Grid item xs={12} sm={12} md={4}>
+        {projectCardData.map((data, index) => (
+          <Grid key={index} item xs={12} sm={12} md={4}>
             <MediaCard
               projectName={data.projectName}
               projectCategory={data.projectCategory}
@@ -34,8 +54,11 @@ export class ProjectHome extends React.Component {
               headCells={headCells}
               heading={heading}
               rows={rows}
+              setAllStarredTask={setAllStarredTask}
               setStarredTask={setStarredTask}
-              updateTasks={updateTasks}
+              starredTask={starredTask}
+              toggleAllStarredStatus={toggleAllStarredStatus}
+              toggleStarredStatus={toggleStarredStatus}
             />
           </Grid>
         </div>
@@ -45,13 +68,21 @@ export class ProjectHome extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  rows: state.getIn(["projects", "rows"]),
-  starredTask: state.getIn(["projects", "starredTask"]),
+  projects: state.get("projects"),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  updateTasks: (rows) => dispatch(updateTasks({ rows })),
   setStarredTask: (rows) => dispatch(setStarredTask({ rows })),
+
+  toggleStarredStatus: (ticketId, status) =>
+    dispatch(toggleStarredStatus({ ticketId, status })),
+
+  setRows: () => dispatch(setRows({ rows })),
+
+  setAllStarredTask: (status) => dispatch(setAllStarredTask({ status })),
+
+  toggleAllStarredStatus: (status) =>
+    dispatch(toggleAllStarredStatus({ status })),
 });
 
 const ProjectHomeMapped = connect(

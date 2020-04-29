@@ -49,12 +49,9 @@ function EnhancedTableHead(props) {
   const {
     classes,
     headCells,
-    numSelected,
     onRequestSort,
-    onSelectAllClick,
     order,
     orderBy,
-    rowCount,
     setStarred,
     starred,
   } = props;
@@ -75,7 +72,7 @@ function EnhancedTableHead(props) {
           <TableCell
             key={headCell.id}
             align={headCell.numeric ? "right" : "left"}
-            style={{ padding: "1%" }}
+            className={styles.tableCell}
             sortDirection={orderBy === headCell.id ? order : false}
           >
             <TableSortLabel
@@ -129,7 +126,7 @@ const useToolbarStyles = makeStyles((theme) => ({
 
 const EnhancedTableToolbar = (props) => {
   const classes = useToolbarStyles();
-  const { heading } = props;
+  const { heading, setToggleStarredButton, starredStatus } = props;
   return (
     <Toolbar className={classes.root}>
       <Typography
@@ -140,16 +137,13 @@ const EnhancedTableToolbar = (props) => {
       >
         {heading}
       </Typography>
-      <div
-        style={{ display: "flex", flexDirection: "row", alignItems: "center" }}
-      >
-        <label style={{ fontSize: 16, width: 120, fontWeight: 500 }}>
-          {STARRED_TICKETS}
-        </label>
+      <div className={styles.starredTicketBtn}>
+        <label className={styles.starredTicketHeading}>{STARRED_TICKETS}</label>
         <Switch
           color="primary"
           name="checkedB"
           inputProps={{ "aria-label": "primary checkbox" }}
+          onChange={setToggleStarredButton(!starredStatus)}
         />
       </div>
     </Toolbar>
@@ -185,7 +179,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const EnhancedTable = (props) => {
-  const { headCells, rows, setStarredTask } = props;
+  const {
+    headCells,
+    rows,
+    setAllStarredTask,
+    setStarredTask,
+    starredTask,
+    toggleAllStarredStatus,
+    toggleStarredStatus,
+  } = props;
   const classes = useStyles();
   const [order, setOrder] = React.useState("asc");
   const [orderBy, setOrderBy] = React.useState("ticketId");
@@ -194,6 +196,14 @@ const EnhancedTable = (props) => {
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [starred, toggleStarred] = React.useState(false);
+  const [starredStatus, toggleStarredButton] = React.useState(false);
+  const dataModal = starredStatus ? starredTask : rows;
+
+  const setToggleStarredButton = (starredStatus) => {
+    return () => {
+      toggleStarredButton(starredStatus);
+    };
+  };
 
   const setStarred = (starred) => {
     return () => {
@@ -209,33 +219,15 @@ const EnhancedTable = (props) => {
   };
 
   const handleSelectAllClick = (starred) => {
-    if (starred) {
-      const newSelecteds = rows.map((n) => n.ticketId);
-      setSelected(newSelecteds);
-      return;
-    } else {
-      setSelected([]);
-    }
+    toggleAllStarredStatus(starred);
+    setAllStarredTask(starred);
   };
 
-  const handleClick = (row, ticketId) => {
-    const selectedIndex = selected.indexOf(ticketId);
-    let newSelected = [];
-
-    if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, ticketId);
-    } else if (selectedIndex === 0) {
-      newSelected = newSelected.concat(selected.slice(1));
-    } else if (selectedIndex === selected.length - 1) {
-      newSelected = newSelected.concat(selected.slice(0, -1));
-    } else if (selectedIndex > 0) {
-      newSelected = newSelected.concat(
-        selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1)
-      );
-    }
-    setSelected(newSelected);
-    // setStarredTask(row);
+  const handleClick = (row, ticketId, status) => {
+    return () => {
+      setStarredTask(row);
+      toggleStarredStatus(ticketId, status);
+    };
   };
 
   const handleChangePage = (event, newPage) => {
@@ -254,7 +246,7 @@ const EnhancedTable = (props) => {
   const isSelected = (ticketId) => selected.indexOf(ticketId) !== -1;
 
   const emptyRows =
-    rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
+    rowsPerPage - Math.min(rowsPerPage, dataModal.length - page * rowsPerPage);
 
   return (
     <div className={classes.root}>
@@ -262,6 +254,8 @@ const EnhancedTable = (props) => {
         <EnhancedTableToolbar
           heading={props.heading}
           numSelected={selected.length}
+          setToggleStarredButton={setToggleStarredButton}
+          starredStatus={starredStatus}
         />
         <TableContainer>
           <Table
@@ -277,18 +271,17 @@ const EnhancedTable = (props) => {
               orderBy={orderBy}
               onSelectAllClick={handleSelectAllClick}
               onRequestSort={handleRequestSort}
-              rowCount={rows.length}
+              rowCount={dataModal.length}
               headCells={headCells}
               setStarred={setStarred}
               starred={starred}
             />
             <TableBody>
-              {stableSort(rows, getComparator(order, orderBy))
+              {stableSort(dataModal, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
                   const isItemSelected = isSelected(row.ticketId);
                   const labelId = `enhanced-table-checkbox-${index}`;
-
                   return (
                     <TableRow
                       hover
@@ -302,23 +295,36 @@ const EnhancedTable = (props) => {
                       <TableCell padding="checkbox">
                         <IconButton
                           aria-label="Menu"
-                          className={isItemSelected ? styles.starredColor : ""}
-                          onClick={(event) => handleClick(row, row.ticketId)}
+                          className={
+                            row.starredTicket ? styles.starredColor : ""
+                          }
+                          onClick={handleClick(
+                            row,
+                            row.ticketId,
+                            !row.starredTicket
+                          )}
                         >
                           <StarBorderIcon />
                         </IconButton>
                       </TableCell>
-                      {Object.values(row).map((value, index) => {
-                        return (
-                          <TableCell
-                            key={`table-cell-${index}`}
-                            align="right"
-                            style={{ padding: "1%" }}
-                          >
-                            {value}
-                          </TableCell>
-                        );
-                      })}
+                      <TableCell align="right" className={styles.tableCell}>
+                        {row.ticketId}
+                      </TableCell>
+                      <TableCell align="right" className={styles.tableCell}>
+                        {row.type}
+                      </TableCell>
+                      <TableCell align="right" className={styles.tableCell}>
+                        {row.reporter}
+                      </TableCell>
+                      <TableCell align="right" className={styles.tableCell}>
+                        {row.title}
+                      </TableCell>
+                      <TableCell align="right" className={styles.tableCell}>
+                        {row.priority}
+                      </TableCell>
+                      <TableCell align="right" className={styles.tableCell}>
+                        {row.assignedDate}
+                      </TableCell>
                     </TableRow>
                   );
                 })}
@@ -333,7 +339,7 @@ const EnhancedTable = (props) => {
         <TablePagination
           rowsPerPageOptions={[5, 10, 25]}
           component="div"
-          count={rows.length}
+          count={dataModal.length}
           rowsPerPage={rowsPerPage}
           page={page}
           onChangePage={handleChangePage}

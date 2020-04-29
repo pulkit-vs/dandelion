@@ -1,3 +1,19 @@
 .starredColor {
   color: yellow;
 }
+
+.starredTicketBtn {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+}
+
+.starredTicketHeading {
+  font-size: 16px;
+  font-weight: 500;
+  width: 120px;
+}
+
+.tableCell {
+  padding: 1%;
+}
