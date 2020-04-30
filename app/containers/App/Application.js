@@ -93,6 +93,7 @@ import {
   TreeTable,
   Typography,
   Upload,
+  StarredTasks,
 } from "../pageListAsync";
 
 class Application extends React.Component {
@@ -104,7 +105,7 @@ class Application extends React.Component {
           {/* My work */}
           <Route exact path="/" component={PersonalDashboard} />
           <Route path="/mywork/assigned-task" component={AssignedToMe} />
-          <Route path="/mywork/starred" component={CryptoDashboard} />
+          <Route path="/mywork/starred" component={StarredTasks} />
           {/* Projects */}
           <Route path="/projects/add-project" component={AddProject} />
           <Route path="/projects/project-board" component={ProjectHome} />

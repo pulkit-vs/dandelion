@@ -1,4 +1,6 @@
+import "antd/dist/antd.css";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Grid from "@material-ui/core/Grid";
 import IconButton from "@material-ui/core/IconButton";
 import Paper from "@material-ui/core/Paper";
 import PropTypes from "prop-types";
@@ -15,9 +17,11 @@ import TableRow from "@material-ui/core/TableRow";
 import TableSortLabel from "@material-ui/core/TableSortLabel";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import styles from "dan-styles/TablePlayground.scss";
-import { STARRED_TICKETS } from "../../utils/constants";
+import { Empty } from "antd";
 import { lighten, makeStyles } from "@material-ui/core/styles";
+
+import styles from "dan-styles/TablePlayground.scss";
+import { STARRED_TICKETS, STARRED } from "../../utils/constants";
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -48,31 +52,43 @@ function stableSort(array, comparator) {
 function EnhancedTableHead(props) {
   const {
     classes,
+    dataModal,
     headCells,
     onRequestSort,
     order,
     orderBy,
     setStarred,
+    showStarredButton,
     starred,
+    starredStatus,
   } = props;
 
   const createSortHandler = (property) => (event) => {
     onRequestSort(event, property);
   };
-
   return (
     <TableHead>
       <TableRow>
-        <TableCell padding="checkbox">
-          <IconButton aria-label="Menu" onClick={setStarred(!starred)}>
-            <StarBorderIcon className={starred ? styles.starredColor : ""} />
-          </IconButton>
+        <TableCell style={{ width: "92px" }}>
+          {showStarredButton ? (
+            <IconButton
+              aria-label="Menu"
+              disabled={!dataModal.length > 0 || starredStatus ? true : false}
+              onClick={setStarred(!starred)}
+              style={{ marginLeft: "-12px" }}
+            >
+              <StarBorderIcon className={starred ? styles.starredColor : ""} />
+            </IconButton>
+          ) : (
+            <label style={{ padding: 0 }}>{STARRED}</label>
+          )}
         </TableCell>
+
         {headCells.map((headCell) => (
           <TableCell
-            key={headCell.id}
             align={headCell.numeric ? "right" : "left"}
             className={styles.tableCell}
+            key={headCell.id}
             sortDirection={orderBy === headCell.id ? order : false}
           >
             <TableSortLabel
@@ -96,7 +112,6 @@ function EnhancedTableHead(props) {
 
 EnhancedTableHead.propTypes = {
   classes: PropTypes.object.isRequired,
-  numSelected: PropTypes.number.isRequired,
   onRequestSort: PropTypes.func.isRequired,
   onSelectAllClick: PropTypes.func.isRequired,
   order: PropTypes.oneOf(["asc", "desc"]).isRequired,
@@ -126,33 +141,40 @@ const useToolbarStyles = makeStyles((theme) => ({
 
 const EnhancedTableToolbar = (props) => {
   const classes = useToolbarStyles();
-  const { heading, setToggleStarredButton, starredStatus } = props;
+  const {
+    heading,
+    setToggleStarredButton,
+    showStarredButton,
+    starredStatus,
+  } = props;
   return (
     <Toolbar className={classes.root}>
       <Typography
         className={classes.title}
-        variant="h6"
-        id="tableTitle"
         component="div"
+        id="tableTitle"
+        variant="h6"
       >
         {heading}
       </Typography>
-      <div className={styles.starredTicketBtn}>
-        <label className={styles.starredTicketHeading}>{STARRED_TICKETS}</label>
-        <Switch
-          color="primary"
-          name="checkedB"
-          inputProps={{ "aria-label": "primary checkbox" }}
-          onChange={setToggleStarredButton(!starredStatus)}
-        />
-      </div>
+      {showStarredButton && (
+        <div className={styles.starredTicketBtn}>
+          <label className={styles.starredTicketHeading}>
+            {STARRED_TICKETS}
+          </label>
+          <Switch
+            color="primary"
+            inputProps={{ "aria-label": "primary checkbox" }}
+            name="checkedB"
+            onChange={setToggleStarredButton(!starredStatus)}
+          />
+        </div>
+      )}
     </Toolbar>
   );
 };
 
-EnhancedTableToolbar.propTypes = {
-  numSelected: PropTypes.number.isRequired,
-};
+EnhancedTableToolbar.propTypes = {};
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -184,6 +206,7 @@ const EnhancedTable = (props) => {
     rows,
     setAllStarredTask,
     setStarredTask,
+    showStarredButton,
     starredTask,
     toggleAllStarredStatus,
     toggleStarredStatus,
@@ -191,7 +214,6 @@ const EnhancedTable = (props) => {
   const classes = useStyles();
   const [order, setOrder] = React.useState("asc");
   const [orderBy, setOrderBy] = React.useState("ticketId");
-  const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
@@ -243,8 +265,6 @@ const EnhancedTable = (props) => {
     setDense(event.target.checked);
   };
 
-  const isSelected = (ticketId) => selected.indexOf(ticketId) !== -1;
-
   const emptyRows =
     rowsPerPage - Math.min(rowsPerPage, dataModal.length - page * rowsPerPage);
 
@@ -253,9 +273,9 @@ const EnhancedTable = (props) => {
       <Paper className={classes.paper}>
         <EnhancedTableToolbar
           heading={props.heading}
-          numSelected={selected.length}
           setToggleStarredButton={setToggleStarredButton}
           starredStatus={starredStatus}
+          showStarredButton={showStarredButton}
         />
         <TableContainer>
           <Table
@@ -266,74 +286,89 @@ const EnhancedTable = (props) => {
           >
             <EnhancedTableHead
               classes={classes}
-              numSelected={selected.length}
+              dataModal={dataModal}
+              headCells={headCells}
+              onRequestSort={handleRequestSort}
+              onSelectAllClick={handleSelectAllClick}
               order={order}
               orderBy={orderBy}
-              onSelectAllClick={handleSelectAllClick}
-              onRequestSort={handleRequestSort}
               rowCount={dataModal.length}
-              headCells={headCells}
               setStarred={setStarred}
+              showStarredButton={showStarredButton}
               starred={starred}
+              starredStatus={starredStatus}
             />
-            <TableBody>
-              {stableSort(dataModal, getComparator(order, orderBy))
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row, index) => {
-                  const isItemSelected = isSelected(row.ticketId);
-                  const labelId = `enhanced-table-checkbox-${index}`;
-                  return (
-                    <TableRow
-                      hover
-                      //onClick={(event) => handleClick(event, row.ticketId)}
-                      role="checkbox"
-                      aria-checked={isItemSelected}
-                      tabIndex={-1}
-                      key={labelId}
-                      selected={isItemSelected}
-                    >
-                      <TableCell padding="checkbox">
-                        <IconButton
-                          aria-label="Menu"
-                          className={
-                            row.starredTicket ? styles.starredColor : ""
-                          }
-                          onClick={handleClick(
-                            row,
-                            row.ticketId,
-                            !row.starredTicket
-                          )}
-                        >
-                          <StarBorderIcon />
-                        </IconButton>
-                      </TableCell>
-                      <TableCell align="right" className={styles.tableCell}>
-                        {row.ticketId}
-                      </TableCell>
-                      <TableCell align="right" className={styles.tableCell}>
-                        {row.type}
-                      </TableCell>
-                      <TableCell align="right" className={styles.tableCell}>
-                        {row.reporter}
-                      </TableCell>
-                      <TableCell align="right" className={styles.tableCell}>
-                        {row.title}
-                      </TableCell>
-                      <TableCell align="right" className={styles.tableCell}>
-                        {row.priority}
-                      </TableCell>
-                      <TableCell align="right" className={styles.tableCell}>
-                        {row.assignedDate}
-                      </TableCell>
-                    </TableRow>
-                  );
-                })}
-              {emptyRows > 0 && (
-                <TableRow style={{ height: (dense ? 33 : 53) * emptyRows }}>
-                  <TableCell colSpan={6} />
-                </TableRow>
-              )}
-            </TableBody>
+            {dataModal.length > 0 ? (
+              <TableBody>
+                {stableSort(dataModal, getComparator(order, orderBy))
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map((row, index) => {
+                    const labelId = `enhanced-table-checkbox-${index}`;
+                    return (
+                      <TableRow
+                        hover
+                        //onClick={(event) => handleClick(event, row.ticketId)}
+                        role="checkbox"
+                        tabIndex={-1}
+                        key={labelId}
+                      >
+                        <TableCell padding="checkbox">
+                          <IconButton
+                            aria-label="Menu"
+                            className={
+                              row.starredTicket ? styles.starredColor : ""
+                            }
+                            onClick={handleClick(
+                              row,
+                              row.ticketId,
+                              !row.starredTicket
+                            )}
+                          >
+                            <StarBorderIcon />
+                          </IconButton>
+                        </TableCell>
+                        <TableCell align="right" className={styles.tableCell}>
+                          {row.ticketId}
+                        </TableCell>
+                        <TableCell align="right" className={styles.tableCell}>
+                          {row.type}
+                        </TableCell>
+                        <TableCell align="right" className={styles.tableCell}>
+                          {row.reporter}
+                        </TableCell>
+                        <TableCell align="right" className={styles.tableCell}>
+                          {row.title}
+                        </TableCell>
+                        <TableCell align="right" className={styles.tableCell}>
+                          {row.priority}
+                        </TableCell>
+                        <TableCell align="right" className={styles.tableCell}>
+                          {row.assignedDate}
+                        </TableCell>
+                      </TableRow>
+                    );
+                  })}
+                {emptyRows > 0 && (
+                  <TableRow style={{ height: (dense ? 33 : 53) * emptyRows }}>
+                    <TableCell colSpan={6} />
+                  </TableRow>
+                )}
+              </TableBody>
+            ) : (
+              // <div style={{ width: "200px", height: "100px" }}>
+              <>
+                <Grid item xs={12} sm={6}>
+                  <Empty
+                    image={Empty.PRESENTED_IMAGE_DEFAULT}
+                    imageStyle={{
+                      height: 60,
+                      width: 100,
+                    }}
+                  />
+                </Grid>
+              </>
+              // </div>
+            )}
           </Table>
         </TableContainer>
         <TablePagination

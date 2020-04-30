@@ -4,8 +4,7 @@ import { connect } from "react-redux";
 import { get } from "lodash";
 
 import EnhancedTable from "../../containers/Tables/TablePlayground";
-import MediaCard from "../Cards";
-import { headCells, projectHomeTickets } from "../../utils/constants";
+import { headCells, rows } from "../../utils/constants";
 import {
   setAllStarredTask,
   setRows,
@@ -13,47 +12,33 @@ import {
   toggleAllStarredStatus,
   toggleStarredStatus,
 } from "../../actions/projects/projectBoardActions";
-import { projectCardData } from "../../utils/constants";
 
-const heading = "Tickets";
+const heading = "Starred Tasks";
 
-export class ProjectHome extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
+export class StarredTasks extends React.Component {
   componentDidMount() {
     this.props.setRows(); //TODO: Remove after API integration
   }
 
   render() {
     const {
-      projectBoard,
+      projects,
       setAllStarredTask,
       setStarredTask,
       toggleAllStarredStatus,
       toggleStarredStatus,
     } = this.props;
-    const projectStarredTasks = get(projectBoard, "projectStarredTasks", []);
-    const projectData = get(projectBoard, "projectData", []);
+    const projectStarredTasks = get(projects, "projectStarredTasks", []);
+    const rows = get(projects, "rows", []);
 
     return (
-      <Grid container spacing={2}>
-        {projectCardData.map((data, index) => (
-          <Grid key={index} item xs={12} sm={12} md={4}>
-            <MediaCard
-              projectCategory={data.projectCategory}
-              projectIconUrl={data.projectIcon}
-              projectName={data.projectName}
-            />
-          </Grid>
-        ))}
+      <Grid container>
         <div style={{ width: "100%", marginTop: 30 }}>
-          <Grid item sm={12} xs={12} md={12}>
+          <Grid item sm={12}>
             <EnhancedTable
               headCells={headCells}
               heading={heading}
-              rows={projectData}
+              rows={rows}
               setAllStarredTask={setAllStarredTask}
               setStarredTask={setStarredTask}
               showStarredButton={false}
@@ -67,9 +52,8 @@ export class ProjectHome extends React.Component {
     );
   }
 }
-
 const mapStateToProps = (state) => ({
-  projectBoard: state.get("projectBoard"),
+  projects: state.get("projects"),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -78,16 +62,16 @@ const mapDispatchToProps = (dispatch) => ({
   toggleStarredStatus: (ticketId, status) =>
     dispatch(toggleStarredStatus(ticketId, status)),
 
-  setRows: () => dispatch(setRows(projectHomeTickets)),
+  setRows: () => dispatch(setRows(rows)),
 
   setAllStarredTask: (status) => dispatch(setAllStarredTask(status)),
 
   toggleAllStarredStatus: (status) => dispatch(toggleAllStarredStatus(status)),
 });
 
-const ProjectHomeMapped = connect(
+const StarredTasksMapped = connect(
   mapStateToProps,
   mapDispatchToProps
-)(ProjectHome);
+)(StarredTasks);
 
-export default ProjectHomeMapped;
+export default StarredTasksMapped;

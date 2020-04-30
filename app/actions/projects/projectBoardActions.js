@@ -4,42 +4,40 @@ export const types = {
   SET_ALL_STARRED_TICKET_STATUS: "SET_ALL_STARRED_TICKET_STATUS",
   SET_STARRED_TASK: "SET_STARRED_TASK",
   SET_STARRED_TICKET_STATUS: "SET_STARRED_TICKET_STATUS",
-  UPDATE_TASKS: "UPDATE_TASKS",
 };
 
-export const updateTasks = (rows = []) => ({
-  type: types.UPDATE_TASKS,
-  payload: {
-    rows: rows,
-  },
-});
-
-export const setStarredTask = (starredTask = []) => ({
+export const setStarredTask = (starredTask = {}) => ({
   type: types.SET_STARRED_TASK,
   payload: {
-    starredTask: starredTask,
+    starredTask,
   },
 });
 
-export const toggleStarredStatus = (status = false, ticketId = "") => ({
+export const toggleStarredStatus = (ticketId = "", status = false) => ({
   type: types.SET_STARRED_TICKET_STATUS,
   payload: {
-    status: status,
-    ticketId: ticketId,
+    ticketId,
+    status,
   },
 });
 
-export const setRows = (rows = []) => ({
+export const setRows = (projectHomeTickets = []) => ({
   type: types.INIT,
-  rows: rows,
+  payload: {
+    projectHomeTickets,
+  },
 });
 
 export const setAllStarredTask = (status = false) => ({
   type: types.SET_ALL_STARRED_TASK,
-  status: status,
+  payload: {
+    status: status,
+  },
 });
 
 export const toggleAllStarredStatus = (status = false) => ({
   type: types.SET_ALL_STARRED_TICKET_STATUS,
-  status: status,
+  payload: {
+    status,
+  },
 });

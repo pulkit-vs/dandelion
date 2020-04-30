@@ -17,11 +17,12 @@ import email from "./modules/email";
 import initval from "./modules/initForm";
 import languageProviderReducer from "containers/LanguageProvider/reducer";
 import login from "./modules/login";
-import projects from "./modules/projects";
+import projectBoard from "./modules/ProjectReducer/project-board";
 import socmed from "./modules/socialMedia";
 import taskboard from "./modules/taskboard";
 import treeTable from "./modules/treeTable";
 import uiReducer from "./modules/ui";
+import assignedToMe from "./modules/MyWorkReducer/assigned-to-me";
 
 /**
  * Branching reducers to use one reducer for many components
@@ -43,18 +44,19 @@ function branchReducer(reducerFunction, reducerName) {
  */
 export default function createReducer(injectedReducers = {}) {
   const rootReducer = combineReducers({
+    assignedToMe,
+    calendar,
+    chat,
+    contact,
+    ecommerce,
+    email,
     form,
-    projects,
-    ui: uiReducer,
     initval,
     login,
+    projectBoard,
     socmed,
-    calendar,
-    ecommerce,
-    contact,
-    chat,
-    email,
     taskboard,
+    ui: uiReducer,
     treeTableArrow: branchReducer(treeTable, "treeTableArrow"),
     treeTablePM: branchReducer(treeTable, "treeTablePM"),
     crudTableDemo: branchReducer(crudTable, "crudTableDemo"),

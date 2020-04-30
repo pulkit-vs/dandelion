@@ -18,7 +18,64 @@ export const headCells = [
   },
 ];
 
-export const rows = [
+export const projectHomeTickets = [
+  {
+    ticketId: "1",
+    type: "AMN Scheduling",
+    reporter: "AWON",
+    title: "Software Project",
+    priority: "Nikhil Agarwal",
+    assignedDate: "2 April, 2019",
+    starredTicket: true,
+  },
+  {
+    ticketId: "2",
+    type: "AMN Scheduling",
+    reporter: "AWON",
+    title: "Software Project",
+    priority: "Nikhil Agarwal",
+    assignedDate: "2 April, 2019",
+    starredTicket: true,
+  },
+  {
+    ticketId: "3",
+    type: "AMN Scheduling",
+    reporter: "AWON",
+    title: "Software Project",
+    priority: "Nikhil Agarwal",
+    assignedDate: "2 April, 2019",
+    starredTicket: false,
+  },
+  {
+    ticketId: "4",
+    type: "AMN Scheduling",
+    reporter: "AWON",
+    title: "Software Project",
+    priority: "Nikhil Agarwal",
+    assignedDate: "2 April, 2019",
+    starredTicket: true,
+  },
+  {
+    ticketId: "5",
+    type: "AMN Scheduling",
+    reporter: "AWON",
+    title: "Software Project",
+    priority: "Nikhil Agarwal",
+    assignedDate: "2 April, 2019",
+    starredTicket: false,
+  },
+  {
+    ticketId: "6",
+    type: "AMN Scheduling",
+    reporter: "AWON",
+    title: "Software Project",
+    priority: "Nikhil Agarwal",
+    assignedDate: "2 April, 2019",
+    starredTicket: false,
+  },
+];
+
+export const assignedToMeTickets = [
   {
     ticketId: "1",
     type: "AMN Scheduling",
@@ -115,3 +172,5 @@ export const projectCardData = [
 ];
 
 export const STARRED_TICKETS = "Starred Tickets";
+
+export const STARRED = "Starred";

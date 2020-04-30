@@ -403,3 +403,10 @@ export const AddProject = loadable(
     fallback: <Loading />,
   }
 );
+
+export const StarredTasks = loadable(
+  () => import("../src/myWork/starredTasks"),
+  {
+    fallback: <Loading />,
+  }
+);
