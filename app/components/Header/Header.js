@@ -143,7 +143,7 @@ class Header extends React.Component {
           <Hidden smDown>
             <div className={classes.headerProperties}>
               <div className={classNames(classes.headerAction, showTitle && classes.fadeOut)}>
-                {fullScreen ? (
+                {/* {fullScreen ? (
                   <Tooltip title="Exit Full Screen" placement="bottom">
                     <IconButton className={classes.button} onClick={this.closeFullScreen}>
                       <Ionicon icon="ios-qr-scanner" />
@@ -160,10 +160,30 @@ class Header extends React.Component {
                   <IconButton className={classes.button} onClick={() => this.turnMode(mode)}>
                     <Ionicon icon="ios-bulb-outline" />
                   </IconButton>
+                </Tooltip> */}
+                 <Tooltip title="Show Menu" placement="bottom">
+                  <IconButton className={classes.button} onClick={openGuide}>
+                  <Ionicon icon="ios-apps" />
+                  </IconButton>
                 </Tooltip>
                 <Tooltip title="Show Guide" placement="bottom">
                   <IconButton className={classes.button} onClick={openGuide}>
                     <Ionicon icon="ios-help-circle-outline" />
+                  </IconButton>
+                </Tooltip>
+                <Tooltip title="Projects" placement="bottom">
+                  <IconButton className={classes.button} onClick={openGuide}>
+                  <Ionicon icon="ios-briefcase" />
+                  </IconButton>
+                </Tooltip>
+                <Tooltip title="Your Work" placement="bottom">
+                  <IconButton className={classes.button} onClick={openGuide}>
+                  <Ionicon icon="ios-folder-open" />
+                  </IconButton>
+                </Tooltip>
+                <Tooltip title="Filters" placement="bottom">
+                  <IconButton className={classes.button} onClick={openGuide}>
+                  <Ionicon icon="ios-funnel" />
                   </IconButton>
                 </Tooltip>
               </div>

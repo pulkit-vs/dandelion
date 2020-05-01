@@ -13,7 +13,7 @@ import styles from 'dan-components/Email/email-jss';
 const content = {
   blocks: [{
     key: '637gr',
-    text: 'Lorem ipsum dolor sit amet 😀',
+    text: '',
     type: 'unstyled',
     depth: 0,
     inlineStyleRanges: [],
@@ -23,7 +23,7 @@ const content = {
   entityMap: {}
 };
 
-class Wysiwyg extends PureComponent {
+export class Wysiwyg extends PureComponent {
   constructor(props) {
     super(props);
     const contentBlock = convertFromRaw(content);
@@ -43,7 +43,9 @@ class Wysiwyg extends PureComponent {
 
   render() {
     const { editorState } = this.state;
-    const { classes } = this.props;
+    console.log("editor", editorState)
+    const { classes, value } = this.props;
+    console.log("value", value)
     return (
       <Fragment>
         <Grid
@@ -56,15 +58,15 @@ class Wysiwyg extends PureComponent {
           <Grid item xs={12}>
             <Editor
               editorState={editorState}
-              editorClassName={classes.textEditor}
-              toolbarClassName={classes.toolbarEditor}
+              // editorClassName={classes.textEditor}
+              // toolbarClassName={classes.toolbarEditor}
               onEditorStateChange={this.onEditorStateChange}
             />
           </Grid>
-          <Grid item md={4} xs={12}>
+          {/* <Grid item md={4} xs={12}>
             <Typography variant="button">JSON Result :</Typography>
             <textarea
-              className={classes.textPreview}
+              // className={classes.textPreview}
               disabled
               value={JSON.stringify(editorState, null, 4)}
             />
@@ -72,7 +74,7 @@ class Wysiwyg extends PureComponent {
           <Grid item md={4} xs={12}>
             <Typography variant="button">HTML Result :</Typography>
             <textarea
-              className={classes.textPreview}
+              // className={classes.textPreview}
               disabled
               value={draftToHtml(convertToRaw(editorState.getCurrentContent()))}
             />
@@ -80,11 +82,11 @@ class Wysiwyg extends PureComponent {
           <Grid item md={4} xs={12}>
             <Typography variant="button">Markdown Result :</Typography>
             <textarea
-              className={classes.textPreview}
+              // className={classes.textPreview}
               disabled
               value={editorState && draftToMarkdown(convertToRaw(editorState.getCurrentContent()))}
             />
-          </Grid>
+          </Grid> */}
         </Grid>
       </Fragment>
     );

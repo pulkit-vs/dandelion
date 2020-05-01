@@ -144,7 +144,7 @@ class HeaderMenu extends React.Component {
           <Hidden smDown>
             <div className={classes.headerProperties}>
               <div className={classNames(classes.headerAction, classes.invert)}>
-                {fullScreen ? (
+                {/* {fullScreen ? (
                   <Tooltip title="Exit Full Screen" placement="bottom">
                     <IconButton className={classes.button} onClick={this.closeFullScreen}>
                       <Ionicon icon="ios-qr-scanner" />
@@ -161,7 +161,7 @@ class HeaderMenu extends React.Component {
                   <IconButton className={classes.button} onClick={() => this.turnMode(mode)}>
                     <Ionicon icon="ios-bulb-outline" />
                   </IconButton>
-                </Tooltip>
+                </Tooltip> */}
                 <Tooltip title="Show Guide" placement="bottom">
                   <IconButton className={classes.button} onClick={openGuide}>
                     <Ionicon icon="ios-help-circle-outline" />

@@ -23,6 +23,7 @@ import taskboard from "./modules/taskboard";
 import treeTable from "./modules/treeTable";
 import uiReducer from "./modules/ui";
 import assignedToMe from "./modules/MyWorkReducer/assigned-to-me";
+import createTasks from './modules/createTasks/createTasks';
 
 /**
  * Branching reducers to use one reducer for many components
@@ -65,6 +66,7 @@ export default function createReducer(injectedReducers = {}) {
     language: languageProviderReducer,
     router: connectRouter(history),
     ...injectedReducers,
+    createTasks,
   });
 
   // Wrap the root reducer and return a new root reducer with router state

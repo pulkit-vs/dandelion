@@ -11,6 +11,7 @@ import {
   AreaCharts,
   AreaFilledChart,
   AssignedToMe,
+  CreateTask,
   Autocomplete,
   Avatars,
   Badges,
@@ -106,6 +107,9 @@ class Application extends React.Component {
           <Route exact path="/" component={PersonalDashboard} />
           <Route path="/mywork/assigned-task" component={AssignedToMe} />
           <Route path="/mywork/starred" component={StarredTasks} />
+          <Route path="/mywork/starred" component={CryptoDashboard} />
+          {/* My work */}
+          <Route path="/createTask" component={CreateTask} />
           {/* Projects */}
           <Route path="/projects/add-project" component={AddProject} />
           <Route path="/projects/project-board" component={ProjectHome} />

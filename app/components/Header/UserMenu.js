@@ -12,6 +12,7 @@ import Check from '@material-ui/icons/CheckCircle';
 import Error from '@material-ui/icons/RemoveCircle';
 import ExitToApp from '@material-ui/icons/ExitToApp';
 import Badge from '@material-ui/core/Badge';
+import WorkIcon from '@material-ui/icons/Work';
 import Divider from '@material-ui/core/Divider';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -56,6 +57,36 @@ class UserMenu extends React.Component {
         >
           <Badge className={classes.badge} badgeContent={4} color="secondary">
             <Ionicon icon="ios-notifications-outline" />
+          </Badge>
+        </IconButton>
+        <IconButton
+          aria-haspopup="true"
+          onClick={this.handleMenu('add')}
+          color="inherit"
+          className={classNames(classes.notifIcon, dark ? classes.dark : classes.light)}
+        >
+          <Badge className={classes.badge} color="secondary">
+            <Ionicon icon="md-add" />
+          </Badge>
+        </IconButton>
+        <IconButton
+          aria-haspopup="true"
+          onClick={this.handleMenu('notification')}
+          color="inherit"
+          className={classNames(classes.notifIcon, dark ? classes.dark : classes.light)}
+        >
+          <Badge className={classes.badge} color="secondary">
+          <Ionicon icon="md-settings" />
+          </Badge>
+        </IconButton>
+        <IconButton
+          aria-haspopup="true"
+          onClick={this.handleMenu('help')}
+          color="inherit"
+          className={classNames(classes.notifIcon, dark ? classes.dark : classes.light)}
+        >
+          <Badge className={classes.badge} color="secondary">
+          <Ionicon icon="ios-help-circle" />
           </Badge>
         </IconButton>
         <Menu
@@ -131,6 +162,105 @@ class UserMenu extends React.Component {
             </div>
           </MenuItem>
         </Menu>
+        <Menu
+          id="menu-notification"
+          anchorEl={anchorEl}
+          anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'right',
+          }}
+          transformOrigin={{
+            vertical: 'top',
+            horizontal: 'right',
+          }}
+          className={classes.notifMenu}
+          PaperProps={{
+            style: {
+              width: 250,
+            },
+          }}
+          open={openMenu === 'help'}
+          onClose={this.handleClose}
+        >          
+          <label style={{marginLeft:"4%", fontSize:"15px", color:"grey"}}>HELP</label>
+          <MenuItem onClick={this.handleClose} >
+              <ListItemText primary="Karya Documentation" className={classes.textNotif} href="https://www.google.com/" />
+          </MenuItem>
+          <MenuItem onClick={this.handleClose} component={Link} to="/pages/error">
+              <ListItemText primary="Karya Community" className={classes.textNotif}  />
+          </MenuItem>
+          <MenuItem onClick={this.handleClose} component={Link} to="/pages/error">
+              <ListItemText primary="What's New" className={classes.textNotif}  />
+          </MenuItem>
+          <MenuItem onClick={this.handleClose} component={Link} to="/pages/error">
+              <ListItemText primary="Get Karya Mobile" className={classes.textNotif}  />
+          </MenuItem>
+          <MenuItem onClick={this.handleClose} component={Link} to="/pages/error">
+              <ListItemText primary="Keyboard shortcuts" className={classes.textNotif}  />
+          </MenuItem>
+          <MenuItem onClick={this.handleClose} component={Link} to="/pages/error">
+              <ListItemText primary="About Karya" className={classes.textNotif}  />
+          </MenuItem>
+          <label style={{marginLeft:"4%", fontSize:"15px", color:"grey"}}>LEGAL</label>
+          <MenuItem onClick={this.handleClose} component={Link} to="/pages/error">
+              <ListItemText primary="Terms of use" className={classes.textNotif}  />
+          </MenuItem>
+          <MenuItem onClick={this.handleClose} component={Link} to="/pages/error">
+              <ListItemText primary="Privacy policy" className={classes.textNotif}  />
+          </MenuItem>
+          <Divider variant="inset" />
+        </Menu>
+        <Menu
+          id="menu-notification"
+          anchorEl={anchorEl}
+          anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'right',
+          }}
+          transformOrigin={{
+            vertical: 'top',
+            horizontal: 'right',
+          }}
+          className={classes.notifMenu}
+          PaperProps={{
+            style: {
+              width: 200,
+            },
+          }}
+          open={openMenu === 'add'}
+          onClose={this.handleClose}
+        >          
+          <MenuItem onClick={this.handleClose} component={Link} to="/pages/error">
+          <div className={messageStyles.messageSuccess}>
+          <ListItemAvatar>
+          <Avatar className={messageStyles.messageSuccess}>
+                      <WorkIcon />
+                    </Avatar>
+              </ListItemAvatar>
+              <ListItemText primary="Project" className={classes.textNotif} />
+            </div>
+          </MenuItem>
+          <Divider variant="inset" />
+          <MenuItem onClick={this.handleClose} component={Link} to="/pages/error">
+          <div className={messageStyles.messageSuccess}>
+              <ListItemAvatar>
+                <Avatar className={messageStyles.icon}>
+                  <Check />
+                </Avatar>
+              </ListItemAvatar>
+              <ListItemText primary="Issue" className={classes.textNotif} />
+            </div>
+          </MenuItem>
+          <Divider variant="inset" />
+          <MenuItem onClick={this.handleClose} component={Link} to="/pages/error">
+          <div className={messageStyles.messageSuccess}>
+          <ListItemAvatar>
+                <Avatar alt="User Name" src={avatarApi[0]} />
+              </ListItemAvatar>
+              <ListItemText primary="Contact" className={classes.textNotif} />
+            </div>
+          </MenuItem>
+        </Menu>
         <Button onClick={this.handleMenu('user-setting')}>
           <Avatar
             alt={dummy.user.name}
@@ -148,17 +278,36 @@ class UserMenu extends React.Component {
             vertical: 'top',
             horizontal: 'right',
           }}
+          PaperProps={{
+            style: {
+              width: 200,
+            },
+          }}
           open={openMenu === 'user-setting'}
           onClose={this.handleClose}
         >
-          <MenuItem onClick={this.handleClose} component={Link} to={link.profile}>My Profile</MenuItem>
+        <label style={{marginLeft:"4%", fontSize:"15px", color:"grey"}}>Karya</label>
+          <MenuItem onClick={this.handleClose} >
+              <ListItemText primary="Give us feedback" className={classes.textNotif} href="https://www.google.com/" />
+          </MenuItem>
+          <MenuItem onClick={this.handleClose} component={Link} to="/pages/error">
+              <ListItemText primary="Personal Settings" className={classes.textNotif}  />
+          </MenuItem>
+          <label style={{marginLeft:"4%", fontSize:"15px", color:"grey"}}>Shubham Gupta</label>
+          <MenuItem onClick={this.handleClose} component={Link} to="/pages/error">
+              <ListItemText primary="Profile" className={classes.textNotif}  />
+          </MenuItem>
+          <MenuItem onClick={this.handleClose} component={Link} to="/pages/error">
+              <ListItemText primary="Account Settings" className={classes.textNotif}  />
+          </MenuItem>
+          {/* <MenuItem onClick={this.handleClose} component={Link} to={link.profile}>My Profile</MenuItem>
           <MenuItem onClick={this.handleClose} component={Link} to={link.calendar}>My Calendar</MenuItem>
           <MenuItem onClick={this.handleClose} component={Link} to={link.email}>
             My Inbox
             <ListItemIcon>
               <Badge className={classNames(classes.badge, classes.badgeMenu)} badgeContent={2} color="secondary" />
             </ListItemIcon>
-          </MenuItem>
+          </MenuItem> */}
           <Divider />
           <MenuItem onClick={this.handleClose} component={Link} to="/">
             <ListItemIcon>

@@ -109,7 +109,7 @@ module.exports = [
       {
         key: 'createNewTicket',
         name: 'Create New Ticket',
-        link: '/create/create-task',
+        link: '/createTask',
         icon: 'ios-game-controller-a-outline',
       },
     ],

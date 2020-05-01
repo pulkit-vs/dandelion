@@ -410,3 +410,10 @@ export const StarredTasks = loadable(
     fallback: <Loading />,
   }
 );
+
+export const CreateTask = loadable(
+  () => import("../src/createTasks/createTask"),
+  {
+    fallback: <Loading />,
+  }
+);
