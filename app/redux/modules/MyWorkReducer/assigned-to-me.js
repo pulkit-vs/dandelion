@@ -27,10 +27,8 @@ export default function reducer(state = initialState, action = {}) {
     case types.MY_WORK_SET_STARRED_TICKET_STATUS: {
       const status = get(action, ["payload", "status"], false);
       const id = get(action, ["payload", "ticketId"], "");
-      const index = state.assignedData.findIndex(
-        ({ ticketId }) => ticketId === id
-      );
-      state.assignedData[index].starredTicket = status;
+      const index = state.assignedData.findIndex(({ id }) => id === id);
+      state.assignedData[index].starred = status;
       return {
         ...state,
       };

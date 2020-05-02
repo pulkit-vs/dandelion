@@ -124,6 +124,12 @@ class Application extends React.Component {
             path="/dashboards/view-all-dashboards"
             component={AssignedToMe}
           />
+          {/* Account */}
+          <Route path="/account/account-settings" component={StarredTasks} />
+          <Route path="/account/profile" component={AddProject} />
+          <Route path="/account/personal-settings" component={StarredTasks} />
+          <Route path="/account/feedback" component={Configurations} />
+
           {/* Settings */}
           <Route path="/settings/system" component={Configurations} />
           <Route path="/settings/product" component={Configurations} />

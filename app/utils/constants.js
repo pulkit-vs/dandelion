@@ -77,58 +77,70 @@ export const projectHomeTickets = [
 
 export const assignedToMeTickets = [
   {
-    ticketId: "1",
-    type: "AMN Scheduling",
-    reporter: "AWON",
-    title: "Software Project",
-    priority: "Nikhil Agarwal",
-    assignedDate: "2 April, 2019",
-    starredTicket: true,
+    starred: true,
+    data: {
+      ticketId: "1",
+      type: "AMN Scheduling",
+      reporter: "AWON",
+      title: "Software Project",
+      priority: "Nikhil Agarwal",
+      assignedDate: "2 April, 2019",
+    },
   },
   {
-    ticketId: "2",
-    type: "AMN Scheduling",
-    reporter: "AWON",
-    title: "Software Project",
-    priority: "Nikhil Agarwal",
-    assignedDate: "2 April, 2019",
-    starredTicket: true,
+    starred: true,
+    data: {
+      ticketId: "2",
+      type: "AMN Scheduling",
+      reporter: "AWON",
+      title: "Software Project",
+      priority: "Nikhil Agarwal",
+      assignedDate: "2 April, 2019",
+    },
   },
   {
-    ticketId: "3",
-    type: "AMN Scheduling",
-    reporter: "AWON",
-    title: "Software Project",
-    priority: "Nikhil Agarwal",
-    assignedDate: "2 April, 2019",
-    starredTicket: false,
+    starred: false,
+    data: {
+      ticketId: "3",
+      type: "AMN Scheduling",
+      reporter: "AWON",
+      title: "Software Project",
+      priority: "Nikhil Agarwal",
+      assignedDate: "2 April, 2019",
+    },
   },
   {
-    ticketId: "4",
-    type: "AMN Scheduling",
-    reporter: "AWON",
-    title: "Software Project",
-    priority: "Nikhil Agarwal",
-    assignedDate: "2 April, 2019",
-    starredTicket: true,
+    starred: true,
+    data: {
+      ticketId: "4",
+      type: "AMN Scheduling",
+      reporter: "AWON",
+      title: "Software Project",
+      priority: "Nikhil Agarwal",
+      assignedDate: "2 April, 2019",
+    },
   },
   {
-    ticketId: "5",
-    type: "AMN Scheduling",
-    reporter: "AWON",
-    title: "Software Project",
-    priority: "Nikhil Agarwal",
-    assignedDate: "2 April, 2019",
-    starredTicket: false,
+    starred: false,
+    data: {
+      ticketId: "5",
+      type: "AMN Scheduling",
+      reporter: "AWON",
+      title: "Software Project",
+      priority: "Nikhil Agarwal",
+      assignedDate: "2 April, 2019",
+    },
   },
   {
-    ticketId: "6",
-    type: "AMN Scheduling",
-    reporter: "AWON",
-    title: "Software Project",
-    priority: "Nikhil Agarwal",
-    assignedDate: "2 April, 2019",
-    starredTicket: false,
+    starred: false,
+    data: {
+      ticketId: "6",
+      type: "AMN Scheduling",
+      reporter: "AWON",
+      title: "Software Project",
+      priority: "Nikhil Agarwal",
+      assignedDate: "2 April, 2019",
+    },
   },
 ];
 
@@ -143,7 +155,8 @@ export const projectCardData = [
     projectTemplateId: "Kanban",
     projectOwner: "Nikhil",
     projectLead: "Afzal",
-    projectIcon: "http://cwdncjwn/cjdwji/jj.jpg",
+    projectIcon:
+      "https://images.vexels.com/media/users/3/142786/isolated/preview/eb28a63ef3e2232795b9ad0610f17726-m-letter-origami-isotype-by-vexels.png",
   },
   {
     projectId: 2,
@@ -155,10 +168,11 @@ export const projectCardData = [
     projectTemplateId: "Kanban",
     projectOwner: "Nikhil",
     projectLead: "Shubham",
-    projectIcon: "http://cwdncjwn/cjdwji/jj.jpg",
+    projectIcon:
+      "https://images.vexels.com/media/users/3/142786/isolated/preview/eb28a63ef3e2232795b9ad0610f17726-m-letter-origami-isotype-by-vexels.png",
   },
   {
-    projectId: 2,
+    projectId: 3,
     projectName: "Project 2",
     projectKey: "PRO2",
     projectDescription: "abcd  efg",
@@ -167,10 +181,61 @@ export const projectCardData = [
     projectTemplateId: "Kanban",
     projectOwner: "Nikhil",
     projectLead: "Shubham",
-    projectIcon: "http://cwdncjwn/cjdwji/jj.jpg",
+    projectIcon:
+      "https://images.vexels.com/media/users/3/142786/isolated/preview/eb28a63ef3e2232795b9ad0610f17726-m-letter-origami-isotype-by-vexels.png",
   },
 ];
 
 export const STARRED_TICKETS = "Starred Tickets";
 
 export const STARRED = "Starred";
+
+export const projectList = [
+  {
+    starred: true,
+    id: 1,
+    projectIcon:
+      "https://images.vexels.com/media/users/3/142786/isolated/preview/eb28a63ef3e2232795b9ad0610f17726-m-letter-origami-isotype-by-vexels.png",
+    data: {
+      projectName: "Project 1",
+      projectKey: "PRO 1",
+      projectLead: "Nikhil sir",
+      projectType: "Classic",
+      projectCategory: "Software",
+    },
+  },
+  {
+    starred: true,
+    id: 2,
+    projectIcon:
+      "https://images.vexels.com/media/users/3/142786/isolated/preview/eb28a63ef3e2232795b9ad0610f17726-m-letter-origami-isotype-by-vexels.png",
+    data: {
+      projectName: "Project 2",
+      projectKey: "PRO 2",
+      projectLead: "Nikhil sir",
+      projectType: "Classic",
+      projectCategory: "Software",
+    },
+  },
+  {
+    starred: true,
+    id: 3,
+    projectIcon:
+      "https://images.vexels.com/media/users/3/142786/isolated/preview/eb28a63ef3e2232795b9ad0610f17726-m-letter-origami-isotype-by-vexels.png",
+    data: {
+      projectName: "Project 3",
+      projectKey: "PRO 3",
+      projectLead: "Nikhil sir",
+      projectType: "Advanced",
+      projectCategory: "Software",
+    },
+  },
+];
+
+export const projectHeadCells = [
+  { id: "name", numeric: false, disablePadding: true, label: "Name" },
+  { id: "key", numeric: true, disablePadding: false, label: "Key" },
+  { id: "lead", numeric: true, disablePadding: false, label: "Lead" },
+  { id: "type", numeric: true, disablePadding: false, label: "Type" },
+  { id: "category", numeric: true, disablePadding: false, label: "Category" },
+];

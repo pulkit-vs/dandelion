@@ -5,7 +5,11 @@ import { get } from "lodash";
 
 import EnhancedTable from "../../containers/Tables/TablePlayground";
 import MediaCard from "../Cards";
-import { headCells, projectHomeTickets } from "../../utils/constants";
+import {
+  projectHeadCells,
+  projectHomeTickets,
+  projectList,
+} from "../../utils/constants";
 import {
   setAllStarredTask,
   setRows,
@@ -15,7 +19,7 @@ import {
 } from "../../actions/projects/projectBoardActions";
 import { projectCardData } from "../../utils/constants";
 
-const heading = "Tickets";
+const heading = "Projects";
 
 export class ProjectHome extends React.Component {
   constructor(props) {
@@ -51,15 +55,16 @@ export class ProjectHome extends React.Component {
         <div style={{ width: "100%", marginTop: 30 }}>
           <Grid item sm={12} xs={12} md={12}>
             <EnhancedTable
-              headCells={headCells}
+              headCells={projectHeadCells}
               heading={heading}
-              rows={projectData}
+              rows={projectList}
               setAllStarredTask={setAllStarredTask}
               setStarredTask={setStarredTask}
-              showStarredButton={false}
+              showStarredButton={true}
               starredTask={projectStarredTasks}
               toggleAllStarredStatus={toggleAllStarredStatus}
               toggleStarredStatus={toggleStarredStatus}
+              projectHome={true}
             />
           </Grid>
         </div>

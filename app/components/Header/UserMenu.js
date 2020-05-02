@@ -210,81 +210,73 @@ class UserMenu extends React.Component {
             HELP
           </label>
           <a href="https://www.google.com/" target="_blank">
-          <MenuItem onClick={this.handleClose}>
-            <ListItemText
-              primary="Karya Documentation"
-              className={classes.textNotif}
-            />
-          </MenuItem>
+            <MenuItem onClick={this.handleClose}>
+              <ListItemText
+                primary="Karya Documentation"
+                className={classes.textNotif}
+              />
+            </MenuItem>
           </a>
           <a href="https://www.google.com/" target="_blank">
-          <MenuItem
-            onClick={this.handleClose}
-          >
-            <ListItemText
-              primary="Karya Community"
-              className={classes.textNotif}
-            />
-          </MenuItem>
+            <MenuItem onClick={this.handleClose}>
+              <ListItemText
+                primary="Karya Community"
+                className={classes.textNotif}
+              />
+            </MenuItem>
           </a>
           <a href="https://www.google.com/" target="_blank">
-          <MenuItem
-            onClick={this.handleClose}
-          >
-            <ListItemText primary="What's New" className={classes.textNotif} />
-          </MenuItem>
+            <MenuItem onClick={this.handleClose}>
+              <ListItemText
+                primary="What's New"
+                className={classes.textNotif}
+              />
+            </MenuItem>
           </a>
           <a href="https://www.google.com/" target="_blank">
-          <MenuItem
-            onClick={this.handleClose}
-          >
-            <ListItemText
-              primary="Get Karya Mobile"
-              className={classes.textNotif}
-            />
-          </MenuItem>
+            <MenuItem onClick={this.handleClose}>
+              <ListItemText
+                primary="Get Karya Mobile"
+                className={classes.textNotif}
+              />
+            </MenuItem>
           </a>
           <a href="https://www.google.com/" target="_blank">
-          <MenuItem
-            onClick={this.handleClose}
-          >
-            <ListItemText
-              primary="Keyboard shortcuts"
-              className={classes.textNotif}
-            />
-          </MenuItem>
+            <MenuItem onClick={this.handleClose}>
+              <ListItemText
+                primary="Keyboard shortcuts"
+                className={classes.textNotif}
+              />
+            </MenuItem>
           </a>
           <a href="https://www.google.com/" target="_blank">
-          <MenuItem
-            onClick={this.handleClose}
-          >
-            <ListItemText primary="About Karya" className={classes.textNotif} />
-          </MenuItem>
+            <MenuItem onClick={this.handleClose}>
+              <ListItemText
+                primary="About Karya"
+                className={classes.textNotif}
+              />
+            </MenuItem>
           </a>
           <label style={{ marginLeft: "4%", fontSize: "15px", color: "grey" }}>
             LEGAL
           </label>
           <a href="https://www.google.com/" target="_blank">
-          <MenuItem
-            onClick={this.handleClose}
-          >
-            <ListItemText
-              primary="Terms of use"
-              className={classes.textNotif}
-            />
-          </MenuItem>
+            <MenuItem onClick={this.handleClose}>
+              <ListItemText
+                primary="Terms of use"
+                className={classes.textNotif}
+              />
+            </MenuItem>
           </a>
           <a href="https://www.google.com/" target="_blank">
-          <MenuItem
-            onClick={this.handleClose}
-          >
-            <ListItemText
-              primary="Privacy policy"
-              className={classes.textNotif}
-            />
-          </MenuItem>
+            <MenuItem onClick={this.handleClose}>
+              <ListItemText
+                primary="Privacy policy"
+                className={classes.textNotif}
+              />
+            </MenuItem>
           </a>
-          </Menu>
+        </Menu>
         <Menu
           id="menu-notification"
           anchorEl={anchorEl}
@@ -385,17 +377,20 @@ class UserMenu extends React.Component {
           <label style={{ marginLeft: "4%", fontSize: "15px", color: "grey" }}>
             Karya
           </label>
-          <MenuItem onClick={this.handleClose}>
+          <MenuItem
+            onClick={this.handleClose}
+            component={Link}
+            to="/account/feedback"
+          >
             <ListItemText
               primary="Give us feedback"
               className={classes.textNotif}
-              href="https://www.google.com/"
             />
           </MenuItem>
           <MenuItem
             onClick={this.handleClose}
             component={Link}
-            to="/pages/error"
+            to="/account/personal-settings"
           >
             <ListItemText
               primary="Personal Settings"
@@ -408,14 +403,14 @@ class UserMenu extends React.Component {
           <MenuItem
             onClick={this.handleClose}
             component={Link}
-            to="/pages/error"
+            to="/account/profile"
           >
             <ListItemText primary="Profile" className={classes.textNotif} />
           </MenuItem>
           <MenuItem
             onClick={this.handleClose}
             component={Link}
-            to="/pages/error"
+            to="/account/account-settings"
           >
             <ListItemText
               primary="Account Settings"
@@ -442,7 +437,7 @@ class UserMenu extends React.Component {
             Log Out
           </MenuItem>
         </Menu>
-          </div>
+      </div>
     );
   }
 }

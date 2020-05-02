@@ -1,7 +1,9 @@
 import "antd/dist/antd.css";
+import Avatar from "@material-ui/core/Avatar";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Grid from "@material-ui/core/Grid";
 import IconButton from "@material-ui/core/IconButton";
+import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Paper from "@material-ui/core/Paper";
 import PropTypes from "prop-types";
 import React from "react";
@@ -90,6 +92,7 @@ function EnhancedTableHead(props) {
             className={styles.tableCell}
             key={headCell.id}
             sortDirection={orderBy === headCell.id ? order : false}
+            style={{ textAlign: "left" }}
           >
             <TableSortLabel
               active={orderBy === headCell.id}
@@ -143,6 +146,7 @@ const EnhancedTableToolbar = (props) => {
   const classes = useToolbarStyles();
   const {
     heading,
+    projectHome,
     setToggleStarredButton,
     showStarredButton,
     starredStatus,
@@ -160,7 +164,7 @@ const EnhancedTableToolbar = (props) => {
       {showStarredButton && (
         <div className={styles.starredTicketBtn}>
           <label className={styles.starredTicketHeading}>
-            {STARRED_TICKETS}
+            {projectHome ? "Starred Projects" : STARRED_TICKETS}
           </label>
           <Switch
             color="primary"
@@ -203,6 +207,7 @@ const useStyles = makeStyles((theme) => ({
 const EnhancedTable = (props) => {
   const {
     headCells,
+    projectHome,
     rows,
     setAllStarredTask,
     setStarredTask,
@@ -220,7 +225,7 @@ const EnhancedTable = (props) => {
   const [starred, toggleStarred] = React.useState(false);
   const [starredStatus, toggleStarredButton] = React.useState(false);
   const dataModal = starredStatus ? starredTask : rows;
-
+  console.log("dataModal", dataModal);
   const setToggleStarredButton = (starredStatus) => {
     return () => {
       toggleStarredButton(starredStatus);
@@ -273,9 +278,10 @@ const EnhancedTable = (props) => {
       <Paper className={classes.paper}>
         <EnhancedTableToolbar
           heading={props.heading}
+          projectHome={projectHome}
           setToggleStarredButton={setToggleStarredButton}
-          starredStatus={starredStatus}
           showStarredButton={showStarredButton}
+          starredStatus={starredStatus}
         />
         <TableContainer>
           <Table
@@ -303,6 +309,7 @@ const EnhancedTable = (props) => {
                 {stableSort(dataModal, getComparator(order, orderBy))
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((row, index) => {
+                    console.log("row", row);
                     const labelId = `enhanced-table-checkbox-${index}`;
                     return (
                       <TableRow
@@ -315,36 +322,43 @@ const EnhancedTable = (props) => {
                         <TableCell padding="checkbox">
                           <IconButton
                             aria-label="Menu"
-                            className={
-                              row.starredTicket ? styles.starredColor : ""
-                            }
-                            onClick={handleClick(
-                              row,
-                              row.ticketId,
-                              !row.starredTicket
-                            )}
+                            className={row.starred ? styles.starredColor : ""}
+                            onClick={handleClick(row, row.id, !row.starred)}
                           >
                             <StarBorderIcon />
                           </IconButton>
                         </TableCell>
-                        <TableCell align="right" className={styles.tableCell}>
-                          {row.ticketId}
-                        </TableCell>
-                        <TableCell align="right" className={styles.tableCell}>
-                          {row.type}
-                        </TableCell>
-                        <TableCell align="right" className={styles.tableCell}>
-                          {row.reporter}
-                        </TableCell>
-                        <TableCell align="right" className={styles.tableCell}>
-                          {row.title}
-                        </TableCell>
-                        <TableCell align="right" className={styles.tableCell}>
-                          {row.priority}
-                        </TableCell>
-                        <TableCell align="right" className={styles.tableCell}>
-                          {row.assignedDate}
-                        </TableCell>
+                        {Object.values(row.data).map((value, index) => {
+                          return (
+                            <TableCell
+                              key={`table-cell-${index}`}
+                              align="right"
+                              style={{
+                                padding: "1%",
+                              }}
+                            >
+                              <div
+                                style={{
+                                  display: "flex",
+                                  alignItems: "center",
+                                  width: "200px",
+                                }}
+                              >
+                                {row.projectIcon && index === 0 ? (
+                                  <ListItemAvatar>
+                                    <Avatar
+                                      alt="User Name"
+                                      src={row.projectIcon}
+                                    />
+                                  </ListItemAvatar>
+                                ) : null}
+                                <label style={{ marginLeft: "20px" }}>
+                                  {value}
+                                </label>
+                              </div>
+                            </TableCell>
+                          );
+                        })}
                       </TableRow>
                     );
                   })}
