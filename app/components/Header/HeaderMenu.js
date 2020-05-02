@@ -1,26 +1,26 @@
-import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import { NavLink } from 'react-router-dom';
-import Toolbar from '@material-ui/core/Toolbar';
-import SearchIcon from '@material-ui/icons/Search';
-import classNames from 'classnames';
-import Tooltip from '@material-ui/core/Tooltip';
-import Ionicon from 'react-ionicons';
-import IconButton from '@material-ui/core/IconButton';
-import logo from 'dan-images/logo.svg';
-import brand from 'dan-api/dummy/brand';
-import Hidden from '@material-ui/core/Hidden';
-import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
-import dummy from 'dan-api/dummy/dummyContents';
-import MenuIcon from '@material-ui/icons/Menu';
-import SidebarContent from '../Sidebar/SidebarContent';
-import DropListMenu from './DropListMenu';
-import MegaMenu from './MegaMenu';
-import UserMenu from './UserMenu';
-import styles from './header-jss';
-import SearchUi from '../Search/SearchUi';
+import React, { Fragment } from "react";
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
+import { NavLink } from "react-router-dom";
+import Toolbar from "@material-ui/core/Toolbar";
+import SearchIcon from "@material-ui/icons/Search";
+import classNames from "classnames";
+import Tooltip from "@material-ui/core/Tooltip";
+import Ionicon from "react-ionicons";
+import IconButton from "@material-ui/core/IconButton";
+import logo from "dan-images/logo.svg";
+import brand from "dan-api/dummy/brand";
+import Hidden from "@material-ui/core/Hidden";
+import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
+import dummy from "dan-api/dummy/dummyContents";
+import MenuIcon from "@material-ui/icons/Menu";
+import SidebarContent from "../Sidebar/SidebarContent";
+import DropListMenu from "./DropListMenu";
+import MegaMenu from "./MegaMenu";
+import UserMenu from "./UserMenu";
+import styles from "./header-jss";
+import SearchUi from "../Search/SearchUi";
 
 const elem = document.documentElement;
 
@@ -36,32 +36,35 @@ class HeaderMenu extends React.Component {
   flagFixedMenu = false;
 
   componentDidMount = () => {
-    window.addEventListener('scroll', this.handleScroll);
-  }
+    window.addEventListener("scroll", this.handleScroll);
+  };
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleScroll);
+    window.removeEventListener("scroll", this.handleScroll);
   }
 
   handleScroll = () => {
     const doc = document.documentElement;
     const scroll = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
-    const newFlagFixedMenu = (scroll > 64);
+    const newFlagFixedMenu = scroll > 64;
     if (this.flagFixedMenu !== newFlagFixedMenu) {
       this.setState({ fixed: newFlagFixedMenu });
       this.flagFixedMenu = newFlagFixedMenu;
     }
-  }
+  };
 
   openFullScreen = () => {
     this.setState({ fullScreen: true });
     if (elem.requestFullscreen) {
       elem.requestFullscreen();
-    } else if (elem.mozRequestFullScreen) { /* Firefox */
+    } else if (elem.mozRequestFullScreen) {
+      /* Firefox */
       elem.mozRequestFullScreen();
-    } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+    } else if (elem.webkitRequestFullscreen) {
+      /* Chrome, Safari & Opera */
       elem.webkitRequestFullscreen();
-    } else if (elem.msRequestFullscreen) { /* IE/Edge */
+    } else if (elem.msRequestFullscreen) {
+      /* IE/Edge */
       elem.msRequestFullscreen();
     }
   };
@@ -79,16 +82,16 @@ class HeaderMenu extends React.Component {
     }
   };
 
-  turnMode = mode => {
+  turnMode = (mode) => {
     const { changeMode } = this.props;
-    if (mode === 'light') {
-      changeMode('dark');
+    if (mode === "light") {
+      changeMode("dark");
     } else {
-      changeMode('light');
+      changeMode("light");
     }
   };
 
-  handleOpen = event => {
+  handleOpen = (event) => {
     this.setState({ anchorEl: event.currentTarget });
   };
 
@@ -96,10 +99,10 @@ class HeaderMenu extends React.Component {
     this.setState({ anchorEl: null });
   };
 
-  handleChangeStatus = status => {
+  handleChangeStatus = (status) => {
     this.setState({ status });
     this.handleClose();
-  }
+  };
 
   render() {
     const {
@@ -113,23 +116,16 @@ class HeaderMenu extends React.Component {
       openMobileNav,
       loadTransition,
       isLogin,
-      logoLink
+      logoLink,
     } = this.props;
-    const {
-      fullScreen,
-      status,
-      anchorEl,
-      fixed
-    } = this.state;
+    const { fullScreen, status, anchorEl, fixed } = this.state;
     return (
       <AppBar
-        className={
-          classNames(
-            classes.appBar,
-            classes.attachedbar,
-            fixed ? classes.fixed : ''
-          )
-        }
+        className={classNames(
+          classes.appBar,
+          classes.attachedbar,
+          fixed ? classes.fixed : ""
+        )}
       >
         <div className={classes.appMenu}>
           <Hidden lgUp>
@@ -146,19 +142,28 @@ class HeaderMenu extends React.Component {
               <div className={classNames(classes.headerAction, classes.invert)}>
                 {/* {fullScreen ? (
                   <Tooltip title="Exit Full Screen" placement="bottom">
-                    <IconButton className={classes.button} onClick={this.closeFullScreen}>
+                    <IconButton
+                      className={classes.button}
+                      onClick={this.closeFullScreen}
+                    >
                       <Ionicon icon="ios-qr-scanner" />
                     </IconButton>
                   </Tooltip>
                 ) : (
                   <Tooltip title="Full Screen" placement="bottom">
-                    <IconButton className={classes.button} onClick={this.openFullScreen}>
+                    <IconButton
+                      className={classes.button}
+                      onClick={this.openFullScreen}
+                    >
                       <Ionicon icon="ios-qr-scanner" />
                     </IconButton>
                   </Tooltip>
                 )}
                 <Tooltip title="Turn Dark/Light" placement="bottom">
-                  <IconButton className={classes.button} onClick={() => this.turnMode(mode)}>
+                  <IconButton
+                    className={classes.button}
+                    onClick={() => this.turnMode(mode)}
+                  >
                     <Ionicon icon="ios-bulb-outline" />
                   </IconButton>
                 </Tooltip> */}
@@ -188,7 +193,11 @@ class HeaderMenu extends React.Component {
         </div>
         <Hidden mdDown>
           <Fragment>
-            { type === 'mega-menu' ? <MegaMenu dataMenu={dataMenu} /> : <DropListMenu dataMenu={dataMenu} />}
+            {type === "mega-menu" ? (
+              <MegaMenu dataMenu={dataMenu} />
+            ) : (
+              <DropListMenu dataMenu={dataMenu} />
+            )}
           </Fragment>
         </Hidden>
         <Hidden lgUp>
@@ -232,12 +241,12 @@ HeaderMenu.propTypes = {
   loadTransition: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
   logoLink: PropTypes.string,
-  isLogin: PropTypes.bool
+  isLogin: PropTypes.bool,
 };
 
 HeaderMenu.defaultProps = {
   isLogin: true,
-  logoLink: '/',
+  logoLink: "/",
 };
 
 export default withStyles(styles)(HeaderMenu);
