@@ -119,6 +119,34 @@ class Application extends React.Component {
           <Route exact path="/projects/sprint-board" component={TaskBoard} />
           <Route path="/projects/roadmap" component={Grid} />
           <Route path="/projects/release" component={AppLayout} />
+          {/* Dashboards */}
+          <Route
+            path="/dashboards/view-all-dashboards"
+            component={AssignedToMe}
+          />
+          {/* Settings */}
+          <Route path="/settings/system" component={Configurations} />
+          <Route path="/settings/product" component={Configurations} />
+          <Route path="/settings/projects" component={Configurations} />
+          <Route path="/settings/issues" component={Configurations} />
+          <Route path="/settings/app" component={Configurations} />
+          <Route
+            exact
+            path="/settings/tool-settings"
+            component={Configurations}
+          />
+          <Route
+            path="/settings/personal-tool-settings"
+            component={Configurations}
+          />
+          <Route path="/settings/user-management" component={Configurations} />
+          <Route path="/settings/billing" component={Configurations} />
+          {/* Filters */}
+          <Route path="/filters/view-all-filters" component={Configurations} />
+          <Route
+            path="/filters/advanced-search-issues"
+            component={StarredTasks}
+          />
           {/* Table */}
           <Route exact path="/tables" component={Parent} />
           <Route path="/tables/basic-table" component={SimpleTable} />
