@@ -27,7 +27,7 @@ export default function AlertDialog(props) {
                 onClose={handleClose}
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
-                PaperProps={{style:{width:"100%", height:"100%"}}}
+                PaperProps={{style:{width:"100%", height:"50%"}}}
             >
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
@@ -45,27 +45,27 @@ export default function AlertDialog(props) {
                                 Backlog View
                     </Grid>
                     <Grid item sm={4} xs={12} style={{ textAlign: "center", color:"black" }}>
-                                <Ionicon icon="md-people"/><br></br>
+                    <Ionicon icon="ios-construct" /><br></br>
                                 Project Settings
                              </Grid>
                             <Grid item sm={4} xs={12} style={{ textAlign: "center", color:"black" }}>
-                                <Ionicon icon="ios-star" /><br></br>
+                            <Ionicon icon="md-checkmark-circle-outline" /><br></br>
                                 Project Access
                              </Grid>
                             <Grid item sm={4} xs={12} style={{ textAlign: "center", color:"black" }}>
-                                <Ionicon icon="md-arrow-round-back" /><br></br>
+                            <Ionicon icon="ios-easel-outline" /><br></br>
                                 Sprint Board
                     </Grid>
                     <Grid item sm={4} xs={12} style={{ textAlign: "center", color:"black" }}>
-                                <Ionicon icon="md-people"/><br></br>
+                    <Ionicon icon="md-map" /><br></br>
                                Roadmap
                              </Grid>
                             <Grid item sm={4} xs={12} style={{ textAlign: "center", color:"black" }}>
-                                <Ionicon icon="ios-star" /><br></br>
+                            <Ionicon icon="ios-flower" /><br></br>
                                 Release
                              </Grid>
                             <Grid item sm={4} xs={12} style={{ textAlign: "center", color:"black" }}>
-                                <Ionicon icon="md-arrow-round-back" /><br></br>
+                            <Ionicon icon="ios-people" /><br></br>
                                 Manage Team
                     </Grid>
                         </Grid>

@@ -285,7 +285,6 @@ class UserMenu extends React.Component {
           </MenuItem>
           </a>
           </Menu>
-          <Divider variant="inset" />
         <Menu
           id="menu-notification"
           anchorEl={anchorEl}
