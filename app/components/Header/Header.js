@@ -8,6 +8,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import SearchIcon from '@material-ui/icons/Search';
 import Fab from '@material-ui/core/Fab';
+import { Link } from 'react-router-dom';
 import Ionicon from 'react-ionicons';
 import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
@@ -15,15 +16,32 @@ import MenuIcon from '@material-ui/icons/Menu';
 import UserMenu from './UserMenu';
 import SearchUi from '../Search/SearchUi';
 import styles from './header-jss';
+import { makeStyles } from '@material-ui/core/styles';
+import AlertDialog from "../../api/ui/modal";
 
 const elem = document.documentElement;
+
+const useStyles = makeStyles((theme) => ({
+  modal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  paper: {
+    backgroundColor: theme.palette.background.paper,
+    border: '2px solid #000',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+  },
+}));
 
 class Header extends React.Component {
   state = {
     open: false,
     fullScreen: false,
     turnDarker: false,
-    showTitle: false
+    showTitle: false,
+    showModal: false,
   };
 
   // Initial header style
@@ -87,6 +105,18 @@ class Header extends React.Component {
     } else {
       changeMode('light');
     }
+  };
+
+  openModal = () => {
+    this.setState({ 
+      showModal: !this.state.showModal
+    })
+  }
+
+  closeModal = () => {
+    this.setState({ 
+      showModal: !this.state.showModal
+    })
   };
 
   render() {
@@ -162,7 +192,7 @@ class Header extends React.Component {
                   </IconButton>
                 </Tooltip> */}
                  <Tooltip title="Show Menu" placement="bottom">
-                  <IconButton className={classes.button} onClick={openGuide}>
+                  <IconButton className={classes.button} onClick={this.openModal}>
                   <Ionicon icon="ios-apps" />
                   </IconButton>
                 </Tooltip>
@@ -172,12 +202,12 @@ class Header extends React.Component {
                   </IconButton>
                 </Tooltip>
                 <Tooltip title="Projects" placement="bottom">
-                  <IconButton className={classes.button} onClick={openGuide}>
+                  <IconButton className={classes.button} component={Link} to="/projects/project-board">
                   <Ionicon icon="ios-briefcase" />
                   </IconButton>
                 </Tooltip>
                 <Tooltip title="Your Work" placement="bottom">
-                  <IconButton className={classes.button} onClick={openGuide}>
+                  <IconButton className={classes.button} component={Link} to="/mywork/assigned-task">
                   <Ionicon icon="ios-folder-open" />
                   </IconButton>
                 </Tooltip>
@@ -203,6 +233,7 @@ class Header extends React.Component {
           <Hidden xsDown>
             <span className={classes.separatorV} />
           </Hidden>
+        {this.state.showModal && <AlertDialog closeModal={this.closeModal} /> }
           <UserMenu />
         </Toolbar>
       </AppBar>

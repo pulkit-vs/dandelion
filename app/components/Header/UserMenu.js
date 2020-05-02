@@ -183,31 +183,47 @@ class UserMenu extends React.Component {
           onClose={this.handleClose}
         >          
           <label style={{marginLeft:"4%", fontSize:"15px", color:"grey"}}>HELP</label>
+          <a href="https://www.google.com/" target="_blank" style={{color:"black"}}>
           <MenuItem onClick={this.handleClose} >
-              <ListItemText primary="Karya Documentation" className={classes.textNotif} href="https://www.google.com/" />
+              <ListItemText primary="Karya Documentation" className={classes.textNotif} />
           </MenuItem>
-          <MenuItem onClick={this.handleClose} component={Link} to="/pages/error">
+          </a>
+          <a href="https://www.google.com/" target="_blank" style={{color:"black"}}>
+          <MenuItem onClick={this.handleClose}>
               <ListItemText primary="Karya Community" className={classes.textNotif}  />
           </MenuItem>
-          <MenuItem onClick={this.handleClose} component={Link} to="/pages/error">
+          </a>
+          <a href="https://www.google.com/" target="_blank" style={{color:"black"}}>
+          <MenuItem onClick={this.handleClose}>
               <ListItemText primary="What's New" className={classes.textNotif}  />
           </MenuItem>
-          <MenuItem onClick={this.handleClose} component={Link} to="/pages/error">
+          </a>
+          <a href="https://www.google.com/" target="_blank" style={{color:"black"}}>
+          <MenuItem onClick={this.handleClose}>
               <ListItemText primary="Get Karya Mobile" className={classes.textNotif}  />
           </MenuItem>
-          <MenuItem onClick={this.handleClose} component={Link} to="/pages/error">
+          </a>
+          <a href="https://www.google.com/" target="_blank" style={{color:"black"}}>
+          <MenuItem onClick={this.handleClose}>
               <ListItemText primary="Keyboard shortcuts" className={classes.textNotif}  />
           </MenuItem>
-          <MenuItem onClick={this.handleClose} component={Link} to="/pages/error">
+          </a>
+          <a href="https://www.google.com/" target="_blank" style={{color:"black"}}>
+          <MenuItem onClick={this.handleClose}>
               <ListItemText primary="About Karya" className={classes.textNotif}  />
           </MenuItem>
+          </a>
           <label style={{marginLeft:"4%", fontSize:"15px", color:"grey"}}>LEGAL</label>
-          <MenuItem onClick={this.handleClose} component={Link} to="/pages/error">
+          <a href="https://www.google.com/" target="_blank" style={{color:"black"}}>
+          <MenuItem onClick={this.handleClose}>
               <ListItemText primary="Terms of use" className={classes.textNotif}  />
           </MenuItem>
-          <MenuItem onClick={this.handleClose} component={Link} to="/pages/error">
+          </a>
+          <a href="https://www.google.com/" target="_blank" style={{color:"black"}}>
+          <MenuItem onClick={this.handleClose}>
               <ListItemText primary="Privacy policy" className={classes.textNotif}  />
           </MenuItem>
+          </a>
           <Divider variant="inset" />
         </Menu>
         <Menu
