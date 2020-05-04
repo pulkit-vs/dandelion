@@ -3,6 +3,7 @@ import Grid from "@material-ui/core/Grid";
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import styles from "dan-styles/Cards.scss";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
   root: {
@@ -16,20 +17,34 @@ const useStyles = makeStyles({
 
 export default function MediaCard(props) {
   const classes = useStyles();
-  const {projectName, projectCategory, projectIconUrl} = props;
+  const {
+    handleProjectCardClick,
+    projectCategory,
+    projectIconUrl,
+    projectId,
+    projectName,
+  } = props;
   return (
-    <Card
-      className={`${classes.root} ${styles.cardShadow}`}
+    <div
+      onClick={handleProjectCardClick(projectId, projectName, projectIconUrl)}
     >
-      <Grid container className={styles.gridPadding} spacing={3}>
-        <Grid item xs={12} sm={4}>
-          <img src={projectIconUrl} />
+      <Card className={`${classes.root} ${styles.cardShadow}`}>
+        <Grid
+          container
+          className={styles.gridPadding}
+          spacing={3}
+          component={Link}
+          to="/projects/sprint-board"
+        >
+          <Grid item xs={12} sm={4}>
+            <img src={projectIconUrl} />
+          </Grid>
+          <Grid item xs={12} sm={8}>
+            <h2 className={styles.h2}>{projectName}</h2>
+            <span className={styles.spanFont}> {projectCategory} </span>
+          </Grid>
         </Grid>
-        <Grid item xs={12} sm={8}>
-          <h2 className={styles.h2}>{projectName}</h2>
-          <span className={styles.spanFont}> {projectCategory} </span>
-        </Grid>
-      </Grid>
-    </Card>
+      </Card>
+    </div>
   );
 }

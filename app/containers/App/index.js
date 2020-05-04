@@ -4,7 +4,6 @@ import NotFound from "containers/Pages/Standalone/NotFoundDedicated";
 import Auth from "./Auth";
 import Application from "./Application";
 import ThemeWrapper, { AppContext } from "./ThemeWrapper";
-import ProjectBoard from "../../src/projects/projectHome";
 window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
 
 class App extends React.Component {

@@ -12,12 +12,14 @@ import {
 } from "../../utils/constants";
 import {
   setAllStarredTask,
+  setProjectIcon,
+  setProjectId,
+  setProjectName,
   setRows,
   setStarredTask,
   toggleAllStarredStatus,
   toggleStarredStatus,
 } from "../../actions/projects/projectBoardActions";
-import { projectCardData } from "../../utils/constants";
 
 const heading = "Projects";
 
@@ -32,6 +34,7 @@ export class ProjectHome extends React.Component {
 
   render() {
     const {
+      handleProjectCardClick,
       projectBoard,
       setAllStarredTask,
       setStarredTask,
@@ -40,31 +43,35 @@ export class ProjectHome extends React.Component {
     } = this.props;
     const projectStarredTasks = get(projectBoard, "projectStarredTasks", []);
     const projectData = get(projectBoard, "projectData", []);
+    const projectId = get(projectBoard, "projectId", "");
 
     return (
       <Grid container spacing={2}>
-        {projectCardData.map((data, index) => (
+        {projectList.map((project, index) => (
           <Grid key={index} item xs={12} sm={12} md={4}>
             <MediaCard
-              projectCategory={data.projectCategory}
-              projectIconUrl={data.projectIcon}
-              projectName={data.projectName}
+              handleProjectCardClick={handleProjectCardClick}
+              projectCategory={project.data.projectCategory}
+              projectIconUrl={project.projectIcon}
+              projectId={project.id}
+              projectName={project.data.projectName}
             />
           </Grid>
         ))}
         <div style={{ width: "100%", marginTop: 30 }}>
           <Grid item sm={12} xs={12} md={12}>
             <EnhancedTable
+              handleTableRowClick={handleProjectCardClick}
               headCells={projectHeadCells}
               heading={heading}
-              rows={projectList}
+              projectHome={true}
+              rows={projectData}
               setAllStarredTask={setAllStarredTask}
               setStarredTask={setStarredTask}
               showStarredButton={true}
               starredTask={projectStarredTasks}
               toggleAllStarredStatus={toggleAllStarredStatus}
               toggleStarredStatus={toggleStarredStatus}
-              projectHome={true}
             />
           </Grid>
         </div>
@@ -83,11 +90,17 @@ const mapDispatchToProps = (dispatch) => ({
   toggleStarredStatus: (ticketId, status) =>
     dispatch(toggleStarredStatus(ticketId, status)),
 
-  setRows: () => dispatch(setRows(projectHomeTickets)),
+  setRows: () => dispatch(setRows(projectList)),
 
   setAllStarredTask: (status) => dispatch(setAllStarredTask(status)),
 
   toggleAllStarredStatus: (status) => dispatch(toggleAllStarredStatus(status)),
+
+  handleProjectCardClick: (projectId, projectName, projectIcon) => () => {
+    dispatch(setProjectId(projectId));
+    dispatch(setProjectName(projectName));
+    dispatch(setProjectIcon(projectIcon));
+  },
 });
 
 const ProjectHomeMapped = connect(

@@ -173,7 +173,7 @@ export const projectCardData = [
   },
   {
     projectId: 3,
-    projectName: "Project 2",
+    projectName: "Project 3",
     projectKey: "PRO2",
     projectDescription: "abcd  efg",
     projectType: "Classic",
@@ -208,7 +208,7 @@ export const projectList = [
     starred: true,
     id: 2,
     projectIcon:
-      "https://images.vexels.com/media/users/3/142786/isolated/preview/eb28a63ef3e2232795b9ad0610f17726-m-letter-origami-isotype-by-vexels.png",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/NYCS-bull-trans-B.svg/480px-NYCS-bull-trans-B.svg.png",
     data: {
       projectName: "Project 2",
       projectKey: "PRO 2",
@@ -221,7 +221,7 @@ export const projectList = [
     starred: true,
     id: 3,
     projectIcon:
-      "https://images.vexels.com/media/users/3/142786/isolated/preview/eb28a63ef3e2232795b9ad0610f17726-m-letter-origami-isotype-by-vexels.png",
+      "https://images.vexels.com/media/users/3/181139/isolated/preview/91cd77a7d5a18ee8546d2b5824d06bb2-halloween-bloody-letter-h-by-vexels.png",
     data: {
       projectName: "Project 3",
       projectKey: "PRO 3",
@@ -239,3 +239,7 @@ export const projectHeadCells = [
   { id: "type", numeric: true, disablePadding: false, label: "Type" },
   { id: "category", numeric: true, disablePadding: false, label: "Category" },
 ];
+
+export const VS_PROJECTS = "VS Projects";
+
+export const SWITCH_PROJECT = "Switch Project";

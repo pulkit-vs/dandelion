@@ -8,6 +8,10 @@ import { Header, Sidebar, BreadCrumb } from "dan-components";
 import dataMenu from "dan-api/ui/menu";
 import Decoration from "../Decoration";
 import styles from "../appStyles-jss";
+import { connect } from "react-redux";
+import { get } from "lodash";
+
+import { projectOptions } from "../../../src/projects/projectOptions";
 
 class LeftSidebarLayout extends React.Component {
   render() {
@@ -27,27 +31,33 @@ class LeftSidebarLayout extends React.Component {
       place,
       titleException,
       handleOpenGuide,
+      projectBoard,
     } = this.props;
+    const projectId = get(projectBoard, "projectId", "");
+    const str = history.location.pathname.toString();
+
     return (
       <Fragment>
         <Header
-          toggleDrawerOpen={toggleDrawer}
-          margin={sidebarOpen}
-          gradient={gradient}
-          position="left-sidebar"
           changeMode={changeMode}
-          mode={mode}
-          title={place}
+          gradient={gradient}
           history={history}
+          margin={sidebarOpen}
+          mode={mode}
           openGuide={handleOpenGuide}
-        />
-        <Sidebar
-          open={sidebarOpen}
+          position="left-sidebar"
+          title={place}
           toggleDrawerOpen={toggleDrawer}
-          loadTransition={loadTransition}
-          dataMenu={dataMenu}
-          leftSidebar
         />
+        {projectId && (
+          <Sidebar
+            open={sidebarOpen}
+            toggleDrawerOpen={toggleDrawer}
+            loadTransition={loadTransition}
+            dataMenu={projectOptions}
+            leftSidebar
+          />
+        )}
         <main
           className={classNames(
             classes.content,
@@ -128,4 +138,15 @@ LeftSidebarLayout.propTypes = {
   handleOpenGuide: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(LeftSidebarLayout);
+const mapStateToProps = (state) => ({
+  projectBoard: state.get("projectBoard"),
+});
+
+const mapDispatchToProps = (dispatch) => ({});
+
+const LeftSidebarLayoutMapped = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LeftSidebarLayout);
+
+export default withStyles(styles)(LeftSidebarLayoutMapped);

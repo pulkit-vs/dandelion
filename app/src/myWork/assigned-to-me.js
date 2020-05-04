@@ -1,7 +1,7 @@
 import Grid from "@material-ui/core/Grid";
 import React from "react";
 import { connect } from "react-redux";
-import { get } from "lodash";
+import { get, identity } from "lodash";
 
 import EnhancedTable from "../../containers/Tables/TablePlayground";
 import { headCells, assignedToMeTickets } from "../../utils/constants";
@@ -45,6 +45,7 @@ export class AssignedToMe extends React.Component {
               starredTask={assignedStarredTasks}
               toggleAllStarredStatus={toggleAllStarredStatus}
               toggleStarredStatus={toggleStarredStatus}
+              handleTableRowClick={identity}
             />
           </Grid>
         </div>

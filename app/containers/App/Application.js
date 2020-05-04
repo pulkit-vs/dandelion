@@ -104,7 +104,7 @@ class Application extends React.Component {
       <Dashboard history={history} changeMode={changeMode}>
         <Switch>
           {/* My work */}
-          <Route exact path="/" component={PersonalDashboard} />
+          <Route exact path="/" component={ProjectHome} />
           <Route path="/mywork/assigned-task" component={AssignedToMe} />
           <Route path="/mywork/starred" component={StarredTasks} />
           <Route path="/mywork/starred" component={CryptoDashboard} />

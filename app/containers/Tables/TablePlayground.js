@@ -206,6 +206,7 @@ const useStyles = makeStyles((theme) => ({
 
 const EnhancedTable = (props) => {
   const {
+    handleTableRowClick,
     headCells,
     projectHome,
     rows,
@@ -216,6 +217,7 @@ const EnhancedTable = (props) => {
     toggleAllStarredStatus,
     toggleStarredStatus,
   } = props;
+
   const classes = useStyles();
   const [order, setOrder] = React.useState("asc");
   const [orderBy, setOrderBy] = React.useState("ticketId");
@@ -225,7 +227,7 @@ const EnhancedTable = (props) => {
   const [starred, toggleStarred] = React.useState(false);
   const [starredStatus, toggleStarredButton] = React.useState(false);
   const dataModal = starredStatus ? starredTask : rows;
-  console.log("dataModal", dataModal);
+
   const setToggleStarredButton = (starredStatus) => {
     return () => {
       toggleStarredButton(starredStatus);
@@ -309,12 +311,15 @@ const EnhancedTable = (props) => {
                 {stableSort(dataModal, getComparator(order, orderBy))
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((row, index) => {
-                    console.log("row", row);
                     const labelId = `enhanced-table-checkbox-${index}`;
                     return (
                       <TableRow
                         hover
-                        //onClick={(event) => handleClick(event, row.ticketId)}
+                        onClick={handleTableRowClick(
+                          row.id,
+                          row.data.projectName,
+                          row.projectIcon
+                        )}
                         role="checkbox"
                         tabIndex={-1}
                         key={labelId}
