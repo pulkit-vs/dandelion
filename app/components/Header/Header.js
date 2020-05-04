@@ -20,6 +20,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import AlertDialog from "../../api/ui/modal";
 import { connect } from "react-redux";
 import { get } from "lodash";
+import Dashboards from "../../src/dashboards/dashboards";
 
 import { checkLocation } from "../../utils/functions";
 
@@ -41,11 +42,13 @@ const useStyles = makeStyles((theme) => ({
 
 class Header extends React.Component {
   state = {
-    open: false,
     fullScreen: false,
-    turnDarker: false,
-    showTitle: false,
+    open: false,
+    showDashboardsMenu: false,
     showModal: false,
+    showTitle: false,
+    turnDarker: false,
+    anchorEl: null,
   };
 
   // Initial header style
@@ -126,6 +129,16 @@ class Header extends React.Component {
     });
   };
 
+  toggleDashboardsMenu = () => {
+    this.setState({
+      showDashboardsMenu: !this.state.showDashboardsMenu,
+    });
+  };
+
+  handleClose = () => {
+    this.setState({ showDashboardsMenu: false });
+  };
+
   render() {
     const {
       classes,
@@ -141,7 +154,7 @@ class Header extends React.Component {
     } = this.props;
     const projectId = get(projectBoard, "projectId", "");
     const { fullScreen, open, turnDarker, showTitle } = this.state;
-    const currentPage = checkLocation(history);
+    const { currentPage, currentBase } = checkLocation(history);
 
     const setMargin = (sidebarPosition) => {
       if (sidebarPosition === "right-sidebar") {
@@ -158,8 +171,7 @@ class Header extends React.Component {
         className={classNames(
           classes.appBar,
           classes.floatingBar,
-          projectId &&
-            currentPage === "projects" &&
+          (currentBase === "projects" || currentBase === "settings") &&
             margin &&
             classes.appBarShift,
           setMargin(position),
@@ -168,7 +180,7 @@ class Header extends React.Component {
         )}
       >
         <Toolbar disableGutters={!open}>
-          {projectId && currentPage === "projects" && (
+          {(currentBase === "projects" || currentBase === "settings") && (
             <Fab
               size="small"
               className={classes.menuButton}
@@ -186,24 +198,6 @@ class Header extends React.Component {
                   showTitle && classes.fadeOut
                 )}
               >
-                {/* {fullScreen ? (
-                  <Tooltip title="Exit Full Screen" placement="bottom">
-                    <IconButton className={classes.button} onClick={this.closeFullScreen}>
-                      <Ionicon icon="ios-qr-scanner" />
-                    </IconButton>
-                  </Tooltip>
-                ) : (
-                  <Tooltip title="Full Screen" placement="bottom">
-                    <IconButton className={classes.button} onClick={this.openFullScreen}>
-                      <Ionicon icon="ios-qr-scanner" />
-                    </IconButton>
-                  </Tooltip>
-                )}
-                <Tooltip title="Turn Dark/Light" placement="bottom">
-                  <IconButton className={classes.button} onClick={() => this.turnMode(mode)}>
-                    <Ionicon icon="ios-bulb-outline" />
-                  </IconButton>
-                </Tooltip> */}
                 <Tooltip title="Show Menu" placement="bottom">
                   <IconButton
                     className={classes.button}
@@ -240,6 +234,14 @@ class Header extends React.Component {
                     <Ionicon icon="ios-funnel" />
                   </IconButton>
                 </Tooltip>
+                <Tooltip title="Dashboards" placement="bottom">
+                  <IconButton
+                    className={classes.button}
+                    onClick={this.toggleDashboardsMenu}
+                  >
+                    <Ionicon icon="ios-clipboard" />
+                  </IconButton>
+                </Tooltip>
               </div>
               <Typography
                 component="h2"
@@ -264,6 +266,12 @@ class Header extends React.Component {
             <span className={classes.separatorV} />
           </Hidden>
           {this.state.showModal && <AlertDialog closeModal={this.closeModal} />}
+          {this.state.showDashboardsMenu && (
+            <Dashboards
+              handleClose={this.handleClose}
+              open={this.state.showDashboardsMenu}
+            />
+          )}
           <UserMenu />
         </Toolbar>
       </AppBar>

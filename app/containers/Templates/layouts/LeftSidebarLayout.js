@@ -11,7 +11,7 @@ import styles from "../appStyles-jss";
 import { connect } from "react-redux";
 import { get } from "lodash";
 
-import { checkLocation } from "../../../utils/functions";
+import { checkLocation, moduleJson } from "../../../utils/functions";
 import { projectOptions } from "../../../src/projects/projectOptions";
 
 class LeftSidebarLayout extends React.Component {
@@ -35,7 +35,8 @@ class LeftSidebarLayout extends React.Component {
     } = this.props;
     const projectId = get(projectBoard, "projectId", "");
     const history = get(this.props, "history", []);
-    const currentPage = checkLocation(history);
+    const { currentPage, currentBase } = checkLocation(history);
+    const json = moduleJson(currentPage);
     return (
       <Fragment>
         <Header
@@ -49,12 +50,12 @@ class LeftSidebarLayout extends React.Component {
           title={place}
           toggleDrawerOpen={toggleDrawer}
         />
-        {projectId && currentPage === "projects" && (
+        {(currentBase === "projects" || currentBase === "settings") && (
           <Sidebar
             open={sidebarOpen}
             toggleDrawerOpen={toggleDrawer}
             loadTransition={loadTransition}
-            dataMenu={projectOptions}
+            dataMenu={json}
             leftSidebar
           />
         )}

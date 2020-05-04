@@ -5,11 +5,7 @@ import { get } from "lodash";
 
 import EnhancedTable from "../../containers/Tables/TablePlayground";
 import MediaCard from "../Cards";
-import {
-  projectHeadCells,
-  projectHomeTickets,
-  projectList,
-} from "../../utils/constants";
+import { projectHeadCells, projectList } from "../../utils/constants";
 import {
   setAllStarredTask,
   setProjectIcon,
@@ -43,7 +39,6 @@ export class ProjectHome extends React.Component {
     } = this.props;
     const projectStarredTasks = get(projectBoard, "projectStarredTasks", []);
     const projectData = get(projectBoard, "projectData", []);
-    const projectId = get(projectBoard, "projectId", "");
 
     return (
       <Grid container spacing={2}>

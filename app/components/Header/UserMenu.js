@@ -300,7 +300,7 @@ class UserMenu extends React.Component {
           <MenuItem
             onClick={this.handleClose}
             component={Link}
-            to="/pages/error"
+            to="projects/project-board"
           >
             <div className={messageStyles.messageSuccess}>
               <ListItemAvatar>
@@ -315,7 +315,7 @@ class UserMenu extends React.Component {
           <MenuItem
             onClick={this.handleClose}
             component={Link}
-            to="/pages/error"
+            to="/create-task"
           >
             <div className={messageStyles.messageSuccess}>
               <ListItemAvatar>
@@ -330,7 +330,7 @@ class UserMenu extends React.Component {
           <MenuItem
             onClick={this.handleClose}
             component={Link}
-            to="/pages/error"
+            to="/people/manage-team"
           >
             <div className={messageStyles.messageSuccess}>
               <ListItemAvatar>

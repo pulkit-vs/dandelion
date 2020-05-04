@@ -108,8 +108,6 @@ class Application extends React.Component {
           <Route path="/mywork/assigned-task" component={AssignedToMe} />
           <Route path="/mywork/starred" component={StarredTasks} />
           <Route path="/mywork/starred" component={CryptoDashboard} />
-          {/* My work */}
-          <Route path="/createTask" component={CreateTask} />
           {/* Projects */}
           <Route path="/projects/add-project" component={AddProject} />
           <Route path="/projects/project-board" component={ProjectHome} />
@@ -119,11 +117,14 @@ class Application extends React.Component {
           <Route exact path="/projects/sprint-board" component={TaskBoard} />
           <Route path="/projects/roadmap" component={Grid} />
           <Route path="/projects/release" component={AppLayout} />
+          {/* Create Task */}
+          <Route path="/create-task" component={CreateTask} />
           {/* Dashboards */}
           <Route
             path="/dashboards/view-all-dashboards"
             component={AssignedToMe}
           />
+          <Route path="/dashboards/create-dashboard" component={TaskBoard} />
           {/* Account */}
           <Route path="/account/account-settings" component={StarredTasks} />
           <Route path="/account/profile" component={AddProject} />
@@ -162,7 +163,7 @@ class Application extends React.Component {
           <Route path="/tables/editable-cell" component={EditableCell} />
           {/* UI Bundle */}
           <Route exact path="/people/manage-team" component={ManageTeam} />
-          <Route path="/create/create-task" component={ReduxForm} />
+          {/* <Route path="/create/create-task" component={ReduxForm} /> */}
           <Route path="/configurations/edit" component={Configurations} />
           {/* Form & Button */}
           <Route path="/forms/date-time-picker" component={DateTimePicker} />
