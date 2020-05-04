@@ -21,6 +21,8 @@ import AlertDialog from "../../api/ui/modal";
 import { connect } from "react-redux";
 import { get } from "lodash";
 
+import { checkLocation } from "../../utils/functions";
+
 const elem = document.documentElement;
 
 const useStyles = makeStyles((theme) => ({
@@ -139,6 +141,7 @@ class Header extends React.Component {
     } = this.props;
     const projectId = get(projectBoard, "projectId", "");
     const { fullScreen, open, turnDarker, showTitle } = this.state;
+    const currentPage = checkLocation(history);
 
     const setMargin = (sidebarPosition) => {
       if (sidebarPosition === "right-sidebar") {
@@ -155,14 +158,17 @@ class Header extends React.Component {
         className={classNames(
           classes.appBar,
           classes.floatingBar,
-          projectId && margin && classes.appBarShift,
+          projectId &&
+            currentPage === "projects" &&
+            margin &&
+            classes.appBarShift,
           setMargin(position),
           turnDarker && classes.darker,
           gradient ? classes.gradientBg : classes.solidBg
         )}
       >
         <Toolbar disableGutters={!open}>
-          {projectId && (
+          {projectId && currentPage === "projects" && (
             <Fab
               size="small"
               className={classes.menuButton}
