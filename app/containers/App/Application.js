@@ -132,7 +132,7 @@ class Application extends React.Component {
           <Route path="/account/feedback" component={Configurations} />
 
           {/* Settings */}
-          <Route path="/settings/system" component={Configurations} />
+          <Route path="/settings/system" component={AddProject} />
           <Route path="/settings/product" component={Configurations} />
           <Route path="/settings/projects" component={Configurations} />
           <Route path="/settings/issues" component={Configurations} />
@@ -151,7 +151,7 @@ class Application extends React.Component {
           {/* Filters */}
           <Route path="/filters/view-all-filters" component={Configurations} />
           <Route
-            path="/filters/advanced-search-issues"
+            path="/filters/advanced-issue-search"
             component={StarredTasks}
           />
           {/* Table */}
@@ -255,6 +255,7 @@ class Application extends React.Component {
           <Route path="/maps/map-searchbox" component={SearchMap} />
           <Route path="/maps/map-traffic" component={TrafficIndicator} />
           <Route path="/maps/street-view" component={StreetViewMap} />
+
           {/* Default */}
           <Route component={NotFound} />
         </Switch>

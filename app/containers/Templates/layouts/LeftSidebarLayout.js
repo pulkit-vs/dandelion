@@ -1,39 +1,36 @@
-import React, { Fragment } from "react";
-import { PropTypes } from "prop-types";
-import classNames from "classnames";
 import Fade from "@material-ui/core/Fade";
+import React, { Fragment } from "react";
 import Typography from "@material-ui/core/Typography";
-import { withStyles } from "@material-ui/core/styles";
+import classNames from "classnames";
 import { Header, Sidebar, BreadCrumb } from "dan-components";
-import dataMenu from "dan-api/ui/menu";
-import Decoration from "../Decoration";
-import styles from "../appStyles-jss";
+import { PropTypes } from "prop-types";
 import { connect } from "react-redux";
 import { get } from "lodash";
+import { withStyles } from "@material-ui/core/styles";
+
+import Decoration from "../Decoration";
+import styles from "../appStyles-jss";
 
 import { checkLocation, moduleJson } from "../../../utils/functions";
-import { projectOptions } from "../../../src/projects/projectOptions";
 
 class LeftSidebarLayout extends React.Component {
   render() {
     const {
-      classes,
-      children,
-      toggleDrawer,
-      sidebarOpen,
-      loadTransition,
-      pageLoaded,
-      mode,
-      gradient,
-      deco,
       bgPosition,
       changeMode,
-      place,
-      titleException,
+      children,
+      classes,
+      deco,
+      gradient,
       handleOpenGuide,
-      projectBoard,
+      loadTransition,
+      mode,
+      pageLoaded,
+      place,
+      sidebarOpen,
+      titleException,
+      toggleDrawer,
     } = this.props;
-    const projectId = get(projectBoard, "projectId", "");
     const history = get(this.props, "history", []);
     const { currentPage, currentBase } = checkLocation(history);
     const json = moduleJson(currentPage);
@@ -52,11 +49,11 @@ class LeftSidebarLayout extends React.Component {
         />
         {(currentBase === "projects" || currentBase === "settings") && (
           <Sidebar
-            open={sidebarOpen}
-            toggleDrawerOpen={toggleDrawer}
-            loadTransition={loadTransition}
             dataMenu={json}
             leftSidebar
+            loadTransition={loadTransition}
+            open={sidebarOpen}
+            toggleDrawerOpen={toggleDrawer}
           />
         )}
         <main
@@ -67,11 +64,11 @@ class LeftSidebarLayout extends React.Component {
           id="mainContent"
         >
           <Decoration
-            mode={mode}
-            gradient={gradient}
-            decoration={deco}
             bgPosition={bgPosition}
+            decoration={deco}
+            gradient={gradient}
             horizontalMenu={false}
+            mode={mode}
           />
           <section
             className={classNames(classes.mainWrap, classes.sidebarLayout)}
@@ -90,17 +87,17 @@ class LeftSidebarLayout extends React.Component {
                   {place}
                 </Typography>
                 <BreadCrumb
+                  location={history.location}
                   separator=" / "
                   theme={bgPosition === "header" ? "dark" : "light"}
-                  location={history.location}
                 />
               </div>
             )}
             {!pageLoaded && (
               <img
-                src="/images/spinner.gif"
                 alt="spinner"
                 className={classes.circularProgress}
+                src="/images/spinner.gif"
               />
             )}
             <Fade
@@ -122,21 +119,21 @@ class LeftSidebarLayout extends React.Component {
 }
 
 LeftSidebarLayout.propTypes = {
-  classes: PropTypes.object.isRequired,
-  children: PropTypes.node.isRequired,
-  history: PropTypes.object.isRequired,
-  toggleDrawer: PropTypes.func.isRequired,
-  loadTransition: PropTypes.func.isRequired,
-  changeMode: PropTypes.func.isRequired,
-  sidebarOpen: PropTypes.bool.isRequired,
-  pageLoaded: PropTypes.bool.isRequired,
-  mode: PropTypes.string.isRequired,
-  gradient: PropTypes.bool.isRequired,
-  deco: PropTypes.bool.isRequired,
   bgPosition: PropTypes.string.isRequired,
-  place: PropTypes.string.isRequired,
-  titleException: PropTypes.array.isRequired,
+  changeMode: PropTypes.func.isRequired,
+  children: PropTypes.node.isRequired,
+  classes: PropTypes.object.isRequired,
+  deco: PropTypes.bool.isRequired,
+  gradient: PropTypes.bool.isRequired,
   handleOpenGuide: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
+  loadTransition: PropTypes.func.isRequired,
+  mode: PropTypes.string.isRequired,
+  pageLoaded: PropTypes.bool.isRequired,
+  place: PropTypes.string.isRequired,
+  sidebarOpen: PropTypes.bool.isRequired,
+  titleException: PropTypes.array.isRequired,
+  toggleDrawer: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

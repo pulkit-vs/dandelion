@@ -8,7 +8,7 @@ export const systemSettings = [
         key: "generalConfiguration",
         name: "General configuration",
         icon: "ios-appstore-outline",
-        link: "/projects/add-project",
+        link: "/settings/system/general-configuration",
       },
     ],
   },

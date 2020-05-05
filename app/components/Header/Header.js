@@ -1,54 +1,40 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
-import classNames from "classnames";
-import Typography from "@material-ui/core/Typography";
-import Hidden from "@material-ui/core/Hidden";
 import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import SearchIcon from "@material-ui/icons/Search";
 import Fab from "@material-ui/core/Fab";
-import { Link } from "react-router-dom";
-import Ionicon from "react-ionicons";
-import Tooltip from "@material-ui/core/Tooltip";
+import Hidden from "@material-ui/core/Hidden";
 import IconButton from "@material-ui/core/IconButton";
+import Ionicon from "react-ionicons";
 import MenuIcon from "@material-ui/icons/Menu";
-import UserMenu from "./UserMenu";
-import SearchUi from "../Search/SearchUi";
-import styles from "./header-jss";
-import { makeStyles } from "@material-ui/core/styles";
-import AlertDialog from "../../api/ui/modal";
+import PropTypes from "prop-types";
+import SearchIcon from "@material-ui/icons/Search";
+import Toolbar from "@material-ui/core/Toolbar";
+import Tooltip from "@material-ui/core/Tooltip";
+import Typography from "@material-ui/core/Typography";
+import classNames from "classnames";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { get } from "lodash";
+import { withStyles } from "@material-ui/core/styles";
+
+import AlertDialog from "../../api/ui/modal";
 import Dashboards from "../../src/dashboards/dashboards";
-
+import FiltersMenu from "../../src/filters/filter-menu";
+import SearchUi from "../Search/SearchUi";
+import UserMenu from "./UserMenu";
+import styles from "./header-jss";
 import { checkLocation } from "../../utils/functions";
-
-const elem = document.documentElement;
-
-const useStyles = makeStyles((theme) => ({
-  modal: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  paper: {
-    backgroundColor: theme.palette.background.paper,
-    border: "2px solid #000",
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
-  },
-}));
 
 class Header extends React.Component {
   state = {
+    anchorEl: null,
+    dashboardMenuPosition: 0,
+    filterMenuPosition: 0,
     fullScreen: false,
     open: false,
     showDashboardsMenu: false,
+    showFilterMenu: false,
     showModal: false,
     showTitle: false,
     turnDarker: false,
-    anchorEl: null,
   };
 
   // Initial header style
@@ -79,44 +65,6 @@ class Header extends React.Component {
     }
   };
 
-  openFullScreen = () => {
-    this.setState({ fullScreen: true });
-    if (elem.requestFullscreen) {
-      elem.requestFullscreen();
-    } else if (elem.mozRequestFullScreen) {
-      /* Firefox */
-      elem.mozRequestFullScreen();
-    } else if (elem.webkitRequestFullscreen) {
-      /* Chrome, Safari & Opera */
-      elem.webkitRequestFullscreen();
-    } else if (elem.msRequestFullscreen) {
-      /* IE/Edge */
-      elem.msRequestFullscreen();
-    }
-  };
-
-  closeFullScreen = () => {
-    this.setState({ fullScreen: false });
-    if (document.exitFullscreen) {
-      document.exitFullscreen();
-    } else if (document.mozCancelFullScreen) {
-      document.mozCancelFullScreen();
-    } else if (document.webkitExitFullscreen) {
-      document.webkitExitFullscreen();
-    } else if (document.msExitFullscreen) {
-      document.msExitFullscreen();
-    }
-  };
-
-  turnMode = (mode) => {
-    const { changeMode } = this.props;
-    if (mode === "light") {
-      changeMode("dark");
-    } else {
-      changeMode("light");
-    }
-  };
-
   openModal = () => {
     this.setState({
       showModal: !this.state.showModal,
@@ -129,9 +77,11 @@ class Header extends React.Component {
     });
   };
 
-  toggleDashboardsMenu = () => {
+  toggleDashboardsMenu = (event) => {
+    event.persist();
     this.setState({
       showDashboardsMenu: !this.state.showDashboardsMenu,
+      dashboardMenuPosition: event.clientX,
     });
   };
 
@@ -139,22 +89,31 @@ class Header extends React.Component {
     this.setState({ showDashboardsMenu: false });
   };
 
+  toggleFilterMenu = (event) => {
+    event.persist();
+    this.setState({
+      showFilterMenu: !this.state.showFilterMenu,
+      filterMenuPosition: event.clientX,
+    });
+  };
+
+  closeFilterMenu = () => {
+    this.setState({ showFilterMenu: false });
+  };
+
   render() {
     const {
       classes,
-      toggleDrawerOpen,
-      margin,
-      position,
       gradient,
-      mode,
-      title,
-      openGuide,
       history,
-      projectBoard,
+      margin,
+      openGuide,
+      position,
+      title,
+      toggleDrawerOpen,
     } = this.props;
-    const projectId = get(projectBoard, "projectId", "");
-    const { fullScreen, open, turnDarker, showTitle } = this.state;
-    const { currentPage, currentBase } = checkLocation(history);
+    const { open, turnDarker, showTitle } = this.state;
+    const { currentBase } = checkLocation(history);
 
     const setMargin = (sidebarPosition) => {
       if (sidebarPosition === "right-sidebar") {
@@ -182,10 +141,10 @@ class Header extends React.Component {
         <Toolbar disableGutters={!open}>
           {(currentBase === "projects" || currentBase === "settings") && (
             <Fab
-              size="small"
-              className={classes.menuButton}
               aria-label="Menu"
+              className={classes.menuButton}
               onClick={toggleDrawerOpen}
+              size="small"
             >
               <MenuIcon />
             </Fab>
@@ -230,7 +189,10 @@ class Header extends React.Component {
                   </IconButton>
                 </Tooltip>
                 <Tooltip title="Filters" placement="bottom">
-                  <IconButton className={classes.button} onClick={openGuide}>
+                  <IconButton
+                    className={classes.button}
+                    onClick={this.toggleFilterMenu}
+                  >
                     <Ionicon icon="ios-funnel" />
                   </IconButton>
                 </Tooltip>
@@ -268,8 +230,17 @@ class Header extends React.Component {
           {this.state.showModal && <AlertDialog closeModal={this.closeModal} />}
           {this.state.showDashboardsMenu && (
             <Dashboards
+              dashboardMenuPosition={this.state.dashboardMenuPosition}
               handleClose={this.handleClose}
               open={this.state.showDashboardsMenu}
+            />
+          )}
+
+          {this.state.showFilterMenu && (
+            <FiltersMenu
+              filterMenuPosition={this.state.filterMenuPosition}
+              handleClose={this.closeFilterMenu}
+              open={this.state.showFilterMenu}
             />
           )}
           <UserMenu />
