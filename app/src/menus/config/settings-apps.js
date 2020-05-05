@@ -7,19 +7,19 @@ export const appSettings = [
       {
         key: "findNewApps",
         name: "Find new apps",
-        link: "/projects/add-project",
+        link: "/karya-market/find-new-apps",
         icon: "ios-contact-outline",
       },
       {
         key: "manageApps",
         name: "Manage apps",
-        link: "/projects/add-project",
+        link: "/karya-market/manage-apps",
         icon: "ios-contact-outline",
       },
       {
         key: "oAuthCredentials",
         name: "OAuth credentials",
-        link: "/projects/add-project",
+        link: "/karya-market/oauth-credentials",
         icon: "ios-contact-outline",
       },
     ],
