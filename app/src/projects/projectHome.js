@@ -98,7 +98,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(setProjectName(projectName));
     dispatch(setProjectIcon(projectIcon));
     dispatch(fetchAllProjects());
-    // dispatch(getAllTickets());
+    dispatch(getAllTickets());
   },
 });
 
