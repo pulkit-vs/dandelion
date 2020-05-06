@@ -9,25 +9,25 @@ import React from "react";
 import WorkIcon from "@material-ui/icons/Work";
 import { Link } from "react-router-dom";
 
-export default function Dashboards(props) {
-  const { open, handleClose, dashboardMenuPosition } = props;
+export default function FiltersMenu(props) {
+  const { open, handleClose, filterMenuPosition } = props;
   return (
     <Menu
-      id="dashboards-menu"
+      id="filters-menu"
       open={open}
-      onClose={handleClose}
       PaperProps={{
         style: {
-          marginLeft: dashboardMenuPosition - 40,
+          marginLeft: filterMenuPosition - 40,
           marginTop: -225,
           width: 200,
         },
       }}
+      onClose={handleClose}
     >
       <MenuItem
         component={Link}
         onClick={handleClose}
-        to="/dashboards/view-all-dashboards"
+        to="/filters/view-all-filters"
       >
         <div>
           <ListItemAvatar>
@@ -35,14 +35,14 @@ export default function Dashboards(props) {
               <WorkIcon />
             </Avatar>
           </ListItemAvatar>
-          <ListItemText primary="View all dashboards" />
+          <ListItemText primary="View all filters" />
         </div>
       </MenuItem>
       <Divider style={{ width: "100%" }} />
       <MenuItem
         component={Link}
         onClick={handleClose}
-        to="/dashboards/create-dashboard"
+        to="/filters/advanced-issue-search"
       >
         <div>
           <ListItemAvatar>
@@ -50,7 +50,7 @@ export default function Dashboards(props) {
               <Check />
             </Avatar>
           </ListItemAvatar>
-          <ListItemText primary="Create Dashboard" />
+          <ListItemText primary="Advance Issue Search" />
         </div>
       </MenuItem>
     </Menu>

@@ -2,11 +2,14 @@
  * Create the store with dynamic reducers
  */
 
-import { createStore, applyMiddleware, compose } from 'redux';
-import { routerMiddleware } from 'connected-react-router';
-import { fromJS } from 'immutable';
-import createSagaMiddleware from 'redux-saga';
-import createReducer from './reducers';
+import { createStore, applyMiddleware, compose } from "redux";
+import { routerMiddleware } from "connected-react-router";
+import { fromJS } from "immutable";
+import createSagaMiddleware from "redux-saga";
+import createReducer from "./reducers";
+
+import projectBoardSagas from "../redux-sagas/projects/project-board";
+import root from "../redux-sagas/sagas";
 
 export default function configureStore(initialState = {}, history) {
   let composeEnhancers = compose;
@@ -14,7 +17,7 @@ export default function configureStore(initialState = {}, history) {
 
   // If Redux Dev Tools and Saga Dev Tools Extensions are installed, enable them
   /* istanbul ignore next */
-  if (process.env.NODE_ENV !== 'production' && typeof window === 'object') {
+  if (process.env.NODE_ENV !== "production" && typeof window === "object") {
     /* eslint-disable no-underscore-dangle */
     if (window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) {
       composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({});
@@ -29,7 +32,7 @@ export default function configureStore(initialState = {}, history) {
     /* eslint-enable */
   }
 
-  const sagaMiddleware = createSagaMiddleware(reduxSagaMonitorOptions);
+  const sagaMiddleware = createSagaMiddleware();
 
   // Create the store with two middlewares
   // 1. sagaMiddleware: Makes redux-sagas work
@@ -41,18 +44,19 @@ export default function configureStore(initialState = {}, history) {
   const store = createStore(
     createReducer(),
     fromJS(initialState),
-    composeEnhancers(...enhancers),
+    composeEnhancers(...enhancers)
   );
 
   // Extensions
-  store.runSaga = sagaMiddleware.run;
+  sagaMiddleware.run(root);
+  // store.runSaga = sagaMiddleware.run;
   store.injectedReducers = {}; // Reducer registry
   store.injectedSagas = {}; // Saga registry
 
   // Make reducers hot reloadable, see http://mxs.is/googmo
   /* istanbul ignore next */
   if (module.hot) {
-    module.hot.accept('./reducers', () => {
+    module.hot.accept("./reducers", () => {
       store.replaceReducer(createReducer(store.injectedReducers));
     });
   }

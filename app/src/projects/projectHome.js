@@ -15,6 +15,8 @@ import {
   setStarredTask,
   toggleAllStarredStatus,
   toggleStarredStatus,
+  fetchAllProjects,
+  getAllTickets,
 } from "../../actions/projects/projectBoardActions";
 
 const heading = "Projects";
@@ -95,6 +97,8 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(setProjectId(projectId));
     dispatch(setProjectName(projectName));
     dispatch(setProjectIcon(projectIcon));
+    dispatch(fetchAllProjects());
+    // dispatch(getAllTickets());
   },
 });
 
