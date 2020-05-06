@@ -417,3 +417,22 @@ export const CreateTask = loadable(
     fallback: <Loading />,
   }
 );
+
+// Settings
+
+// User Management
+export const UsersSetting = loadable(() => import("../src/settings/user-management/users"), {
+  fallback: <Loading />,
+});
+
+export const GroupsSetting = loadable(() => import("../src/settings/user-management/groups"), {
+  fallback: <Loading />,
+});
+
+export const AccessRequestsSetting = loadable(() => import("../src/settings/user-management/access-request"), {
+  fallback: <Loading />,
+});
+
+export const SiteAccessSetting = loadable(() => import("../src/settings/user-management/site-access"), {
+  fallback: <Loading />,
+});

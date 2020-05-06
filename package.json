@@ -32,8 +32,10 @@
     "clean:all": "npm run analyze:clean && npm run test:clean && npm run build:clean",
     "generate": "plop --plopfile internals/generators/index.js",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
-    "prettify": "prettier --write"
+    "prettify": "prettier --write",
+    "server": "nodemon server"
   },
+  "proxy": "http://localhost:8000/",
   "browserslist": [
     "last 1 version",
     "> 1%",
@@ -65,7 +67,8 @@
       "sanitize.css",
       "serve-favicon",
       "slick-carousel",
-      "tunnel-agent"
+      "tunnel-agent",
+      "nodemon"
     ],
     "include": [
       "core-js",
@@ -88,7 +91,7 @@
     "acorn": "^6.1.1",
     "antd": "^4.2.0",
     "autosuggest-highlight": "^3.1.1",
-    "axios": "^0.19.0",
+    "axios": "^0.19.2",
     "babel-polyfill": "6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
@@ -110,6 +113,7 @@
     "draftjs-to-html": "^0.8.3",
     "draftjs-to-markdown": "^0.5.1",
     "express": "4.16.4",
+    "express-swagger-generator": "^1.1.17",
     "fontfaceobserver": "2.1.0",
     "history": "4.9.0",
     "hoist-non-react-statics": "3.3.0",
@@ -125,6 +129,9 @@
     "minimist": "1.2.0",
     "moment": "^2.22.2",
     "mui-datatables": "^2.13.1",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.1.0",
+    "nodemon": "^2.0.3",
     "prop-types": "15.7.2",
     "rcolor": "^1.0.1",
     "react": "16.8.6",

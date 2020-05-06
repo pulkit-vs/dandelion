@@ -3,6 +3,7 @@ import { PropTypes } from "prop-types";
 import { Switch, Route } from "react-router-dom";
 import Dashboard from "../Templates/Dashboard";
 import {
+  AccessRequestsSetting,
   Accordion,
   AddProject,
   AdvancedTable,
@@ -11,7 +12,6 @@ import {
   AreaCharts,
   AreaFilledChart,
   AssignedToMe,
-  CreateTask,
   Autocomplete,
   Avatars,
   Badges,
@@ -28,6 +28,7 @@ import {
   CompossedCharts,
   Configurations,
   Contact,
+  CreateTask,
   CryptoDashboard,
   DateTimePicker,
   DialButton,
@@ -40,6 +41,7 @@ import {
   Email,
   Error,
   Grid,
+  GroupsSetting,
   HelpSupport,
   Icons,
   ImageGrid,
@@ -75,9 +77,11 @@ import {
   Selectbox,
   Settings,
   SimpleTable,
+  SiteAccessSetting,
   SliderCarousel,
   SliderRange,
   Snackbar,
+  StarredTasks,
   Status,
   Steppers,
   StreetViewMap,
@@ -94,7 +98,7 @@ import {
   TreeTable,
   Typography,
   Upload,
-  StarredTasks,
+  UsersSetting,
 } from "../pageListAsync";
 
 class Application extends React.Component {
@@ -146,7 +150,7 @@ class Application extends React.Component {
             path="/settings/personal-tool-settings"
             component={Configurations}
           />
-          <Route path="/settings/user-management" component={Configurations} />
+          {/* <Route path="/settings/user-management" component={Configurations} /> */}
           <Route path="/settings/billing" component={Configurations} />
           {/* Filters */}
           <Route path="/filters/view-all-filters" component={Configurations} />
@@ -255,7 +259,23 @@ class Application extends React.Component {
           <Route path="/maps/map-searchbox" component={SearchMap} />
           <Route path="/maps/map-traffic" component={TrafficIndicator} />
           <Route path="/maps/street-view" component={StreetViewMap} />
-
+          {/* User Management */}
+          <Route
+            path="/settings/user-management/users"
+            component={UsersSetting}
+          />
+          <Route
+            path="/settings/user-management/groups"
+            component={GroupsSetting}
+          />
+          <Route
+            path="/settings/user-management/access-requests"
+            component={AccessRequestsSetting}
+          />
+          <Route
+            path="/settings/user-management/site-access"
+            component={SiteAccessSetting}
+          />
           {/* Default */}
           <Route component={NotFound} />
         </Switch>

@@ -20,7 +20,7 @@ import {
 } from "../../actions/projects/projectBoardActions";
 
 const heading = "Projects";
-
+console.log("called");
 export class ProjectHome extends React.Component {
   constructor(props) {
     super(props);
