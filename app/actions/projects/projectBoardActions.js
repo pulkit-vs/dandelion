@@ -1,12 +1,14 @@
 export const types = {
+  FETCH_ALL_PROJECTS: "FETCH_ALL_PROJECTS",
   INIT: "INIT", //TODO, needs to be removed
   SET_ALL_STARRED_TASK: "SET_ALL_STARRED_TASK",
   SET_ALL_STARRED_TICKET_STATUS: "SET_ALL_STARRED_TICKET_STATUS",
+  SET_PROJECT_ICON: "SET_PROJECT_ICON",
   SET_PROJECT_ID: "SET_PROJECT_ID",
   SET_PROJECT_NAME: "SET_PROJECT_NAME",
   SET_STARRED_TASK: "SET_STARRED_TASK",
   SET_STARRED_TICKET_STATUS: "SET_STARRED_TICKET_STATUS",
-  SET_PROJECT_ICON: "SET_PROJECT_ICON",
+  GET_ALL_TICKETS: "GET_ALL_TICKETS",
 };
 
 export const setStarredTask = (starredTask = {}) => ({
@@ -64,4 +66,12 @@ export const setProjectIcon = (projectIcon = "") => ({
   payload: {
     projectIcon,
   },
+});
+
+export const fetchAllProjects = () => ({
+  type: types.FETCH_ALL_PROJECTS,
+});
+
+export const getAllTickets = () => ({
+  type: types.GET_ALL_TICKETS,
 });
