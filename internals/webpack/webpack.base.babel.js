@@ -154,6 +154,9 @@ module.exports = (options) => ({
   },
   node: {
     fs: "empty",
+    net: "empty",
+    tls: "empty",
+    child_process: "empty"
   },
   plugins: options.plugins.concat([
     // Always expose NODE_ENV to webpack, in order to use `process.env.NODE_ENV`

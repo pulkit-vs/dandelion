@@ -95,6 +95,9 @@ import {
   Typography,
   Upload,
   StarredTasks,
+  UsersSetting,
+  AccessRequestsSetting,
+  SiteAccessSetting,
 } from "../pageListAsync";
 
 class Application extends React.Component {
@@ -146,7 +149,7 @@ class Application extends React.Component {
             path="/settings/personal-tool-settings"
             component={Configurations}
           />
-          <Route path="/settings/user-management" component={Configurations} />
+          {/* <Route path="/settings/user-management" component={Configurations} /> */}
           <Route path="/settings/billing" component={Configurations} />
           {/* Filters */}
           <Route path="/filters/view-all-filters" component={Configurations} />
@@ -255,6 +258,12 @@ class Application extends React.Component {
           <Route path="/maps/map-searchbox" component={SearchMap} />
           <Route path="/maps/map-traffic" component={TrafficIndicator} />
           <Route path="/maps/street-view" component={StreetViewMap} />
+          {/* Settings */}
+          {/* User Management */}
+          <Route path="/settings/user-management/users" component={UsersSetting} />
+          <Route path="/settings/user-management/groups" component={UsersSetting} />
+          <Route path="/settings/user-management/access-requests" component={AccessRequestsSetting} />
+          <Route path="/settings/user-management/site-access" component={SiteAccessSetting} />
           {/* Default */}
           <Route component={NotFound} />
         </Switch>
