@@ -114,6 +114,31 @@ import {
   BillHistorySetting,
   OverviewSetting,
   ManageSubscriptionsSetting,
+  GeneralConfigurationSetting,
+  AuditLogSetting,
+  GlobalPermissionSetting,
+  IssueCollectorsSetting,
+  DefaultUserPreferencesSetting,
+  SystemDashboardSetting,
+  LookAndFeelSetting,
+  BackupManagerSetting,
+  ExternalSystemImportSetting,
+  ProjectRolesSetting,
+  RestoreSystemSetting,
+  GlobalMailSetting,
+  OutgoingMailSetting,
+  NotificationHelperSetting,
+  PermissionHelperSetting,
+  SharedDashboardSetting,
+  SharedFiltersSetting,
+  AutomationRulesSetting,
+  AttachmentsSetting,
+  EventsSetting,
+  WebhooksSetting,
+  ServicesSetting,
+  LexorankManagementSetting,
+  KaryaSoftwareConfigurationSetting,
+  ProductsAccessSetting,
 } from "../pageListAsync";
 
 class Application extends React.Component {
@@ -151,7 +176,7 @@ class Application extends React.Component {
           <Route path="/account/feedback" component={AddProject} />
 
           {/* Settings */}
-          <Route path="/settings/system" component={AddProject} />
+          {/* <Route path="/settings/system" component={AddProject} /> */}
           <Route path="/settings/product" component={AddProject} />
           <Route path="/settings/projects" component={AddProject} />
           <Route path="/settings/issues" component={AddProject} />
@@ -161,7 +186,7 @@ class Application extends React.Component {
             path="/settings/personal-tool-settings"
             component={AddProject}
           />
-          <Route path="/settings/billing" component={AddProject} />
+          {/* <Route path="/settings/billing" component={AddProject} /> */}
           {/* Filters */}
           <Route path="/filters/view-all-filters" component={AddProject} />
           <Route
@@ -292,33 +317,33 @@ class Application extends React.Component {
           <Route path="/settings/billing/billing/overview" component={OverviewSetting} />
           <Route path="/settings/billing/billing/overview" component={ManageSubscriptionsSetting} />
           {/* System */}
-          <Route path="/settings/system/general-configuration" component={ManageSubscriptionsSetting} />
-          <Route path="/settings/system/troubleshooting/audit-log" component={ManageSubscriptionsSetting} />
-          <Route path="/settings/system/security/project-roles" component={ManageSubscriptionsSetting} />
-          <Route path="/settings/system/security/global-permissions" component={ManageSubscriptionsSetting} />
-          <Route path="/settings/system/security/issue-collectors" component={ManageSubscriptionsSetting} />
-          <Route path="/settings/system/user-interface/default-user-preferences" component={ManageSubscriptionsSetting} />
-          <Route path="/settings/system/user-interface/system-dashboard" component={ManageSubscriptionsSetting} />
-          <Route path="/settings/system/user-interface/look-and-feel" component={ManageSubscriptionsSetting} />
-          <Route path="/settings/system/import-export/backup-manager" component={ManageSubscriptionsSetting} />
-          <Route path="/settings/system/import-export/external-system-import" component={ManageSubscriptionsSetting} />
-          <Route path="/settings/system/import-export/restore-system" component={ManageSubscriptionsSetting} />
-          <Route path="/settings/system/mail/global-mail-settings" component={ManageSubscriptionsSetting} />
-          <Route path="/settings/system/mail/outgoing-mail" component={ManageSubscriptionsSetting} />
-          <Route path="/settings/system/mail/send-email" component={ManageSubscriptionsSetting} />
-          <Route path="/settings/system/admin-helper/permission-helper" component={ManageSubscriptionsSetting} />
-          <Route path="/settings/system/admin-helper/notification-helper" component={ManageSubscriptionsSetting} />
-          <Route path="/settings/system/shared-items/shared-filters" component={ManageSubscriptionsSetting} />
-          <Route path="/settings/system/shared-items/shared-dashboard" component={ManageSubscriptionsSetting} />
-          <Route path="/settings/system/automation/automation-rules" component={ManageSubscriptionsSetting} />
-          <Route path="/settings/system/advanced/attachments" component={ManageSubscriptionsSetting} />
-          <Route path="/settings/system/advanced/events" component={ManageSubscriptionsSetting} />
-          <Route path="/settings/system/advanced/web-hooks" component={ManageSubscriptionsSetting} />
-          <Route path="/settings/system/advanced/services" component={ManageSubscriptionsSetting} />
-          <Route path="/settings/system/advanced/lexo-rank-management" component={ManageSubscriptionsSetting} />
+          <Route path="/settings/system/general-configuration" component={GeneralConfigurationSetting} />
+          <Route path="/settings/system/troubleshooting/audit-log" component={AuditLogSetting} />
+          <Route path="/settings/system/security/project-roles" component={ProjectRolesSetting} />
+          <Route path="/settings/system/security/global-permissions" component={GlobalPermissionSetting} />
+          <Route path="/settings/system/security/issue-collectors" component={IssueCollectorsSetting} />
+          <Route path="/settings/system/user-interface/default-user-preferences" component={DefaultUserPreferencesSetting} />
+          <Route path="/settings/system/user-interface/system-dashboard" component={SystemDashboardSetting} />
+          <Route path="/settings/system/user-interface/look-and-feel" component={LookAndFeelSetting} />
+          <Route path="/settings/system/import-export/backup-manager" component={BackupManagerSetting} />
+          <Route path="/settings/system/import-export/external-system-import" component={ExternalSystemImportSetting} />
+          <Route path="/settings/system/import-export/restore-system" component={RestoreSystemSetting} />
+          <Route path="/settings/system/mail/global-mail-settings" component={GlobalMailSetting} />
+          <Route path="/settings/system/mail/outgoing-mail" component={OutgoingMailSetting} />
+          <Route path="/settings/system/mail/send-email" component={SendEmailSetting} />
+          <Route path="/settings/system/admin-helper/permission-helper" component={PermissionHelperSetting} />
+          <Route path="/settings/system/admin-helper/notification-helper" component={NotificationHelperSetting} />
+          <Route path="/settings/system/shared-items/shared-filters" component={SharedFiltersSetting} />
+          <Route path="/settings/system/shared-items/shared-dashboard" component={SharedDashboardSetting} />
+          <Route path="/settings/system/automation/automation-rules" component={AutomationRulesSetting} />
+          <Route path="/settings/system/advanced/attachments" component={AttachmentsSetting} />
+          <Route path="/settings/system/advanced/events" component={EventsSetting} />
+          <Route path="/settings/system/advanced/web-hooks" component={WebhooksSetting} />
+          <Route path="/settings/system/advanced/services" component={ServicesSetting} />
+          <Route path="/settings/system/advanced/lexo-rank-management" component={LexorankManagementSetting} />
           {/* Product */}
-          <Route path="/settings/product/products/product-access" component={ManageSubscriptionsSetting} />
-          <Route path="/settings/product/karya-software/karya-software-configuration" component={ManageSubscriptionsSetting} />
+          <Route path="/settings/product/products/product-access" component={ProductsAccessSetting} />
+          <Route path="/settings/product/karya-software/karya-software-configuration" component={KaryaSoftwareConfigurationSetting} />
           <Route path="/settings/product/integrations/application-links" component={ManageSubscriptionsSetting} />
           <Route path="/settings/product/integrations/dvcs-accounts" component={ManageSubscriptionsSetting} />
           {/* Projects */}

@@ -493,3 +493,113 @@ export const BillHistorySetting = loadable(() => import("../src/settings/billing
 export const OverviewSetting = loadable(() => import("../src/settings/billing/billing/overview"), {
   fallback: <Loading />,
 });
+
+export const ManageSubscriptionsSetting = loadable(() => import("../src/settings/billing/billing/manage-subscriptions"), {
+  fallback: <Loading />,
+});
+
+// System
+
+export const GeneralConfigurationSetting = loadable(() => import("../src/settings/system/system/general-configuration"), {
+  fallback: <Loading />,
+});
+
+export const AuditLogSetting = loadable(() => import("../src/settings/system/troubleshooting/audit-log"), {
+  fallback: <Loading />,
+});
+
+export const GlobalPermissionSetting = loadable(() => import("../src/settings/system/security/global-permissions"), {
+  fallback: <Loading />,
+});
+
+export const IssueCollectorsSetting = loadable(() => import("../src/settings/system/security/issue-collectors"), {
+  fallback: <Loading />,
+});
+
+export const ProjectRolesSetting = loadable(() => import("../src/settings/system/security/project-roles"), {
+  fallback: <Loading />,
+});
+
+export const DefaultUserPreferencesSetting = loadable(() => import("../src/settings/system/user-interface/default-user-preferences"), {
+  fallback: <Loading />,
+});
+
+export const LookAndFeelSetting = loadable(() => import("../src/settings/system/user-interface/look-and-feel"), {
+  fallback: <Loading />,
+});
+
+export const SystemDashboardSetting = loadable(() => import("../src/settings/system/user-interface/system-dashboard"), {
+  fallback: <Loading />,
+});
+
+export const BackupManagerSetting = loadable(() => import("../src/settings/system/import-export/backup-manager"), {
+  fallback: <Loading />,
+});
+
+export const ExternalSystemImportSetting = loadable(() => import("../src/settings/system/import-export/external-system-import"), {
+  fallback: <Loading />,
+});
+
+export const RestoreSystemSetting = loadable(() => import("../src/settings/system/import-export/restore-system"), {
+  fallback: <Loading />,
+});
+
+export const GlobalMailSetting = loadable(() => import("../src/settings/system/mail/global-mail-settings"), {
+  fallback: <Loading />,
+});
+
+export const OutgoingMailSetting = loadable(() => import("../src/settings/system/mail/outgoing-mail"), {
+  fallback: <Loading />,
+});
+
+export const SendEmailSetting = loadable(() => import("../src/settings/system/mail/send-email"), {
+  fallback: <Loading />,
+});
+
+export const NotificationHelperSetting = loadable(() => import("../src/settings/system/admin-helper/notification-helper"), {
+  fallback: <Loading />,
+});
+
+export const PermissionHelperSetting = loadable(() => import("../src/settings/system/admin-helper/permission-helper"), {
+  fallback: <Loading />,
+});
+
+export const SharedDashboardSetting = loadable(() => import("../src/settings/system/shared-items/shared-dashboards"), {
+  fallback: <Loading />,
+});
+
+export const SharedFiltersSetting = loadable(() => import("../src/settings/system/shared-items/shared-filters"), {
+  fallback: <Loading />,
+});
+
+export const AutomationRulesSetting = loadable(() => import("../src/settings/system/automation/automation-rules"), {
+  fallback: <Loading />,
+});
+
+export const AttachmentsSetting = loadable(() => import("../src/settings/system/advanced/attachments"), {
+  fallback: <Loading />,
+});
+
+export const EventsSetting = loadable(() => import("../src/settings/system/advanced/events"), {
+  fallback: <Loading />,
+});
+
+export const LexorankManagementSetting = loadable(() => import("../src/settings/system/advanced/lexorank-management"), {
+  fallback: <Loading />,
+});
+
+export const ServicesSetting = loadable(() => import("../src/settings/system/advanced/services"), {
+  fallback: <Loading />,
+});
+
+export const WebhooksSetting = loadable(() => import("../src/settings/system/advanced/webhooks"), {
+  fallback: <Loading />,
+});
+
+export const ProductsAccessSetting = loadable(() => import("../src/settings/product/products/product-access"), {
+  fallback: <Loading />,
+});
+
+export const KaryaSoftwareConfigurationSetting = loadable(() => import("../src/settings/product/karya-software/karya-software-configuration"), {
+  fallback: <Loading />,
+});
