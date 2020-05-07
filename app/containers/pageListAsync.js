@@ -416,30 +416,80 @@ export const CreateIssues = loadable(
 // Settings
 
 // User Management
-export const UsersSetting = loadable(
-  () => import("../src/settings/user-management/users"),
-  {
-    fallback: <Loading />,
-  }
-);
+export const UsersSetting = loadable(() => import("../src/settings/user-management/user-management/users"), {
+  fallback: <Loading />,
+});
 
-export const GroupsSetting = loadable(
-  () => import("../src/settings/user-management/groups"),
-  {
-    fallback: <Loading />,
-  }
-);
+export const GroupsSetting = loadable(() => import("../src/settings/user-management/user-management/groups"), {
+  fallback: <Loading />,
+});
 
-export const AccessRequestsSetting = loadable(
-  () => import("../src/settings/user-management/access-request"),
-  {
-    fallback: <Loading />,
-  }
-);
+export const AccessRequestsSetting = loadable(() => import("../src/settings/user-management/user-management/access-request"), {
+  fallback: <Loading />,
+});
 
-export const SiteAccessSetting = loadable(
-  () => import("../src/settings/user-management/site-access"),
-  {
-    fallback: <Loading />,
-  }
-);
+export const SiteAccessSetting = loadable(() => import("../src/settings/user-management/site-settings/site-access"), {
+  fallback: <Loading />,
+});
+
+export const ProductAccessSetting = loadable(() => import("../src/settings/user-management/site-settings/product-access"), {
+  fallback: <Loading />,
+});
+
+export const GSuiteAccessSetting = loadable(() => import("../src/settings/user-management/site-settings/g-suite"), {
+  fallback: <Loading />,
+});
+
+export const EmojiAccessSetting = loadable(() => import("../src/settings/user-management/site-settings/emoji"), {
+  fallback: <Loading />,
+});
+
+export const ConnectedAppsAccessSetting = loadable(() => import("../src/settings/user-management/site-settings/connected-apps"), {
+  fallback: <Loading />,
+});
+
+export const SecurityAccessSetting = loadable(() => import("../src/settings/user-management/site-settings/security"), {
+  fallback: <Loading />,
+});
+
+export const StorageAccessSetting = loadable(() => import("../src/settings/user-management/site-settings/storage"), {
+  fallback: <Loading />,
+});
+
+export const BillingAccessSetting = loadable(() => import("../src/settings/user-management/subscriptions/billing"), {
+  fallback: <Loading />,
+});
+
+export const ManageSubscriptionsAccessSetting = loadable(() => import("../src/settings/user-management/subscriptions/manage-subscriptions"), {
+  fallback: <Loading />,
+});
+
+export const DiscoverApplicationsAccessSetting = loadable(() => import("../src/settings/user-management/subscriptions/discover-applications"), {
+  fallback: <Loading />,
+});
+
+export const KaryaAccessSetting = loadable(() => import("../src/settings/user-management/app-settings/karya"), {
+  fallback: <Loading />,
+});
+
+export const GiveFeedbackAccessSetting = loadable(() => import("../src/settings/user-management/admin-experience/give-feedback"), {
+  fallback: <Loading />,
+});
+
+// Billing
+
+export const BillEstimateSetting = loadable(() => import("../src/settings/billing/billing/bill-estimate"), {
+  fallback: <Loading />,
+});
+
+export const BillDetailsSetting = loadable(() => import("../src/settings/billing/billing/billing-details"), {
+  fallback: <Loading />,
+});
+
+export const BillHistorySetting = loadable(() => import("../src/settings/billing/billing/billing-history"), {
+  fallback: <Loading />,
+});
+
+export const OverviewSetting = loadable(() => import("../src/settings/billing/billing/overview"), {
+  fallback: <Loading />,
+});

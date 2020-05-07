@@ -30,25 +30,18 @@ export function createData(
 //BaseAddress
 export function checkLocation(history) {
   const pathname = get(history, ["location", "pathname"], "");
-  var currentBase = pathname.slice(
-    pathname.search("/") + 1,
-    pathname.indexOf("/", pathname.search("/") + 1)
-  );
+  var currentBase = pathname.split("/")[1]
 
+  console.log("currentBase", currentBase)
   //currentPage
-  const currentPage =
-    pathname.match(/\//g).length == 3
-      ? pathname.slice(
-          pathname.indexOf("/", pathname.search("/") + 1) + 1,
-          pathname.lastIndexOf("/")
-        )
-      : pathname.slice(pathname.indexOf("/", pathname.search("/") + 1) + 1);
-
-  if (currentBase) {
-    return { currentBase: currentBase, currentPage: currentPage };
-  } else {
-    return { currentBase: "", currentPage: "" };
-  }
+  const currentPage = pathname.split("/")[2]
+    console.log("currentPage", currentPage)
+    
+    if (currentBase) {
+      return { currentBase: currentBase, currentPage: currentPage };
+    } else {
+      return { currentBase: "", currentPage: "" };
+    }
 }
 
 export function moduleJson(screen) {
