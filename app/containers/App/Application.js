@@ -140,6 +140,15 @@ import {
   KaryaSoftwareConfigurationSetting,
   ProductsAccessSetting,
   SendEmailSetting,
+  ApplicationLinksSetting,
+  DVCSAccountsSetting,
+  ProjectCategoriesSetting,
+  ProjectsSetting,
+  IssueTypesSetting,
+  IssueTypeSchemasSetting,
+  SubTasksSetting,
+  WorkflowsSetting,
+  WorkflowsSchemesSetting,
 } from "../pageListAsync";
 
 class Application extends React.Component {
@@ -485,41 +494,41 @@ class Application extends React.Component {
           />
           <Route
             path="/settings/product/integrations/application-links"
-            component={ManageSubscriptionsSetting}
+            component={ApplicationLinksSetting}
           />
           <Route
             path="/settings/product/integrations/dvcs-accounts"
-            component={ManageSubscriptionsSetting}
+            component={DVCSAccountsSetting}
           />
           {/* Projects */}
           <Route
             path="/settings/projects/projects/projects"
-            component={ManageSubscriptionsSetting}
+            component={ProjectsSetting}
           />
           <Route
             path="/settings/projects/projects/project-categories"
-            component={ManageSubscriptionsSetting}
+            component={ProjectCategoriesSetting}
           />
           {/* Issues */}
           <Route
             path="/settings/issues/issue-types/issue-types"
-            component={ManageSubscriptionsSetting}
+            component={IssueTypesSetting}
           />
           <Route
             path="/settings/issues/issue-types/issue-type-shemas"
-            component={ManageSubscriptionsSetting}
+            component={IssueTypeSchemasSetting}
           />
           <Route
             path="/settings/issues/issue-types/sub-tasks"
-            component={ManageSubscriptionsSetting}
+            component={SubTasksSetting}
           />
           <Route
             path="/settings/issues/workflows/workflows"
-            component={ManageSubscriptionsSetting}
+            component={WorkflowsSetting}
           />
           <Route
             path="/settings/issues/workflows/workflows-schemes"
-            component={ManageSubscriptionsSetting}
+            component={WorkflowsSchemesSetting}
           />
           <Route
             path="/settings/issues/screens/screens"
