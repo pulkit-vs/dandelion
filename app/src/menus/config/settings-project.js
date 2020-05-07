@@ -7,13 +7,13 @@ export const projectsSettings = [
             {
                 key: "projects",
                 name: "Projects",
-                link: "/projects/projects",
+                link: "/settings/projects/projects/projects",
                 icon: "ios-contact-outline",
             },
             {
                 key: "projectCategories",
                 name: "Project categories",
-                link: "/projects/project-categories",
+                link: "/settings/projects/projects/project-categories",
                 icon: "ios-contact-outline",
             },
         ],

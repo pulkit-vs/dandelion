@@ -7,7 +7,7 @@ export const productSettings = [
         {
           key: "productAccess",
           name: "Product access",
-          link: "/products/product-access",
+          link: "/settings/product/products/product-access",
           icon: "ios-contact-outline",
         },
       ],
@@ -20,7 +20,7 @@ export const productSettings = [
           {
             key: "karyaSoftwareConfiguration",
             name: "Karya Software Configuration",
-            link: "/karya-software/karya-software-configuration",
+            link: "/settings/product/karya-software/karya-software-configuration",
             icon: "ios-contact-outline",
           },
         ],
@@ -33,13 +33,13 @@ export const productSettings = [
           {
             key: "applicationLinks",
             name: "Application links",
-            link: "/integrations/application-links",
+            link: "/settings/product/integrations/application-links",
             icon: "ios-contact-outline",
           },
           {
             key: "dvcsAccounts",
             name: "DVCS accounts",
-            link: "/integrations/dvcs-accounts",
+            link: "/settings/product/integrations/dvcs-accounts",
             icon: "ios-contact-outline",
           },
         ],

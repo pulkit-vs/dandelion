@@ -291,6 +291,70 @@ class Application extends React.Component {
           <Route path="/settings/billing/billing/billing-history" component={BillHistorySetting} />
           <Route path="/settings/billing/billing/overview" component={OverviewSetting} />
           <Route path="/settings/billing/billing/overview" component={ManageSubscriptionsSetting} />
+          {/* System */}
+          <Route path="/settings/system/general-configuration" component={ManageSubscriptionsSetting} />
+          <Route path="/settings/system/troubleshooting/audit-log" component={ManageSubscriptionsSetting} />
+          <Route path="/settings/system/security/project-roles" component={ManageSubscriptionsSetting} />
+          <Route path="/settings/system/security/global-permissions" component={ManageSubscriptionsSetting} />
+          <Route path="/settings/system/security/issue-collectors" component={ManageSubscriptionsSetting} />
+          <Route path="/settings/system/user-interface/default-user-preferences" component={ManageSubscriptionsSetting} />
+          <Route path="/settings/system/user-interface/system-dashboard" component={ManageSubscriptionsSetting} />
+          <Route path="/settings/system/user-interface/look-and-feel" component={ManageSubscriptionsSetting} />
+          <Route path="/settings/system/import-export/backup-manager" component={ManageSubscriptionsSetting} />
+          <Route path="/settings/system/import-export/external-system-import" component={ManageSubscriptionsSetting} />
+          <Route path="/settings/system/import-export/restore-system" component={ManageSubscriptionsSetting} />
+          <Route path="/settings/system/mail/global-mail-settings" component={ManageSubscriptionsSetting} />
+          <Route path="/settings/system/mail/outgoing-mail" component={ManageSubscriptionsSetting} />
+          <Route path="/settings/system/mail/send-email" component={ManageSubscriptionsSetting} />
+          <Route path="/settings/system/admin-helper/permission-helper" component={ManageSubscriptionsSetting} />
+          <Route path="/settings/system/admin-helper/notification-helper" component={ManageSubscriptionsSetting} />
+          <Route path="/settings/system/shared-items/shared-filters" component={ManageSubscriptionsSetting} />
+          <Route path="/settings/system/shared-items/shared-dashboard" component={ManageSubscriptionsSetting} />
+          <Route path="/settings/system/automation/automation-rules" component={ManageSubscriptionsSetting} />
+          <Route path="/settings/system/advanced/attachments" component={ManageSubscriptionsSetting} />
+          <Route path="/settings/system/advanced/events" component={ManageSubscriptionsSetting} />
+          <Route path="/settings/system/advanced/web-hooks" component={ManageSubscriptionsSetting} />
+          <Route path="/settings/system/advanced/services" component={ManageSubscriptionsSetting} />
+          <Route path="/settings/system/advanced/lexo-rank-management" component={ManageSubscriptionsSetting} />
+          {/* Product */}
+          <Route path="/settings/product/products/product-access" component={ManageSubscriptionsSetting} />
+          <Route path="/settings/product/karya-software/karya-software-configuration" component={ManageSubscriptionsSetting} />
+          <Route path="/settings/product/integrations/application-links" component={ManageSubscriptionsSetting} />
+          <Route path="/settings/product/integrations/dvcs-accounts" component={ManageSubscriptionsSetting} />
+          {/* Projects */}
+          <Route path="/settings/projects/projects/projects" component={ManageSubscriptionsSetting} />
+          <Route path="/settings/projects/projects/project-categories" component={ManageSubscriptionsSetting} />
+          {/* Issues */}
+          <Route path="/settings/issues/issue-types/issue-types" component={ManageSubscriptionsSetting} />
+          <Route path="/settings/issues/issue-types/issue-type-shemas" component={ManageSubscriptionsSetting} />
+          <Route path="/settings/issues/issue-types/sub-tasks" component={ManageSubscriptionsSetting} />
+          <Route path="/settings/issues/workflows/workflows" component={ManageSubscriptionsSetting} />
+          <Route path="/settings/issues/workflows/workflows-schemes" component={ManageSubscriptionsSetting} />
+          <Route path="/settings/issues/screens/screens" component={ManageSubscriptionsSetting} />
+          <Route path="/settings/issues/screens/screens-schemes" component={ManageSubscriptionsSetting} />
+          <Route path="/settings/issues/screens/issue-type-screen-scheme" component={ManageSubscriptionsSetting} />
+          <Route path="/settings/issues/fields/custom-fields" component={ManageSubscriptionsSetting} />
+          <Route path="/settings/issues/fields/field-configurations" component={ManageSubscriptionsSetting} />
+          <Route path="/settings/issues/fields/field-configuration-schemes" component={ManageSubscriptionsSetting} />
+          <Route path="/settings/issues/issue-features/time-tracking" component={ManageSubscriptionsSetting} />
+          <Route path="/settings/issues/issue-features/issue-linking" component={ManageSubscriptionsSetting} />
+          <Route path="/settings/issues/issue-attributes/statuses" component={ManageSubscriptionsSetting} />
+          <Route path="/settings/issues/issue-attributes/resolutions" component={ManageSubscriptionsSetting} />
+          <Route path="/settings/issues/issue-attributes/priorities" component={ManageSubscriptionsSetting} />
+          <Route path="/settings/issues/issue-attributes/issue-security-schemes" component={ManageSubscriptionsSetting} />
+          <Route path="/settings/issuesissue-attributes/notification-schemes" component={ManageSubscriptionsSetting} />
+          <Route path="/settings/issues/issue-attributes/permission-schemes" component={ManageSubscriptionsSetting} />
+          {/* App */}
+          <Route path="/settings/app/karya-market/find-new-apps" component={ManageSubscriptionsSetting} />
+          <Route path="/settings/app/karya-market/manage-apps" component={ManageSubscriptionsSetting} />
+          <Route path="/settings/app/karya-market/oauth-credentials" component={ManageSubscriptionsSetting} />
+          {/* Account Settings */}
+          <Route path="/settings/account-settings/profile-and-visibility" component={ManageSubscriptionsSetting} />
+          <Route path="/settings/account-settings/email" component={ManageSubscriptionsSetting} />
+          <Route path="/settings/account-settings/security" component={ManageSubscriptionsSetting} />
+          <Route path="/settings/account-settings/account-preferences" component={ManageSubscriptionsSetting} />
+          <Route path="/settings/account-settings/connected-apps" component={ManageSubscriptionsSetting} />
+          <Route path="/settings/account-settings/products" component={ManageSubscriptionsSetting} />
           {/* Default */}
           <Route component={NotFound} />
         </Switch>
