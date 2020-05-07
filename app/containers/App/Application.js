@@ -139,6 +139,16 @@ import {
   LexorankManagementSetting,
   KaryaSoftwareConfigurationSetting,
   ProductsAccessSetting,
+  SendEmailSetting,
+  ApplicationLinksSetting,
+  DVCSAccountsSetting,
+  ProjectCategoriesSetting,
+  ProjectsSetting,
+  IssueTypesSetting,
+  IssueTypeSchemasSetting,
+  SubTasksSetting,
+  WorkflowsSetting,
+  WorkflowsSchemesSetting,
 } from "../pageListAsync";
 
 class Application extends React.Component {
@@ -344,17 +354,17 @@ class Application extends React.Component {
           {/* Product */}
           <Route path="/settings/product/products/product-access" component={ProductsAccessSetting} />
           <Route path="/settings/product/karya-software/karya-software-configuration" component={KaryaSoftwareConfigurationSetting} />
-          <Route path="/settings/product/integrations/application-links" component={ManageSubscriptionsSetting} />
-          <Route path="/settings/product/integrations/dvcs-accounts" component={ManageSubscriptionsSetting} />
+          <Route path="/settings/product/integrations/application-links" component={ApplicationLinksSetting} />
+          <Route path="/settings/product/integrations/dvcs-accounts" component={DVCSAccountsSetting} />
           {/* Projects */}
-          <Route path="/settings/projects/projects/projects" component={ManageSubscriptionsSetting} />
-          <Route path="/settings/projects/projects/project-categories" component={ManageSubscriptionsSetting} />
+          <Route path="/settings/projects/projects/projects" component={ProjectsSetting} />
+          <Route path="/settings/projects/projects/project-categories" component={ProjectCategoriesSetting} />
           {/* Issues */}
-          <Route path="/settings/issues/issue-types/issue-types" component={ManageSubscriptionsSetting} />
-          <Route path="/settings/issues/issue-types/issue-type-shemas" component={ManageSubscriptionsSetting} />
-          <Route path="/settings/issues/issue-types/sub-tasks" component={ManageSubscriptionsSetting} />
-          <Route path="/settings/issues/workflows/workflows" component={ManageSubscriptionsSetting} />
-          <Route path="/settings/issues/workflows/workflows-schemes" component={ManageSubscriptionsSetting} />
+          <Route path="/settings/issues/issue-types/issue-types" component={IssueTypesSetting} />
+          <Route path="/settings/issues/issue-types/issue-type-shemas" component={IssueTypeSchemasSetting} />
+          <Route path="/settings/issues/issue-types/sub-tasks" component={SubTasksSetting} />
+          <Route path="/settings/issues/workflows/workflows" component={WorkflowsSetting} />
+          <Route path="/settings/issues/workflows/workflows-schemes" component={WorkflowsSchemesSetting} />
           <Route path="/settings/issues/screens/screens" component={ManageSubscriptionsSetting} />
           <Route path="/settings/issues/screens/screens-schemes" component={ManageSubscriptionsSetting} />
           <Route path="/settings/issues/screens/issue-type-screen-scheme" component={ManageSubscriptionsSetting} />

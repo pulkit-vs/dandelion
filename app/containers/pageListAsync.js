@@ -603,3 +603,39 @@ export const ProductsAccessSetting = loadable(() => import("../src/settings/prod
 export const KaryaSoftwareConfigurationSetting = loadable(() => import("../src/settings/product/karya-software/karya-software-configuration"), {
   fallback: <Loading />,
 });
+
+export const ApplicationLinksSetting = loadable(() => import("../src/settings/product/integrations/application-links"), {
+  fallback: <Loading />,
+});
+
+export const DVCSAccountsSetting = loadable(() => import("../src/settings/product/integrations/dvcs-accounts"), {
+  fallback: <Loading />,
+});
+
+export const ProjectCategoriesSetting = loadable(() => import("../src/settings/projects/projects/project-categories"), {
+  fallback: <Loading />,
+});
+
+export const ProjectsSetting = loadable(() => import("../src/settings/projects/projects/projects"), {
+  fallback: <Loading />,
+});
+
+export const IssueTypesSetting = loadable(() => import("../src/settings/issues/issue-types/issue-types"), {
+  fallback: <Loading />,
+});
+
+export const IssueTypeSchemasSetting = loadable(() => import("../src/settings/issues/issue-types/issue-type-schemas"), {
+  fallback: <Loading />,
+});
+
+export const SubTasksSetting = loadable(() => import("../src/settings/issues/issue-types/sub-tasks"), {
+  fallback: <Loading />,
+});
+
+export const WorkflowsSetting = loadable(() => import("../src/settings/issues/workflows/workflows"), {
+  fallback: <Loading />,
+});
+
+export const WorkflowsSchemesSetting = loadable(() => import("../src/settings/issues/workflows/workflows-schemes"), {
+  fallback: <Loading />,
+});
