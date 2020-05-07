@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { get } from "lodash";
 
 import EnhancedTable from "../../containers/Tables/TablePlayground";
-import MediaCard from "../Cards";
+import MediaCard from "../components/Cards";
 import { projectHeadCells, projectList } from "../../utils/constants";
 import {
   setAllStarredTask,
@@ -21,7 +21,6 @@ import {
 } from "../../karya-actions/projects/project-home-actions";
 
 const heading = "Projects";
-console.log("called");
 export class ProjectHome extends React.Component {
   constructor(props) {
     super(props);
@@ -34,15 +33,15 @@ export class ProjectHome extends React.Component {
   render() {
     const {
       handleProjectCardClick,
-      projectBoard,
+      projectHome,
       setAllStarredTask,
       setStarredTask,
       toggleAllStarredStatus,
       toggleStarredStatus,
     } = this.props;
 
-    const starredProjects = get(projectBoard, "starredProjects", []);
-    const projectData = get(projectBoard, "projectData", []);
+    const starredProjects = get(projectHome, "starredProjects", []);
+    const projectData = get(projectHome, "projectData", []);
 
     return (
       <Grid container spacing={2}>
@@ -80,7 +79,7 @@ export class ProjectHome extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  projectBoard: state.get("projectBoard"),
+  projectHome: state.get("projectHome"),
 });
 
 const mapDispatchToProps = (dispatch) => ({

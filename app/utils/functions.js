@@ -1,6 +1,6 @@
 import { get } from "lodash";
 import { systemSettings } from "../src/menus/config/settings-system";
-import { projectOptions } from "../src/projects/projectOptions";
+import { projectOptions } from "../src/menus/projects/project-options";
 import { productSettings } from "../src/menus/config/settings-products";
 import { projectsSettings } from "../src/menus/config/settings-project";
 import { issuesSettings } from "../src/menus/config/settings-issues";

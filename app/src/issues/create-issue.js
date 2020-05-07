@@ -51,7 +51,6 @@ export class CreateIssues extends React.Component {
   };
 
   setSummaryField = (e) => {
-    // console.log("event", e.target.value)
     this.props.setSummaryText(e.target.value);
   };
 
@@ -108,8 +107,7 @@ export class CreateIssues extends React.Component {
   };
 
   render() {
-    const { classes, createTask } = this.props;
-    console.log("Craete Task", createTask);
+    const { createIssues } = this.props;
     const { right } = this.state;
     return (
       <div>
@@ -196,7 +194,7 @@ export class CreateIssues extends React.Component {
                                 name: "age",
                                 id: "age-simple",
                               }}
-                              value={createTask.project}
+                              value={createIssues.project}
                               onChange={this.setProjectField}
                             >
                               <MenuItem value="">
@@ -204,7 +202,7 @@ export class CreateIssues extends React.Component {
                               </MenuItem>
                               <MenuItem value={10}>
                                 <img
-                                  src={require("../img-software.png")}
+                                  src={require("../images/img-software.png")}
                                   style={{
                                     width: "20px",
                                     height: "20px",
@@ -229,7 +227,7 @@ export class CreateIssues extends React.Component {
                                 name: "age",
                                 id: "age-simple",
                               }}
-                              value={createTask.issueType}
+                              value={createIssues.issueType}
                               onChange={this.setIssueTypeField}
                             >
                               <MenuItem value="">
@@ -260,7 +258,7 @@ export class CreateIssues extends React.Component {
                             label="Summary"
                             variant="outlined"
                             className={styles.fullWidth}
-                            value={createTask.summary}
+                            value={createIssues.summary}
                             onChange={this.setSummaryField}
                           />
                         </Grid>
@@ -285,7 +283,7 @@ export class CreateIssues extends React.Component {
                                 name: "age",
                                 id: "age-simple",
                               }}
-                              value={createTask.reporter}
+                              value={createIssues.reporter}
                               onChange={this.setReporterField}
                             >
                               <MenuItem value="">
@@ -293,7 +291,7 @@ export class CreateIssues extends React.Component {
                               </MenuItem>
                               <MenuItem value={10}>
                                 <img
-                                  src={require("../nikhilsir.png")}
+                                  src={require("../images/nikhilsir.png")}
                                   style={{
                                     width: "20px",
                                     height: "20px",
@@ -318,7 +316,7 @@ export class CreateIssues extends React.Component {
                                 name: "age",
                                 id: "age-simple",
                               }}
-                              value={createTask.assignee}
+                              value={createIssues.assignee}
                               onChange={this.setAssigneeField}
                             >
                               <MenuItem value="">
@@ -340,7 +338,7 @@ export class CreateIssues extends React.Component {
                                 name: "age",
                                 id: "age-simple",
                               }}
-                              value={createTask.components}
+                              value={createIssues.components}
                               onChange={this.setComponentsField}
                             >
                               <MenuItem value="">
@@ -362,7 +360,7 @@ export class CreateIssues extends React.Component {
                                 name: "age",
                                 id: "age-simple",
                               }}
-                              value={createTask.fixVersions}
+                              value={createIssues.fixVersions}
                               onChange={this.setFixVersionsField}
                             >
                               <MenuItem value="">
@@ -384,7 +382,7 @@ export class CreateIssues extends React.Component {
                                 name: "age",
                                 id: "age-simple",
                               }}
-                              value={createTask.priority}
+                              value={createIssues.priority}
                               onChange={this.setPriorityField}
                             >
                               <MenuItem value="">
@@ -404,7 +402,7 @@ export class CreateIssues extends React.Component {
                                 name: "age",
                                 id: "age-simple",
                               }}
-                              value={createTask.sprint}
+                              value={createIssues.sprint}
                               onChange={this.setSprintField}
                             >
                               <MenuItem value="">
@@ -424,7 +422,7 @@ export class CreateIssues extends React.Component {
                                 name: "age",
                                 id: "age-simple",
                               }}
-                              value={createTask.epic}
+                              value={createIssues.epic}
                               onChange={this.setEpicField}
                             >
                               <MenuItem value="">
@@ -444,7 +442,7 @@ export class CreateIssues extends React.Component {
                                 name: "age",
                                 id: "age-simple",
                               }}
-                              value={createTask.labels}
+                              value={createIssues.labels}
                               onChange={this.setLabelsField}
                             >
                               <MenuItem value="">
@@ -462,7 +460,7 @@ export class CreateIssues extends React.Component {
                             label="Original Estimate"
                             variant="outlined"
                             className={styles.fullWidth}
-                            value={createTask.originalEstimate}
+                            value={createIssues.originalEstimate}
                             onChange={this.setOriginalEstimateField}
                           />
                         </Grid>
@@ -472,7 +470,7 @@ export class CreateIssues extends React.Component {
                             label="Story Points"
                             variant="outlined"
                             className={styles.fullWidth}
-                            value={createTask.storyPoints}
+                            value={createIssues.storyPoints}
                             onChange={this.setStoryPointsField}
                           />
                         </Grid>
@@ -490,7 +488,7 @@ export class CreateIssues extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  createTask: state.get("createTasks"),
+  createIssues: state.get("createIssues"),
 });
 
 const mapDispatchToProps = (dispatch) => ({

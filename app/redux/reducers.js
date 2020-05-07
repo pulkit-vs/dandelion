@@ -7,9 +7,11 @@ import { combineReducers } from "redux-immutable";
 import { connectRouter } from "connected-react-router/immutable";
 import { reducer as form } from "redux-form/immutable";
 
+import assignedTasks from "../karya-redux/my-work/assigned-task-reducer";
 import calendar from "./modules/calendar";
 import chat from "./modules/chat";
 import contact from "./modules/contact";
+import createIssues from "../karya-redux/issues/create-issues-reducer";
 import crudTable from "./modules/crudTable";
 import crudTableForm from "./modules/crudTableForm";
 import ecommerce from "./modules/ecommerce";
@@ -17,13 +19,11 @@ import email from "./modules/email";
 import initval from "./modules/initForm";
 import languageProviderReducer from "containers/LanguageProvider/reducer";
 import login from "./modules/login";
-import projectBoard from "./modules/ProjectReducer/project-board";
+import projectHome from "../karya-redux/projects/project-home-reducer";
 import socmed from "./modules/socialMedia";
 import taskboard from "./modules/taskboard";
 import treeTable from "./modules/treeTable";
 import uiReducer from "./modules/ui";
-import assignedToMe from "./modules/MyWorkReducer/assigned-to-me";
-import createTasks from './modules/createTasks/createTasks';
 
 /**
  * Branching reducers to use one reducer for many components
@@ -45,7 +45,7 @@ function branchReducer(reducerFunction, reducerName) {
  */
 export default function createReducer(injectedReducers = {}) {
   const rootReducer = combineReducers({
-    assignedToMe,
+    assignedTasks,
     calendar,
     chat,
     contact,
@@ -54,7 +54,7 @@ export default function createReducer(injectedReducers = {}) {
     form,
     initval,
     login,
-    projectBoard,
+    projectHome,
     socmed,
     taskboard,
     ui: uiReducer,
@@ -66,7 +66,7 @@ export default function createReducer(injectedReducers = {}) {
     language: languageProviderReducer,
     router: connectRouter(history),
     ...injectedReducers,
-    createTasks,
+    createIssues,
   });
 
   // Wrap the root reducer and return a new root reducer with router state

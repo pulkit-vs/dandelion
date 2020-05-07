@@ -381,13 +381,13 @@ export const HelpSupport = loadable(() => import("./Pages/HelpSupport"), {
   fallback: <Loading />,
 });
 export const ProjectHome = loadable(
-  () => import("../src/projects/projectHome"),
+  () => import("../src/projects/project-home"),
   {
     fallback: <Loading />,
   }
 );
 export const AssignedToMe = loadable(
-  () => import("../src/myWork/assigned-to-me"),
+  () => import("../src/my-work/assigned-tasks"),
   {
     fallback: <Loading />,
   }
@@ -400,7 +400,7 @@ export const AddProject = loadable(
 );
 
 export const StarredTasks = loadable(
-  () => import("../src/myWork/starredTasks"),
+  () => import("../src/my-work/starred-tasks"),
   {
     fallback: <Loading />,
   }

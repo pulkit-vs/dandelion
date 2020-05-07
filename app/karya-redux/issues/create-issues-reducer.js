@@ -1,4 +1,4 @@
-import { types } from "../../../karya-actions/issues/create-issue-actions";
+import { types } from "../../karya-actions/issues/create-issue-actions";
 
 const initialState = {
   assignee: "",

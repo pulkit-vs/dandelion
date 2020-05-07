@@ -1,5 +1,5 @@
 import { get } from "lodash";
-import { types } from "../../../karya-actions/projects/project-home-actions";
+import { types } from "../../karya-actions/projects/project-home-actions";
 
 const initialState = {
   projectData: [],

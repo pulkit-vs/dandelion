@@ -20,6 +20,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { Empty } from "antd";
 import { lighten, makeStyles } from "@material-ui/core/styles";
+import { Link } from "react-router-dom";
 
 import styles from "dan-styles/TablePlayground.scss";
 import { STARRED_TICKETS, STARRED } from "../../utils/constants";
@@ -323,6 +324,8 @@ const EnhancedTable = (props) => {
                           role="checkbox"
                           tabIndex={-1}
                           key={labelId}
+                          component={Link}
+                          to="/projects/sprint-board"
                         >
                           <TableCell padding="checkbox">
                             <IconButton

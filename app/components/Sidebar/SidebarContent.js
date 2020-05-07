@@ -60,15 +60,15 @@ class SidebarContent extends React.Component {
       leftSidebar,
       loadTransition,
       openMenuStatus,
-      projectBoard,
+      projectHome,
       toggleDrawerOpen,
       turnDarker,
     } = this.props;
 
     const { transform } = this.state;
-    const projectName = get(projectBoard, "projectName", "");
-    const projectsListMap = get(projectBoard, "projectsListMap", "");
-    const projectIcon = get(projectBoard, "projectIcon", "");
+    const projectName = get(projectHome, "projectName", "");
+    const projectsListMap = get(projectHome, "projectsListMap", "");
+    const projectIcon = get(projectHome, "projectIcon", "");
 
     return (
       <div
@@ -195,7 +195,7 @@ SidebarContent.defaultProps = {
 };
 
 const mapStateToProps = (state) => ({
-  projectBoard: state.get("projectBoard"),
+  projectHome: state.get("projectHome"),
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -16,7 +16,7 @@ import { connect } from "react-redux";
 import { withStyles } from "@material-ui/core/styles";
 
 import AlertDialog from "../../api/ui/modal";
-import Dashboards from "../../src/dashboards/dashboards";
+import Dashboard from "../../src/dashboard/top-dashboard-menu";
 import FiltersMenu from "../../src/filters/filter-menu";
 import SearchUi from "../Search/SearchUi";
 import UserMenu from "./UserMenu";
@@ -229,7 +229,7 @@ class Header extends React.Component {
           </Hidden>
           {this.state.showModal && <AlertDialog closeModal={this.closeModal} />}
           {this.state.showDashboardsMenu && (
-            <Dashboards
+            <Dashboard
               dashboardMenuPosition={this.state.dashboardMenuPosition}
               handleClose={this.handleClose}
               open={this.state.showDashboardsMenu}
@@ -263,9 +263,7 @@ Header.propTypes = {
   history: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  projectBoard: state.get("projectBoard"),
-});
+const mapStateToProps = (state) => ({});
 
 const mapDispatchToProps = (dispatch) => ({});
 

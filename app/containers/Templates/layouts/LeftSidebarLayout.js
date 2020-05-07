@@ -136,9 +136,7 @@ LeftSidebarLayout.propTypes = {
   toggleDrawer: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  projectBoard: state.get("projectBoard"),
-});
+const mapStateToProps = (state) => ({});
 
 const mapDispatchToProps = (dispatch) => ({});
 

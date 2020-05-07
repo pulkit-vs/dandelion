@@ -1,21 +1,21 @@
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import React, { Component, useState } from "react";
-import { makeStyles } from '@material-ui/core/styles';
-import Stepper from '@material-ui/core/Stepper';
-import Step from '@material-ui/core/Step';
-import StepLabel from '@material-ui/core/StepLabel';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
+import { makeStyles } from "@material-ui/core/styles";
+import Stepper from "@material-ui/core/Stepper";
+import Step from "@material-ui/core/Step";
+import StepLabel from "@material-ui/core/StepLabel";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
 
 import PaperSheet from "../../containers/UiElements/demos/Cards/PaperSheet";
 import styles from "dan-styles/AddProject.scss";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: '100%',
+    width: "100%",
   },
   backButton: {
     marginRight: theme.spacing(1),
@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function getSteps() {
-  return ['Enter basic details', 'Select Category', 'Select Template'];
+  return ["Enter basic details", "Select Category", "Select Template"];
 }
 
 function getStepContent(stepIndex) {
@@ -43,13 +43,30 @@ function getStepContent(stepIndex) {
       return (
         <Grid container spacing={2}>
           <Grid item xs={12} sm={3}>
-            <TextField id="outlined-basic" label="Name" variant="outlined" className={styles.fullWidth} />
+            <TextField
+              id="outlined-basic"
+              label="Name"
+              variant="outlined"
+              className={styles.fullWidth}
+            />
           </Grid>
           <Grid item xs={12} sm={3}>
-            <TextField id="outlined-basic" label="key" variant="outlined" className={styles.fullWidth} />
+            <TextField
+              id="outlined-basic"
+              label="key"
+              variant="outlined"
+              className={styles.fullWidth}
+            />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <TextField id="outlined-basic" label="Description" variant="outlined" multiline rows={3} className={styles.fullWidth} />
+            <TextField
+              id="outlined-basic"
+              label="Description"
+              variant="outlined"
+              multiline
+              rows={3}
+              className={styles.fullWidth}
+            />
           </Grid>
         </Grid>
       );
@@ -57,22 +74,49 @@ function getStepContent(stepIndex) {
       return (
         <Grid container spacing={2}>
           <Grid item xs={12} sm={3}>
-            <Card className={shadowChange ? styles.selectedCardShadow : styles.cardShadow} onClick={onShadowChangeClicked(!shadowChange)}>
+            <Card
+              className={
+                shadowChange ? styles.selectedCardShadow : styles.cardShadow
+              }
+              onClick={onShadowChangeClicked(!shadowChange)}
+            >
               <CardContent>
-                <Typography color="textSecondary" gutterBottom className={styles.textCenter}> Software </Typography>
-                <img src={require('../img-software.png')} className={styles.img} />
+                <Typography
+                  color="textSecondary"
+                  gutterBottom
+                  className={styles.textCenter}
+                >
+                  {" "}
+                  Software{" "}
+                </Typography>
+                <img
+                  src={require("../images/img-software.png")}
+                  className={styles.img}
+                />
               </CardContent>
             </Card>
           </Grid>
           <Grid item xs={12} sm={3}>
             <Card className={styles.cardShadow}>
               <CardContent>
-                <Typography color="textSecondary" gutterBottom className={styles.textCenter}> Management </Typography>
-                <img src={require('../management.png')} className={styles.img} />
+                <Typography
+                  color="textSecondary"
+                  gutterBottom
+                  className={styles.textCenter}
+                >
+                  {" "}
+                  Management{" "}
+                </Typography>
+                <img
+                  src={require("../images/management.png")}
+                  className={styles.img}
+                />
               </CardContent>
             </Card>
           </Grid>
-          <Grid item xs={12} sm={12}><br></br></Grid>
+          <Grid item xs={12} sm={12}>
+            <br />
+          </Grid>
         </Grid>
       );
     case 2:
@@ -81,35 +125,63 @@ function getStepContent(stepIndex) {
           <Grid item xs={12} sm={4}>
             <Card className={styles.cardShadow}>
               <CardContent>
-                <Typography color="textSecondary" gutterBottom className={styles.textCenter}> Kanban Board </Typography>
-                <img src={require('../kanban-board.png')} className={styles.img} />
+                <Typography
+                  color="textSecondary"
+                  gutterBottom
+                  className={styles.textCenter}
+                >
+                  {" "}
+                  Kanban Board{" "}
+                </Typography>
+                <img
+                  src={require("../images/kanban-board.png")}
+                  className={styles.img}
+                />
               </CardContent>
             </Card>
           </Grid>
           <Grid item xs={12} sm={4}>
             <Card className={styles.cardShadow}>
               <CardContent>
-                <Typography color="textSecondary" gutterBottom className={styles.textCenter}> Scrum Board </Typography>
-                <img src={require('../scrum-board.jpg')} className={styles.img} />
+                <Typography
+                  color="textSecondary"
+                  gutterBottom
+                  className={styles.textCenter}
+                >
+                  {" "}
+                  Scrum Board{" "}
+                </Typography>
+                <img
+                  src={require("../images/scrum-board.jpg")}
+                  className={styles.img}
+                />
               </CardContent>
             </Card>
           </Grid>
           <Grid item xs={12} sm={4}>
             <Card className={styles.cardShadow}>
               <CardContent>
-                <Typography color="textSecondary" gutterBottom className={styles.textCenter}> Sprint Board </Typography>
-                <img src={require('../sprint-board.png')} className={styles.img} />
+                <Typography
+                  color="textSecondary"
+                  gutterBottom
+                  className={styles.textCenter}
+                >
+                  {" "}
+                  Sprint Board{" "}
+                </Typography>
+                <img
+                  src={require("../images/sprint-board.png")}
+                  className={styles.img}
+                />
               </CardContent>
             </Card>
           </Grid>
         </Grid>
       );
     default:
-      return 'Unknown step';
+      return "Unknown step";
   }
 }
-
-
 
 export default class AddProject extends Component {
   form = () => {
@@ -143,26 +215,34 @@ export default class AddProject extends Component {
               <div>
                 {activeStep === steps.length ? (
                   <div>
-                    <Typography className={classes.instructions}>Project Created</Typography>
+                    <Typography className={classes.instructions}>
+                      Project Created
+                    </Typography>
                     <Button onClick={handleReset}>Reset</Button>
                   </div>
                 ) : (
+                  <div>
+                    <Typography className={classes.instructions}>
+                      {getStepContent(activeStep)}
+                    </Typography>
                     <div>
-                      <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
-                      <div>
-                        <Button
-                          disabled={activeStep === 0}
-                          onClick={handleBack}
-                          className={classes.backButton}
-                        >
-                          Back
-              </Button>
-                        <Button variant="contained" color="primary" onClick={handleNext}>
-                          {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-                        </Button>
-                      </div>
+                      <Button
+                        disabled={activeStep === 0}
+                        onClick={handleBack}
+                        className={classes.backButton}
+                      >
+                        Back
+                      </Button>
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={handleNext}
+                      >
+                        {activeStep === steps.length - 1 ? "Finish" : "Next"}
+                      </Button>
                     </div>
-                  )}
+                  </div>
+                )}
               </div>
             </div>
           </div>
