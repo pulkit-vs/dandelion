@@ -6,7 +6,7 @@ const initialState = {
   projectIcon: "",
   projectId: "",
   projectName: "",
-  projectStarredTasks: [],
+  starredProjects: [],
   projectsListMap: [],
 };
 
@@ -15,26 +15,24 @@ export default function reducer(state = initialState, action = {}) {
     case types.SET_STARRED_TASK: {
       let updatedTask = [];
       const rowData = get(action, ["payload", "starredTask"], {});
-      const RowAlreadyExists = state.projectStarredTasks.find(
-        ({ ticketId }) => ticketId === rowData.ticketId
+      const RowAlreadyExists = state.starredProjects.find(
+        ({ id }) => id === rowData.id
       );
       if (RowAlreadyExists) {
-        updatedTask = state.projectStarredTasks.filter(
-          ({ ticketId }) => ticketId !== RowAlreadyExists.ticketId
+        updatedTask = state.starredProjects.filter(
+          ({ id }) => id !== RowAlreadyExists.id
         );
       } else {
-        updatedTask = [...state.projectStarredTasks, rowData];
+        updatedTask = [...state.starredProjects, rowData];
       }
-      return { ...state, projectStarredTasks: updatedTask };
+      return { ...state, starredProjects: updatedTask };
     }
 
     case types.SET_STARRED_TICKET_STATUS: {
       const status = get(action, ["payload", "status"], false);
-      const id = get(action, ["payload", "ticketId"], "");
-      const index = state.projectData.findIndex(
-        ({ ticketId }) => ticketId === id
-      );
-      state.projectData[index].starredTicket = status;
+      const projectId = get(action, ["payload", "projectId"], "");
+      const index = state.projectData.findIndex(({ id }) => id === projectId);
+      state.projectData[index].starred = status;
       return {
         ...state,
       };
@@ -42,8 +40,8 @@ export default function reducer(state = initialState, action = {}) {
 
     case types.INIT: {
       const projectList = get(action, ["payload", "projectList"], false);
-      const updatedTask = projectList.filter(
-        (item) => item.starredTicket === true
+      const starredProjects = projectList.filter(
+        (item) => item.starred === true
       );
       const projectsMap = projectList.map((project) => {
         return {
@@ -55,7 +53,7 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         projectData: projectList,
-        projectStarredTasks: updatedTask,
+        starredProjects: starredProjects,
         projectsListMap: projectsMap,
       };
     }
@@ -68,14 +66,14 @@ export default function reducer(state = initialState, action = {}) {
       }
       return {
         ...state,
-        projectStarredTasks: updatedTask,
+        starredProjects: updatedTask,
       };
     }
 
     case types.SET_ALL_STARRED_TICKET_STATUS: {
       const status = get(action, ["payload", "status"], false);
       state.projectData.map((data) => {
-        data.starredTicket = status;
+        data.starred = status;
       });
       return {
         ...state,

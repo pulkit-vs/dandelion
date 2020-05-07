@@ -1,9 +1,21 @@
-import { put, takeLatest, all, takeEvery } from "redux-saga/effects";
+import { put, takeLatest, all, takeEvery, call } from "redux-saga/effects";
+import DataService from "../../../app/services/data-service";
 
 import { types } from "../../actions/projects/projectBoardActions";
+
+const dataService = new DataService();
+
 function* getAllProjects() {
+  //params will come from action dispatcher
+  const params = {
+    projectId: 0,
+    type: "list",
+    employeeId: 1,
+  };
   console.log("saga getAllProjects");
-  //yield put({ type: setAllprojects, projects: ["1", "2", "3"] });
+  const projects = yield call(
+    dataService.asyncGetWithParam("projects", params)
+  );
 }
 
 function* getAllTickets() {

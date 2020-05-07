@@ -1,7 +1,6 @@
 import "antd/dist/antd.css";
 import Avatar from "@material-ui/core/Avatar";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Grid from "@material-ui/core/Grid";
 import IconButton from "@material-ui/core/IconButton";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Paper from "@material-ui/core/Paper";
@@ -252,11 +251,11 @@ const EnhancedTable = (props) => {
     setAllStarredTask(starred);
   };
 
-  const handleClick = (row, ticketId, status) => {
-    return () => {
-      setStarredTask(row);
-      toggleStarredStatus(ticketId, status);
-    };
+  const handleClick = (row, projectId, status) => {
+    // return () => {
+    setStarredTask(row);
+    toggleStarredStatus(projectId, status);
+    // };
   };
 
   const handleChangePage = (event, newPage) => {
@@ -292,101 +291,94 @@ const EnhancedTable = (props) => {
             size={dense ? "small" : "medium"}
             aria-label="enhanced table"
           >
-            <EnhancedTableHead
-              classes={classes}
-              dataModal={dataModal}
-              headCells={headCells}
-              onRequestSort={handleRequestSort}
-              onSelectAllClick={handleSelectAllClick}
-              order={order}
-              orderBy={orderBy}
-              rowCount={dataModal.length}
-              setStarred={setStarred}
-              showStarredButton={showStarredButton}
-              starred={starred}
-              starredStatus={starredStatus}
-            />
             {dataModal.length > 0 ? (
-              <TableBody>
-                {stableSort(dataModal, getComparator(order, orderBy))
-                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((row, index) => {
-                    const labelId = `enhanced-table-checkbox-${index}`;
-                    return (
-                      <TableRow
-                        hover
-                        onClick={handleTableRowClick(
-                          row.id,
-                          row.data.projectName,
-                          row.projectIcon
-                        )}
-                        role="checkbox"
-                        tabIndex={-1}
-                        key={labelId}
-                      >
-                        <TableCell padding="checkbox">
-                          <IconButton
-                            aria-label="Menu"
-                            className={row.starred ? styles.starredColor : ""}
-                            onClick={handleClick(row, row.id, !row.starred)}
-                          >
-                            <StarBorderIcon />
-                          </IconButton>
-                        </TableCell>
-                        {Object.values(row.data).map((value, index) => {
-                          return (
-                            <TableCell
-                              key={`table-cell-${index}`}
-                              align="right"
-                              style={{
-                                padding: "1%",
+              <>
+                <EnhancedTableHead
+                  classes={classes}
+                  dataModal={dataModal}
+                  headCells={headCells}
+                  onRequestSort={handleRequestSort}
+                  onSelectAllClick={handleSelectAllClick}
+                  order={order}
+                  orderBy={orderBy}
+                  rowCount={dataModal.length}
+                  setStarred={setStarred}
+                  showStarredButton={showStarredButton}
+                  starred={starred}
+                  starredStatus={starredStatus}
+                />
+                <TableBody>
+                  {stableSort(dataModal, getComparator(order, orderBy))
+                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                    .map((row, index) => {
+                      const labelId = `enhanced-table-checkbox-${index}`;
+                      return (
+                        <TableRow
+                          hover
+                          onClick={handleTableRowClick(
+                            row.id,
+                            row.data.projectName,
+                            row.projectIcon
+                          )}
+                          role="checkbox"
+                          tabIndex={-1}
+                          key={labelId}
+                        >
+                          <TableCell padding="checkbox">
+                            <IconButton
+                              aria-label="Menu"
+                              className={row.starred ? styles.starredColor : ""}
+                              onClick={(event) => {
+                                event.stopPropagation();
+                                handleClick(row, row.id, !row.starred);
                               }}
                             >
-                              <div
+                              <StarBorderIcon />
+                            </IconButton>
+                          </TableCell>
+                          {Object.values(row.data).map((value, index) => {
+                            return (
+                              <TableCell
+                                key={`table-cell-${index}`}
+                                align="right"
                                 style={{
-                                  display: "flex",
-                                  alignItems: "center",
-                                  width: "200px",
+                                  padding: "1%",
                                 }}
                               >
-                                {row.projectIcon && index === 0 ? (
-                                  <ListItemAvatar>
-                                    <Avatar
-                                      alt="User Name"
-                                      src={row.projectIcon}
-                                    />
-                                  </ListItemAvatar>
-                                ) : null}
-                                <label style={{ marginLeft: "20px" }}>
-                                  {value}
-                                </label>
-                              </div>
-                            </TableCell>
-                          );
-                        })}
-                      </TableRow>
-                    );
-                  })}
-                {emptyRows > 0 && (
-                  <TableRow style={{ height: (dense ? 33 : 53) * emptyRows }}>
-                    <TableCell colSpan={6} />
-                  </TableRow>
-                )}
-              </TableBody>
-            ) : (
-              // <div style={{ width: "200px", height: "100px" }}>
-              <>
-                <Grid item xs={12} sm={6}>
-                  <Empty
-                    image={Empty.PRESENTED_IMAGE_DEFAULT}
-                    imageStyle={{
-                      height: 60,
-                      width: 100,
-                    }}
-                  />
-                </Grid>
+                                <div
+                                  style={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    width: "200px",
+                                  }}
+                                >
+                                  {row.projectIcon && index === 0 ? (
+                                    <ListItemAvatar>
+                                      <Avatar
+                                        alt="User Name"
+                                        src={row.projectIcon}
+                                      />
+                                    </ListItemAvatar>
+                                  ) : null}
+                                  <label style={{ marginLeft: "20px" }}>
+                                    {value}
+                                  </label>
+                                </div>
+                              </TableCell>
+                            );
+                          })}
+                        </TableRow>
+                      );
+                    })}
+                  {emptyRows > 0 && (
+                    <TableRow style={{ height: (dense ? 33 : 53) * emptyRows }}>
+                      <TableCell colSpan={6} />
+                    </TableRow>
+                  )}
+                </TableBody>
               </>
-              // </div>
+            ) : (
+              <Empty />
             )}
           </Table>
         </TableContainer>

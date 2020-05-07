@@ -15,8 +15,9 @@ import {
   setStarredTask,
   toggleAllStarredStatus,
   toggleStarredStatus,
+  //dummy methods to demonstrate redux-saga
   fetchAllProjects,
-  getAllTickets,
+  // getAllTickets,
 } from "../../actions/projects/projectBoardActions";
 
 const heading = "Projects";
@@ -39,7 +40,8 @@ export class ProjectHome extends React.Component {
       toggleAllStarredStatus,
       toggleStarredStatus,
     } = this.props;
-    const projectStarredTasks = get(projectBoard, "projectStarredTasks", []);
+
+    const starredProjects = get(projectBoard, "starredProjects", []);
     const projectData = get(projectBoard, "projectData", []);
 
     return (
@@ -66,7 +68,7 @@ export class ProjectHome extends React.Component {
               setAllStarredTask={setAllStarredTask}
               setStarredTask={setStarredTask}
               showStarredButton={true}
-              starredTask={projectStarredTasks}
+              starredTask={starredProjects}
               toggleAllStarredStatus={toggleAllStarredStatus}
               toggleStarredStatus={toggleStarredStatus}
             />
@@ -84,8 +86,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   setStarredTask: (rows) => dispatch(setStarredTask(rows)),
 
-  toggleStarredStatus: (ticketId, status) =>
-    dispatch(toggleStarredStatus(ticketId, status)),
+  toggleStarredStatus: (projectId, status) =>
+    dispatch(toggleStarredStatus(projectId, status)),
 
   setRows: () => dispatch(setRows(projectList)),
 
@@ -97,8 +99,9 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(setProjectId(projectId));
     dispatch(setProjectName(projectName));
     dispatch(setProjectIcon(projectIcon));
+    //dummy methods to demonstrate redux-saga
     dispatch(fetchAllProjects());
-    dispatch(getAllTickets());
+    // dispatch(getAllTickets());
   },
 });
 
