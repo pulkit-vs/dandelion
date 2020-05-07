@@ -1,5 +1,5 @@
 import { get } from "lodash";
-import { types } from "../../../actions/myWork/assignedToMeActions";
+import { types } from "../../../karya-actions/myWork/assigned-issues-actions";
 
 const initialState = {
   assignedData: [],

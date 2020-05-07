@@ -330,12 +330,7 @@ export const TaskBoard = loadable(() => import("./Pages/TaskBoard"), {
 export const Invoice = loadable(() => import("./Pages/Invoice"), {
   fallback: <Loading />,
 });
-export const Configurations = loadable(
-  () => import("../src/configurations/edit-configurations"),
-  {
-    fallback: <Loading />,
-  }
-);
+
 export const ManageTeam = loadable(() => import("../src/people/manage-team"), {
   fallback: <Loading />,
 });
@@ -411,8 +406,8 @@ export const StarredTasks = loadable(
   }
 );
 
-export const CreateTask = loadable(
-  () => import("../src/createTasks/createTask"),
+export const CreateIssues = loadable(
+  () => import("../src/issues/create-issue"),
   {
     fallback: <Loading />,
   }

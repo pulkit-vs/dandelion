@@ -8,12 +8,10 @@ import { fromJS } from "immutable";
 import createSagaMiddleware from "redux-saga";
 import createReducer from "./reducers";
 
-import projectBoardSagas from "../redux-sagas/projects/project-board";
-import root from "../redux-sagas/sagas";
+import rootSaga from "../redux-sagas/sagas";
 
 export default function configureStore(initialState = {}, history) {
   let composeEnhancers = compose;
-  const reduxSagaMonitorOptions = {};
 
   // If Redux Dev Tools and Saga Dev Tools Extensions are installed, enable them
   /* istanbul ignore next */
@@ -48,7 +46,7 @@ export default function configureStore(initialState = {}, history) {
   );
 
   // Extensions
-  sagaMiddleware.run(root);
+  sagaMiddleware.run(rootSaga);
   // store.runSaga = sagaMiddleware.run;
   store.injectedReducers = {}; // Reducer registry
   store.injectedSagas = {}; // Saga registry

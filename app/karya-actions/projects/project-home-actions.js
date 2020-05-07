@@ -18,10 +18,10 @@ export const setStarredTask = (starredTask = {}) => ({
   },
 });
 
-export const toggleStarredStatus = (ticketId = "", status = false) => ({
+export const toggleStarredStatus = (projectId = "", status = false) => ({
   type: types.SET_STARRED_TICKET_STATUS,
   payload: {
-    ticketId,
+    projectId,
     status,
   },
 });

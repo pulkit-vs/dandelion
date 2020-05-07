@@ -1,9 +1,6 @@
 import { all } from "redux-saga/effects";
+import projectBoardSagas from "./projects/project-home-sagas";
 
-import projectBoardSagas from "./projects/project-board";
-
-const root = function* rootSaga() {
+export default function* rootSaga() {
   yield all([...projectBoardSagas]);
-};
-
-export default root;
+}

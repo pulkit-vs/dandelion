@@ -2,8 +2,8 @@ import Grid from "@material-ui/core/Grid";
 import React from "react";
 import { connect } from "react-redux";
 import { get, identity } from "lodash";
-import DataService from '../../services/data-service';
-import * as AppConstants from '../../utils/constants';
+import DataService from "../../services/data-service";
+import * as AppConstants from "../../utils/constants";
 
 import EnhancedTable from "../../containers/Tables/TablePlayground";
 import { headCells, assignedToMeTickets } from "../../utils/constants";
@@ -13,30 +13,33 @@ import {
   setStarredTask,
   toggleAllStarredStatus,
   toggleStarredStatus,
-} from "../../actions/myWork/assignedToMeActions";
+} from "../../karya-actions/myWork/assigned-issues-actions";
 
 const heading = "My Tasks";
 
 export class AssignedToMe extends React.Component {
   constructor() {
-    super()
+    super();
     this.dataService = new DataService();
   }
-  
+
   componentDidMount() {
     this.props.setRows(); //TODO: Remove after API integration
     this.getData();
   }
 
   async getData() {
-    console.log('getData: staring...');
+    console.log("getData: staring...");
     const params = {
       peojectId: 0,
-      type: 'list',
-      employeeId: 1
+      type: "list",
+      employeeId: 1,
     };
-    const data = await this.dataService.asyncGetWithParam(AppConstants.APIS.PROJECTS, params);
-    console.log('getData: data - 2', data);
+    const data = await this.dataService.asyncGetWithParam(
+      AppConstants.APIS.PROJECTS,
+      params
+    );
+    console.log("getData: data - 2", data);
   }
 
   render() {
