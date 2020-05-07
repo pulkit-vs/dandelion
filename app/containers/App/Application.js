@@ -98,6 +98,23 @@ import {
   UsersSetting,
   AccessRequestsSetting,
   SiteAccessSetting,
+  ProductAccessSetting,
+  GSuiteAccessSetting,
+  EmojiAccessSetting,
+  ConnectedAppsAccessSetting,
+  SecurityAccessSetting,
+  StorageAccessSetting,
+  BillingAccessSetting,
+  ManageSubscriptionsAccessSetting,
+  DiscoverApplicationsAccessSetting,
+  KaryaAccessSetting,
+  GiveFeedbackAccessSetting,
+  GroupsSetting,
+  BillEstimateSetting,
+  BillDetailsSetting,
+  BillHistorySetting,
+  OverviewSetting,
+  ManageSubscriptionsSetting,
 } from "../pageListAsync";
 
 class Application extends React.Component {
@@ -135,7 +152,7 @@ class Application extends React.Component {
           <Route path="/account/feedback" component={Configurations} />
 
           {/* Settings */}
-          <Route path="/settings/system" component={Configurations} />
+          <Route path="/settings/system" component={AddProject} />
           <Route path="/settings/product" component={Configurations} />
           <Route path="/settings/projects" component={Configurations} />
           <Route path="/settings/issues" component={Configurations} />
@@ -150,11 +167,11 @@ class Application extends React.Component {
             component={Configurations}
           />
           {/* <Route path="/settings/user-management" component={Configurations} /> */}
-          <Route path="/settings/billing" component={Configurations} />
+          {/* <Route path="/settings/billing" component={Configurations} /> */}
           {/* Filters */}
           <Route path="/filters/view-all-filters" component={Configurations} />
           <Route
-            path="/filters/advanced-search-issues"
+            path="/filters/advanced-issue-search"
             component={StarredTasks}
           />
           {/* Table */}
@@ -260,10 +277,27 @@ class Application extends React.Component {
           <Route path="/maps/street-view" component={StreetViewMap} />
           {/* Settings */}
           {/* User Management */}
-          <Route path="/settings/user-management/users" component={UsersSetting} />
-          <Route path="/settings/user-management/groups" component={UsersSetting} />
-          <Route path="/settings/user-management/access-requests" component={AccessRequestsSetting} />
-          <Route path="/settings/user-management/site-access" component={SiteAccessSetting} />
+          <Route path="/settings/user-management/user-management/users" component={UsersSetting} />
+          <Route path="/settings/user-management/user-management/groups" component={GroupsSetting} />
+          <Route path="/settings/user-management/user-management/access-requests" component={AccessRequestsSetting} />
+          <Route path="/settings/user-management/site-settings/site-access" component={SiteAccessSetting} />
+          <Route path="/settings/user-management/site-settings/product-access" component={ProductAccessSetting} />
+          <Route path="/settings/user-management/site-settings/g-suite" component={GSuiteAccessSetting} />
+          <Route path="/settings/user-management/site-settings/emoji" component={EmojiAccessSetting} />
+          <Route path="/settings/user-management/site-settings/connected-apps" component={ConnectedAppsAccessSetting} />
+          <Route path="/settings/user-management/site-settings/security" component={SecurityAccessSetting} />
+          <Route path="/settings/user-management/site-settings/storage" component={StorageAccessSetting} />
+          <Route path="/settings/user-management/subscriptions/billing" component={BillingAccessSetting} />
+          <Route path="/settings/user-management/subscriptions/manage-subscriptions" component={ManageSubscriptionsAccessSetting} />
+          <Route path="/settings/user-management/subscriptions/discover-applications" component={DiscoverApplicationsAccessSetting} />
+          <Route path="/settings/user-management/app-settings/karya" component={KaryaAccessSetting} />
+          <Route path="/settings/user-management/admin-experience/give-feedback" component={GiveFeedbackAccessSetting} />
+          {/* Billing */}
+          <Route path="/settings/billing/billing/bill-estimate" component={BillEstimateSetting} />
+          <Route path="/settings/billing/billing/billing-details" component={BillDetailsSetting} />
+          <Route path="/settings/billing/billing/billing-history" component={BillHistorySetting} />
+          <Route path="/settings/billing/billing/overview" component={OverviewSetting} />
+          <Route path="/settings/billing/billing/overview" component={ManageSubscriptionsSetting} />
           {/* Default */}
           <Route component={NotFound} />
         </Switch>

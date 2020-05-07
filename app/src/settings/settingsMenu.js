@@ -6,7 +6,7 @@ export const settingsMenu = [
       {
         key: "userManagement",
         name: "User Management",
-        link: "/settings/user-management",
+        link: "/settings/user-management/users",
         icon:
           "https://i7.uihere.com/icons/746/134/366/management-b832946a3943486e5bf329849bc486a3.png",
         subtitle: "Add users, groups, and manage access requests.",
