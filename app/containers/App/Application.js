@@ -26,9 +26,8 @@ import {
   CheckboxRadio,
   CheckoutPage,
   CompossedCharts,
-  Configurations,
   Contact,
-  CreateTask,
+  CreateIssues,
   CryptoDashboard,
   DateTimePicker,
   DialButton,
@@ -122,7 +121,7 @@ class Application extends React.Component {
           <Route path="/projects/roadmap" component={Grid} />
           <Route path="/projects/release" component={AppLayout} />
           {/* Create Task */}
-          <Route path="/create-task" component={CreateTask} />
+          <Route path="/create-task" component={CreateIssues} />
           {/* Dashboards */}
           <Route
             path="/dashboards/view-all-dashboards"
@@ -133,27 +132,22 @@ class Application extends React.Component {
           <Route path="/account/account-settings" component={StarredTasks} />
           <Route path="/account/profile" component={AddProject} />
           <Route path="/account/personal-settings" component={StarredTasks} />
-          <Route path="/account/feedback" component={Configurations} />
+          <Route path="/account/feedback" component={AddProject} />
 
           {/* Settings */}
           <Route path="/settings/system" component={AddProject} />
-          <Route path="/settings/product" component={Configurations} />
-          <Route path="/settings/projects" component={Configurations} />
-          <Route path="/settings/issues" component={Configurations} />
-          <Route path="/settings/app" component={Configurations} />
-          <Route
-            exact
-            path="/settings/tool-settings"
-            component={Configurations}
-          />
+          <Route path="/settings/product" component={AddProject} />
+          <Route path="/settings/projects" component={AddProject} />
+          <Route path="/settings/issues" component={AddProject} />
+          <Route path="/settings/app" component={AddProject} />
+          <Route exact path="/settings/tool-settings" component={AddProject} />
           <Route
             path="/settings/personal-tool-settings"
-            component={Configurations}
+            component={AddProject}
           />
-          {/* <Route path="/settings/user-management" component={Configurations} /> */}
-          <Route path="/settings/billing" component={Configurations} />
+          <Route path="/settings/billing" component={AddProject} />
           {/* Filters */}
-          <Route path="/filters/view-all-filters" component={Configurations} />
+          <Route path="/filters/view-all-filters" component={AddProject} />
           <Route
             path="/filters/advanced-issue-search"
             component={StarredTasks}
@@ -168,7 +162,7 @@ class Application extends React.Component {
           {/* UI Bundle */}
           <Route exact path="/people/manage-team" component={ManageTeam} />
           {/* <Route path="/create/create-task" component={ReduxForm} /> */}
-          <Route path="/configurations/edit" component={Configurations} />
+          <Route path="/configurations/edit" component={AddProject} />
           {/* Form & Button */}
           <Route path="/forms/date-time-picker" component={DateTimePicker} />
           <Route path="/forms/checkbox-radio" component={CheckboxRadio} />

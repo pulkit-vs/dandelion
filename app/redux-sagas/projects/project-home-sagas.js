@@ -1,21 +1,22 @@
-import { put, takeLatest, all, takeEvery, call } from "redux-saga/effects";
-import DataService from "../../../app/services/data-service";
+import { takeEvery, call } from "redux-saga/effects";
+import DataService from "../../services/data-service";
 
-import { types } from "../../actions/projects/projectBoardActions";
+import { types } from "../../karya-actions/projects/project-home-actions";
 
 const dataService = new DataService();
 
 function* getAllProjects() {
   //params will come from action dispatcher
-  const params = {
+  const queryParams = {
     projectId: 0,
     type: "list",
     employeeId: 1,
   };
-  console.log("saga getAllProjects");
-  const projects = yield call(
-    dataService.asyncGetWithParam("projects", params)
-  );
+  const projects = yield call(dataService.asyncGetWithParam, {
+    type: "projects",
+    queryParams: queryParams,
+  });
+  console.log("projects", projects);
 }
 
 function* getAllTickets() {

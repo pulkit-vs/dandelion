@@ -15,7 +15,7 @@ import {
   setProjectIcon,
   setProjectId,
   setProjectName,
-} from "../../actions/projects/projectBoardActions";
+} from "../../karya-actions/projects/project-home-actions";
 import MainMenu from "./MainMenu";
 import dummy from "dan-api/dummy/dummyContents";
 import styles from "./sidebar-jss";

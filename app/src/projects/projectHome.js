@@ -18,7 +18,7 @@ import {
   //dummy methods to demonstrate redux-saga
   fetchAllProjects,
   // getAllTickets,
-} from "../../actions/projects/projectBoardActions";
+} from "../../karya-actions/projects/project-home-actions";
 
 const heading = "Projects";
 console.log("called");

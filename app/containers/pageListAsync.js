@@ -330,12 +330,7 @@ export const TaskBoard = loadable(() => import("./Pages/TaskBoard"), {
 export const Invoice = loadable(() => import("./Pages/Invoice"), {
   fallback: <Loading />,
 });
-export const Configurations = loadable(
-  () => import("../src/configurations/edit-configurations"),
-  {
-    fallback: <Loading />,
-  }
-);
+
 export const ManageTeam = loadable(() => import("../src/people/manage-team"), {
   fallback: <Loading />,
 });
@@ -411,8 +406,8 @@ export const StarredTasks = loadable(
   }
 );
 
-export const CreateTask = loadable(
-  () => import("../src/createTasks/createTask"),
+export const CreateIssues = loadable(
+  () => import("../src/issues/create-issue"),
   {
     fallback: <Loading />,
   }
@@ -421,18 +416,30 @@ export const CreateTask = loadable(
 // Settings
 
 // User Management
-export const UsersSetting = loadable(() => import("../src/settings/user-management/users"), {
-  fallback: <Loading />,
-});
+export const UsersSetting = loadable(
+  () => import("../src/settings/user-management/users"),
+  {
+    fallback: <Loading />,
+  }
+);
 
-export const GroupsSetting = loadable(() => import("../src/settings/user-management/groups"), {
-  fallback: <Loading />,
-});
+export const GroupsSetting = loadable(
+  () => import("../src/settings/user-management/groups"),
+  {
+    fallback: <Loading />,
+  }
+);
 
-export const AccessRequestsSetting = loadable(() => import("../src/settings/user-management/access-request"), {
-  fallback: <Loading />,
-});
+export const AccessRequestsSetting = loadable(
+  () => import("../src/settings/user-management/access-request"),
+  {
+    fallback: <Loading />,
+  }
+);
 
-export const SiteAccessSetting = loadable(() => import("../src/settings/user-management/site-access"), {
-  fallback: <Loading />,
-});
+export const SiteAccessSetting = loadable(
+  () => import("../src/settings/user-management/site-access"),
+  {
+    fallback: <Loading />,
+  }
+);

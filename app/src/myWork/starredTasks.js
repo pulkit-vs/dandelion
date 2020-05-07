@@ -11,7 +11,7 @@ import {
   setStarredTask,
   toggleAllStarredStatus,
   toggleStarredStatus,
-} from "../../actions/projects/projectBoardActions";
+} from "../../karya-actions/projects/project-home-actions";
 
 const heading = "Starred Tasks";
 
