@@ -10,6 +10,7 @@ export default class DataService extends React.Component {
   constructor(props) {
     super(props);
     // this.cookies = new Cookies();
+    this.asyncGetAll = this.asyncGetAll.bind(this);
     this.asyncGetWithParam = this.asyncGetWithParam.bind(this);
   }
   getHttpHeaders() {
@@ -28,7 +29,8 @@ export default class DataService extends React.Component {
     return headers;
   }
 
-  async asyncGetAll(type) {
+  async asyncGetAll(payload) {
+    const type = get(payload, "type", "");
     try {
       const response = await axios.get(`${AppConstants.BASE_URL}${type}`, {
         headers: this.getHttpHeaders(),

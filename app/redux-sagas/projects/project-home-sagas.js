@@ -19,14 +19,29 @@ function* getAllProjects() {
   console.log("projects", projects);
 }
 
-function* getAllTickets() {
-  console.log("saga getAllTickets");
-  // yield put({ type: setAllprojects, projects: ["1", "2", "3"] });
+function* getConfigInfo() {
+  const config = yield call(dataService.asyncGetAll, {
+    type: "config",
+  });
+  console.log("config", config);
+}
+
+//TODO: redux needs to be created for ADD PROJECT
+function* addProject() {
+  const body = {
+    //object
+  };
+  const config = yield call(dataService.asyncExecuteApi, {
+    type: "POST",
+    body: body,
+  });
+  console.log("config", config);
 }
 
 const projectBoardSagas = [
   takeEvery(types.FETCH_ALL_PROJECTS, getAllProjects),
-  takeEvery(types.GET_ALL_TICKETS, getAllTickets),
+  takeEvery(types.GET_CONFIG_INFO, getConfigInfo),
+  takeEvery(types.ADD_PROJECT, addProject),
 ];
 
 export default projectBoardSagas;

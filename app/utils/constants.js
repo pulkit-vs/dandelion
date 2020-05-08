@@ -16,7 +16,7 @@ export const headCells = [
   },
 ];
 
-export const BASE_URL = "/v1/";
+export const BASE_URL = "/api/v1/";
 
 export const APIS = {
   PROJECTS: "projects",

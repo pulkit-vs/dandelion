@@ -1,5 +1,7 @@
 export const types = {
   FETCH_ALL_PROJECTS: "FETCH_ALL_PROJECTS",
+  GET_ALL_TICKETS: "GET_ALL_TICKETS",
+  GET_CONFIG_INFO: "GET_CONFIG_INFO",
   INIT: "INIT", //TODO, needs to be removed
   SET_ALL_STARRED_TASK: "SET_ALL_STARRED_TASK",
   SET_ALL_STARRED_TICKET_STATUS: "SET_ALL_STARRED_TICKET_STATUS",
@@ -8,7 +10,6 @@ export const types = {
   SET_PROJECT_NAME: "SET_PROJECT_NAME",
   SET_STARRED_TASK: "SET_STARRED_TASK",
   SET_STARRED_TICKET_STATUS: "SET_STARRED_TICKET_STATUS",
-  GET_ALL_TICKETS: "GET_ALL_TICKETS",
 };
 
 export const setStarredTask = (starredTask = {}) => ({
@@ -74,4 +75,8 @@ export const fetchAllProjects = () => ({
 
 export const getAllTickets = () => ({
   type: types.GET_ALL_TICKETS,
+});
+
+export const getConfigInfo = () => ({
+  type: types.GET_CONFIG_INFO,
 });

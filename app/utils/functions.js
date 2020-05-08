@@ -1,13 +1,14 @@
-import { get } from "lodash";
-import { systemSettings } from "../src/menus/settings/settings-system";
-import { projectOptions } from "../src/menus/projects/project-options";
-import { productSettings } from "../src/menus/settings/settings-products";
-import { projectsSettings } from "../src/menus/settings/settings-project";
-import { issuesSettings } from "../src/menus/settings/settings-issues";
-import { appSettings } from "../src/menus/settings/settings-apps";
 import { accountSettings } from "../src/menus/settings/settings-tool-account";
-import { userManagementSettings } from "../src/menus/settings/settings-user-management";
+import { appSettings } from "../src/menus/settings/settings-apps";
 import { billingSettings } from "../src/menus/settings/settings-billing";
+import { get } from "lodash";
+import { issuesSettings } from "../src/menus/settings/settings-issues";
+import { productSettings } from "../src/menus/settings/settings-products";
+import { projectOptions } from "../src/menus/projects/project-options";
+import { projectsSettings } from "../src/menus/settings/settings-project";
+import { systemSettings } from "../src/menus/settings/settings-system";
+import { userManagementSettings } from "../src/menus/settings/settings-user-management";
+
 //functions
 export function createData(
   ticketId, //should not be sorted
@@ -27,15 +28,12 @@ export function createData(
   };
 }
 
-//BaseAddress
 export function checkLocation(history) {
   const pathname = get(history, ["location", "pathname"], "");
-  var currentBase = pathname.split("/")[1];
-
-  console.log("currentBase", currentBase);
-  //currentPage
+  //CurrentBaseAddress
+  const currentBase = pathname.split("/")[1];
+  //CurrentPageAddress
   const currentPage = pathname.split("/")[2];
-  console.log("currentPage", currentPage);
 
   if (currentBase) {
     return { currentBase: currentBase, currentPage: currentPage };
@@ -45,6 +43,7 @@ export function checkLocation(history) {
 }
 
 export function moduleJson(screen) {
+  //Select jsons as per selected module
   switch (screen) {
     case "system":
       return systemSettings;

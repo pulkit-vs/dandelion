@@ -71,18 +71,18 @@ function EnhancedTableHead(props) {
   return (
     <TableHead>
       <TableRow>
-        <TableCell style={{ width: "92px" }}>
+        <TableCell className={styles.tableWidth}>
           {showStarredButton ? (
             <IconButton
               aria-label="Menu"
               disabled={!dataModal.length > 0 || starredStatus ? true : false}
               onClick={setStarred(!starred)}
-              style={{ marginLeft: "-12px" }}
+              className={styles.iconSpacing}
             >
               <StarBorderIcon className={starred ? styles.starredColor : ""} />
             </IconButton>
           ) : (
-            <label style={{ padding: 0 }}>{STARRED}</label>
+            <label className={style.labelPadding}>{STARRED}</label>
           )}
         </TableCell>
 
@@ -92,7 +92,7 @@ function EnhancedTableHead(props) {
             className={styles.tableCell}
             key={headCell.id}
             sortDirection={orderBy === headCell.id ? order : false}
-            style={{ textAlign: "left" }}
+            className={styles.textAlignments}
           >
             <TableSortLabel
               active={orderBy === headCell.id}
@@ -344,17 +344,9 @@ const EnhancedTable = (props) => {
                               <TableCell
                                 key={`table-cell-${index}`}
                                 align="right"
-                                style={{
-                                  padding: "1%",
-                                }}
+                                className={styles.tableCell}
                               >
-                                <div
-                                  style={{
-                                    display: "flex",
-                                    alignItems: "center",
-                                    width: "200px",
-                                  }}
-                                >
+                                <div className={styles.tableHeader}>
                                   {row.projectIcon && index === 0 ? (
                                     <ListItemAvatar>
                                       <Avatar
@@ -363,7 +355,7 @@ const EnhancedTable = (props) => {
                                       />
                                     </ListItemAvatar>
                                   ) : null}
-                                  <label style={{ marginLeft: "20px" }}>
+                                  <label className={styles.leftSpacing}>
                                     {value}
                                   </label>
                                 </div>

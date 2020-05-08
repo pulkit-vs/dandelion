@@ -17,6 +17,7 @@ import {
   toggleStarredStatus,
   //dummy methods to demonstrate redux-saga
   fetchAllProjects,
+  getConfigInfo,
   // getAllTickets,
 } from "../../karya-actions/projects/project-home-actions";
 
@@ -28,6 +29,8 @@ export class ProjectHome extends React.Component {
 
   componentDidMount() {
     this.props.setRows(); //TODO: Remove after API integration
+    this.props.getConfigInfo();
+    this.props.fetchAllProjects();
   }
 
   render() {
@@ -99,8 +102,15 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(setProjectName(projectName));
     dispatch(setProjectIcon(projectIcon));
     //dummy methods to demonstrate redux-saga
-    dispatch(fetchAllProjects());
     // dispatch(getAllTickets());
+  },
+
+  getConfigInfo: () => {
+    dispatch(getConfigInfo());
+  },
+
+  fetchAllProjects: () => {
+    dispatch(fetchAllProjects());
   },
 });
 

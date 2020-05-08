@@ -9,6 +9,13 @@
  *  Nikhil Aggarwal, VectoScalar
  * 
  */
-module.exports = {
-  CONFIG_NAMES : ['PROJECT_CATEGORY', 'PROJECT_TEMPLATE', 'PROJECT_TYPE']
+class Constants {
+  constructor() {
+
+  }
+
 }
+
+
+
+module.exports = Constants;
