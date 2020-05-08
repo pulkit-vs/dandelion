@@ -30,6 +30,7 @@ import {
   setStoryPointsText,
   setSummaryText,
 } from "../../karya-actions/issues/create-issue-actions";
+import { constants } from "../../utils/constants";
 
 export class CreateIssues extends React.Component {
   state = {
@@ -117,7 +118,7 @@ export class CreateIssues extends React.Component {
             color="secondary"
             onClick={this.toggleDrawer("right", true)}
           >
-            Open Right
+            {constants.OPEN_RIGHT}
           </Button>
           <Drawer
             anchor="right"
@@ -174,20 +175,20 @@ export class CreateIssues extends React.Component {
                             style={{ float: "right", marginLeft: "2%" }}
                             onClick={this.toggleDrawer("left", false)}
                           >
-                            Cancel
+                            {constants.CANCEL}
                           </Button>
                           <Button
                             variant="contained"
                             color="primary"
                             style={{ float: "right" }}
                           >
-                            Create
+                            {constants.CREATE}
                           </Button>
                         </Grid>
                         <Grid item sm={6} xs={12}>
                           <FormControl style={{ width: "100%" }}>
                             <InputLabel htmlFor="age-simple">
-                              Project
+                            {constants.PROJECT}
                             </InputLabel>
                             <Select
                               inputProps={{
@@ -198,7 +199,7 @@ export class CreateIssues extends React.Component {
                               onChange={this.setProjectField}
                             >
                               <MenuItem value="">
-                                <em>None</em>
+                                <em>{constants.NONE}</em>
                               </MenuItem>
                               <MenuItem value={10}>
                                 <img
@@ -220,7 +221,7 @@ export class CreateIssues extends React.Component {
                         <Grid item sm={6} xs={12}>
                           <FormControl style={{ width: "100%" }}>
                             <InputLabel htmlFor="age-simple">
-                              Issue Type
+                              {constants.ISSUE_TYPE}
                             </InputLabel>
                             <Select
                               inputProps={{
@@ -231,7 +232,7 @@ export class CreateIssues extends React.Component {
                               onChange={this.setIssueTypeField}
                             >
                               <MenuItem value="">
-                                <em>None</em>
+                              <em>{constants.NONE}</em>
                               </MenuItem>
                               <MenuItem value={10}>
                                 <Icon
@@ -244,7 +245,7 @@ export class CreateIssues extends React.Component {
                                 >
                                   bug_report
                                 </Icon>
-                                Bug
+                                <em>{constants.BUG}</em>
                               </MenuItem>
                               <MenuItem value={20}>Task</MenuItem>
                               <MenuItem value={30}>Story</MenuItem>
@@ -276,7 +277,7 @@ export class CreateIssues extends React.Component {
                         <Grid item sm={6} xs={12}>
                           <FormControl style={{ width: "100%" }}>
                             <InputLabel htmlFor="age-simple">
-                              Reporter
+                            {constants.REPORTER}
                             </InputLabel>
                             <Select
                               inputProps={{
@@ -287,7 +288,7 @@ export class CreateIssues extends React.Component {
                               onChange={this.setReporterField}
                             >
                               <MenuItem value="">
-                                <em>None</em>
+                                <em>{constants.NONE}</em>
                               </MenuItem>
                               <MenuItem value={10}>
                                 <img
@@ -309,7 +310,7 @@ export class CreateIssues extends React.Component {
                         <Grid item sm={6} xs={12}>
                           <FormControl style={{ width: "100%" }}>
                             <InputLabel htmlFor="age-simple">
-                              Assignee
+                            {constants.ASSIGNEE}
                             </InputLabel>
                             <Select
                               inputProps={{
@@ -320,7 +321,7 @@ export class CreateIssues extends React.Component {
                               onChange={this.setAssigneeField}
                             >
                               <MenuItem value="">
-                                <em>None</em>
+                                <em> {constants.NONE}</em>
                               </MenuItem>
                               <MenuItem value={10}>Nikhil Agarwal</MenuItem>
                               <MenuItem value={20}>Ashish Mangla</MenuItem>
@@ -331,7 +332,7 @@ export class CreateIssues extends React.Component {
                         <Grid item sm={6} xs={12}>
                           <FormControl style={{ width: "100%" }}>
                             <InputLabel htmlFor="age-simple">
-                              Components
+                            {constants.COMPONENTS}
                             </InputLabel>
                             <Select
                               inputProps={{
@@ -342,7 +343,7 @@ export class CreateIssues extends React.Component {
                               onChange={this.setComponentsField}
                             >
                               <MenuItem value="">
-                                <em>None</em>
+                                <em> {constants.NONE}</em>
                               </MenuItem>
                               <MenuItem value={10}>Ten</MenuItem>
                               <MenuItem value={20}>Twenty</MenuItem>
@@ -353,7 +354,7 @@ export class CreateIssues extends React.Component {
                         <Grid item sm={6} xs={12}>
                           <FormControl style={{ width: "100%" }}>
                             <InputLabel htmlFor="age-simple">
-                              Fix versions
+                            {constants.FIX_VERSIONS}
                             </InputLabel>
                             <Select
                               inputProps={{
@@ -364,7 +365,7 @@ export class CreateIssues extends React.Component {
                               onChange={this.setFixVersionsField}
                             >
                               <MenuItem value="">
-                                <em>None</em>
+                                <em> {constants.NONE}</em>
                               </MenuItem>
                               <MenuItem value={10}>Ten</MenuItem>
                               <MenuItem value={20}>Twenty</MenuItem>
@@ -375,7 +376,7 @@ export class CreateIssues extends React.Component {
                         <Grid item sm={6} xs={12}>
                           <FormControl style={{ width: "100%" }}>
                             <InputLabel htmlFor="age-simple">
-                              Priority
+                            {constants.PRIORITY}
                             </InputLabel>
                             <Select
                               inputProps={{
@@ -386,7 +387,7 @@ export class CreateIssues extends React.Component {
                               onChange={this.setPriorityField}
                             >
                               <MenuItem value="">
-                                <em>None</em>
+                                <em>{constants.NONE}</em>
                               </MenuItem>
                               <MenuItem value={10}>High</MenuItem>
                               <MenuItem value={20}>Medium</MenuItem>
@@ -396,7 +397,7 @@ export class CreateIssues extends React.Component {
                         </Grid>
                         <Grid item sm={6} xs={12}>
                           <FormControl style={{ width: "100%" }}>
-                            <InputLabel htmlFor="age-simple">Sprint</InputLabel>
+                            <InputLabel htmlFor="age-simple">{constants.SPRINT}</InputLabel>
                             <Select
                               inputProps={{
                                 name: "age",
@@ -406,7 +407,7 @@ export class CreateIssues extends React.Component {
                               onChange={this.setSprintField}
                             >
                               <MenuItem value="">
-                                <em>None</em>
+                                <em>{constants.NONE}</em>
                               </MenuItem>
                               <MenuItem value={10}>Active Sprint</MenuItem>
                               <MenuItem value={20}>Sprint 10</MenuItem>
@@ -416,7 +417,7 @@ export class CreateIssues extends React.Component {
                         </Grid>
                         <Grid item sm={6} xs={12}>
                           <FormControl style={{ width: "100%" }}>
-                            <InputLabel htmlFor="age-simple">Epic</InputLabel>
+                            <InputLabel htmlFor="age-simple">{constants.EPIC}</InputLabel>
                             <Select
                               inputProps={{
                                 name: "age",
@@ -426,7 +427,7 @@ export class CreateIssues extends React.Component {
                               onChange={this.setEpicField}
                             >
                               <MenuItem value="">
-                                <em>None</em>
+                                <em>{constants.SPRINT}</em>
                               </MenuItem>
                               <MenuItem value={10}>Epic 1</MenuItem>
                               <MenuItem value={20}>Epic 2</MenuItem>
@@ -436,7 +437,7 @@ export class CreateIssues extends React.Component {
                         </Grid>
                         <Grid item sm={6} xs={12}>
                           <FormControl style={{ width: "100%" }}>
-                            <InputLabel htmlFor="age-simple">Labels</InputLabel>
+                            <InputLabel htmlFor="age-simple">{constants.LABELS}</InputLabel>
                             <Select
                               inputProps={{
                                 name: "age",
@@ -446,7 +447,7 @@ export class CreateIssues extends React.Component {
                               onChange={this.setLabelsField}
                             >
                               <MenuItem value="">
-                                <em>None</em>
+                                <em>{constants.NONE}</em>
                               </MenuItem>
                               <MenuItem value={10}>Label 1</MenuItem>
                               <MenuItem value={20}>Label 2</MenuItem>

@@ -249,3 +249,35 @@ export const projectHeadCells = [
 export const VS_PROJECTS = "VS Projects";
 
 export const SWITCH_PROJECT = "Switch Project";
+
+export const constants = {
+VIEW_ALL_DASHBOARDS : "View all dashboards",
+CREATE_DASHBOARD : "Create Dashboard",
+VIEW_ALL_FILTERS : "View all filters",
+ADVANCED_ISSUE_SEARCH : "Advance Issue Search",
+OPEN_RIGHT : "Open Right",
+CANCEL : "Cancel",
+CREATE : "Create",
+PROJECT : "Project",
+NONE : "None",
+ISSUE_TYPE : "Issue Type",
+BUG : "Bug",
+REPORTER : "Reporter",
+ASSIGNEE : "Assignee",
+COMPONENTS : "Components",
+FIX_VERSIONS : "Fix Versions",
+PRIORITY : "Priority",
+SPRINT : "Sprint",
+EPIC : "Epic",
+LABELS : "Labels",
+PROJECT_CREATED : "Project Created",
+BACK : "Back",
+}
+
+export const toRoutes = {
+  PROJECT_SPRINT_BOARD : "/projects/sprint-board",
+  VIEW_ALL_DASHBOARDS : "/dashboards/view-all-dashboards",
+  CREATE_DASHBOARD : "/dashboards/create-dashboard",
+  VIEW_ALL_FILTERS : "/filters/view-all-filters",
+  ADVANCED_ISSUE_SEARCH : "/filters/advanced-issue-search",
+}

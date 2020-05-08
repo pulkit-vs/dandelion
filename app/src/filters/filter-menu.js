@@ -8,6 +8,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import React from "react";
 import WorkIcon from "@material-ui/icons/Work";
 import { Link } from "react-router-dom";
+import { constants, toRoutes } from "../../utils/constants";
 
 export default function FiltersMenu(props) {
   const { open, handleClose, filterMenuPosition } = props;
@@ -27,7 +28,7 @@ export default function FiltersMenu(props) {
       <MenuItem
         component={Link}
         onClick={handleClose}
-        to="/filters/view-all-filters"
+        to={toRoutes.VIEW_ALL_FILTERS}
       >
         <div>
           <ListItemAvatar>
@@ -35,14 +36,14 @@ export default function FiltersMenu(props) {
               <WorkIcon />
             </Avatar>
           </ListItemAvatar>
-          <ListItemText primary="View all filters" />
+          <ListItemText primary={constants.VIEW_ALL_FILTERS} />
         </div>
       </MenuItem>
       <Divider style={{ width: "100%" }} />
       <MenuItem
         component={Link}
         onClick={handleClose}
-        to="/filters/advanced-issue-search"
+        to={toRoutes.ADANCED_ISSUE_SEARCH}
       >
         <div>
           <ListItemAvatar>
@@ -50,7 +51,7 @@ export default function FiltersMenu(props) {
               <Check />
             </Avatar>
           </ListItemAvatar>
-          <ListItemText primary="Advance Issue Search" />
+          <ListItemText primary={constants.ADVANCED_ISSUE_SEARCH} />
         </div>
       </MenuItem>
     </Menu>

@@ -4,6 +4,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import styles from "dan-styles/Cards.scss";
 import { Link } from "react-router-dom";
+import { toRoutes } from "../../utils/constants";
 
 const useStyles = makeStyles({
   root: {
@@ -34,7 +35,7 @@ export default function MediaCard(props) {
           className={styles.gridPadding}
           spacing={3}
           component={Link}
-          to="/projects/sprint-board"
+          to={toRoutes.PROJECT_SPRINT_BOARD}
         >
           <Grid item xs={12} sm={4}>
             <img src={projectIconUrl} />
