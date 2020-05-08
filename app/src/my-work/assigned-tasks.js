@@ -12,6 +12,7 @@ import {
   toggleAllStarredStatus,
   toggleStarredStatus,
 } from "../../karya-actions/myWork/assigned-issues-actions";
+import styles from "dan-styles/AssignedTasks.scss";
 
 const heading = "My Tasks";
 
@@ -37,7 +38,7 @@ export class AssignedToMe extends React.Component {
 
     return (
       <Grid container>
-        <div style={{ width: "100%", marginTop: 30 }}>
+        <div className={styles.tableDiv}>
           <Grid item sm={12}>
             <EnhancedTable
               handleTableRowClick={identity}

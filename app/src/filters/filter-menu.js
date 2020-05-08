@@ -9,6 +9,7 @@ import React from "react";
 import WorkIcon from "@material-ui/icons/Work";
 import { Link } from "react-router-dom";
 import { constants, toRoutes } from "../../utils/constants";
+import styles from "dan-styles/FilterMenu.scss";
 
 export default function FiltersMenu(props) {
   const { open, handleClose, filterMenuPosition } = props;
@@ -39,7 +40,7 @@ export default function FiltersMenu(props) {
           <ListItemText primary={constants.VIEW_ALL_FILTERS} />
         </div>
       </MenuItem>
-      <Divider style={{ width: "100%" }} />
+      <Divider className={styles.divider} />
       <MenuItem
         component={Link}
         onClick={handleClose}

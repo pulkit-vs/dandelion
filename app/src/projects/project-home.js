@@ -19,6 +19,9 @@ import {
   fetchAllProjects,
   // getAllTickets,
 } from "../../karya-actions/projects/project-home-actions";
+import DataService from "../../services/data-service";
+import {APIS} from "../../utils/constants";
+import styles from "dan-styles/ProjectHome.scss";
 
 const heading = "Projects";
 export class ProjectHome extends React.Component {
@@ -26,8 +29,14 @@ export class ProjectHome extends React.Component {
     super(props);
   }
 
+async getData () {
+  const data = await DataService.asyncGetAll(APIS.PROJECTS)
+  console.log("Data -->", data)
+}
+
   componentDidMount() {
     this.props.setRows(); //TODO: Remove after API integration
+    this.getData();
   }
 
   render() {
@@ -56,7 +65,7 @@ export class ProjectHome extends React.Component {
             />
           </Grid>
         ))}
-        <div style={{ width: "100%", marginTop: 30 }}>
+        <div className={styles.tableDiv}>
           <Grid item sm={12} xs={12} md={12}>
             <EnhancedTable
               handleTableRowClick={handleProjectCardClick}

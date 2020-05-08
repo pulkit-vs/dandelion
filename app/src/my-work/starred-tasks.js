@@ -12,6 +12,7 @@ import {
   toggleAllStarredStatus,
   toggleStarredStatus,
 } from "../../karya-actions/projects/project-home-actions";
+import styles from "dan-styles/StarredTasks.scss";
 
 const heading = "Starred Tasks";
 
@@ -33,7 +34,7 @@ export class StarredTasks extends React.Component {
 
     return (
       <Grid container>
-        <div style={{ width: "100%", marginTop: 30 }}>
+        <div className={styles.tableDiv}>
           <Grid item sm={12}>
             <EnhancedTable
               headCells={headCells}
