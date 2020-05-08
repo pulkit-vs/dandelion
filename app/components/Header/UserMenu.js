@@ -24,7 +24,7 @@ import messageStyles from "dan-styles/Messages.scss";
 import avatarApi from "dan-api/images/avatars";
 import link from "dan-api/ui/link";
 import styles from "./header-jss";
-import Settings from "../../src/settings/settings";
+import Settings from "../../src/settings/top-settings-menu";
 import WorkIcon from "@material-ui/icons/Work";
 
 class UserMenu extends React.Component {

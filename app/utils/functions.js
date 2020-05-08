@@ -1,13 +1,13 @@
 import { get } from "lodash";
-import { systemSettings } from "../src/menus/config/settings-system";
+import { systemSettings } from "../src/menus/settings/settings-system";
 import { projectOptions } from "../src/menus/projects/project-options";
-import { productSettings } from "../src/menus/config/settings-products";
-import { projectsSettings } from "../src/menus/config/settings-project";
-import { issuesSettings } from "../src/menus/config/settings-issues";
-import { appSettings } from "../src/menus/config/settings-apps";
-import { accountSettings } from "../src/menus/config/settings-account-settings";
-import { userManagementSettings } from "../src/menus/config/settings-user-management";
-import { billingSettings } from "../src/menus/config/settings-billing";
+import { productSettings } from "../src/menus/settings/settings-products";
+import { projectsSettings } from "../src/menus/settings/settings-project";
+import { issuesSettings } from "../src/menus/settings/settings-issues";
+import { appSettings } from "../src/menus/settings/settings-apps";
+import { accountSettings } from "../src/menus/settings/settings-account-settings";
+import { userManagementSettings } from "../src/menus/settings/settings-user-management";
+import { billingSettings } from "../src/menus/settings/settings-billing";
 //functions
 export function createData(
   ticketId, //should not be sorted
@@ -30,18 +30,18 @@ export function createData(
 //BaseAddress
 export function checkLocation(history) {
   const pathname = get(history, ["location", "pathname"], "");
-  var currentBase = pathname.split("/")[1]
+  var currentBase = pathname.split("/")[1];
 
-  console.log("currentBase", currentBase)
+  console.log("currentBase", currentBase);
   //currentPage
-  const currentPage = pathname.split("/")[2]
-    console.log("currentPage", currentPage)
-    
-    if (currentBase) {
-      return { currentBase: currentBase, currentPage: currentPage };
-    } else {
-      return { currentBase: "", currentPage: "" };
-    }
+  const currentPage = pathname.split("/")[2];
+  console.log("currentPage", currentPage);
+
+  if (currentBase) {
+    return { currentBase: currentBase, currentPage: currentPage };
+  } else {
+    return { currentBase: "", currentPage: "" };
+  }
 }
 
 export function moduleJson(screen) {
