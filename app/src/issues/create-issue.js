@@ -12,7 +12,6 @@ import Select from "@material-ui/core/Select";
 import TextField from "@material-ui/core/TextField";
 import { connect } from "react-redux";
 
-import styles from "dan-styles/AddProject.scss";
 import { Wysiwyg } from "../../containers/Forms/demos/Wysiwyg";
 import {
   setAssigneeText,
@@ -31,6 +30,7 @@ import {
   setSummaryText,
 } from "../../karya-actions/issues/create-issue-actions";
 import { constants } from "../../utils/constants";
+import styles from "dan-styles/CreateIssue.scss";
 
 export class CreateIssues extends React.Component {
   state = {
@@ -125,40 +125,30 @@ export class CreateIssues extends React.Component {
             open={right}
             onClose={this.toggleDrawer("right", false)}
           >
-            <div tabIndex={0} role="button" style={{ width: "50vw" }}>
+            <div tabIndex={0} role="button" className={styles.drawerDiv}>
               <Grid container>
                 <Grid
                   item
                   sm={12}
                   xs={12}
-                  style={{
-                    backgroundImage:
-                      "linear-gradient(141deg, #9fb8ad 0%, #1fc8db 51%, #2cb5e8 75%)",
-                  }}
+                  className={styles.gridLinearGradient}
                 >
                   <Card
-                    style={{
-                      padding: "2%",
-                      backgroundImage:
-                        "linear-gradient(141deg, #9fb8ad 0%, #1fc8db 51%, #2cb5e8 75%)",
-                    }}
+                    className={styles.cardLinearGradient}
                   >
-                    <CardContent style={{ backgroundColor: "white" }}>
+                    <CardContent className={styles.cardContent}>
                       <Grid
                         container
                         spacing={3}
-                        style={{
-                          boxShadow:
-                            "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
-                        }}
+                        className={styles.gridBoxShadow}
                       >
                         <Grid
                           item
                           sm={6}
                           xs={12}
-                          style={{ borderBottom: "1px solid #d5dad8" }}
+                          className={styles.gridBorderBottom}
                         >
-                          <h2 style={{ fontWeight: "normal" }}>
+                          <h2 className={styles.h2}>
                             <Icon>create</Icon> Create Task
                           </h2>
                         </Grid>
@@ -166,12 +156,12 @@ export class CreateIssues extends React.Component {
                           item
                           sm={6}
                           xs={12}
-                          style={{ borderBottom: "1px solid #d5dad8" }}
+                          className={styles.gridBorderBottom}
                         >
                           <Button
                             variant="contained"
                             color="warning"
-                            style={{ float: "right", marginLeft: "2%" }}
+                            className={styles.button}
                             onClick={this.toggleDrawer("left", false)}
                           >
                             {constants.CANCEL}
@@ -179,13 +169,13 @@ export class CreateIssues extends React.Component {
                           <Button
                             variant="contained"
                             color="primary"
-                            style={{ float: "right" }}
+                            className={styles.buttonFloat}
                           >
                             {constants.CREATE}
                           </Button>
                         </Grid>
                         <Grid item sm={6} xs={12}>
-                          <FormControl style={{ width: "100%" }}>
+                          <FormControl className={styles.width100}>
                             <InputLabel htmlFor="age-simple">
                               {constants.PROJECT}
                             </InputLabel>
@@ -203,11 +193,7 @@ export class CreateIssues extends React.Component {
                               <MenuItem value={10}>
                                 <img
                                   src={require("../images/img-software.png")}
-                                  style={{
-                                    width: "20px",
-                                    height: "20px",
-                                    marginRight: "2%",
-                                  }}
+                                  className={styles.imgSize}
                                 />
                                 {/* TODO: To be removed after API integration */}
                                 Wonolo
@@ -219,7 +205,7 @@ export class CreateIssues extends React.Component {
                           </FormControl>
                         </Grid>
                         <Grid item sm={6} xs={12}>
-                          <FormControl style={{ width: "100%" }}>
+                          <FormControl className={styles.width100}>
                             <InputLabel htmlFor="age-simple">
                               {constants.ISSUE_TYPE}
                             </InputLabel>
@@ -236,12 +222,7 @@ export class CreateIssues extends React.Component {
                               </MenuItem>
                               <MenuItem value={10}>
                                 <Icon
-                                  style={{
-                                    color: "red",
-                                    width: "20px",
-                                    height: "20px",
-                                    marginRight: "2%",
-                                  }}
+                                 className={styles.icon}
                                 >
                                   {/* TODO: To be removed after API integration */}
                                   bug_report
@@ -259,7 +240,7 @@ export class CreateIssues extends React.Component {
                             id="outlined-basic"
                             label="Summary"
                             variant="outlined"
-                            className={styles.fullWidth}
+                            className={styles.width100}
                             value={createIssues.summary}
                             onChange={this.setSummaryField}
                           />
@@ -268,7 +249,7 @@ export class CreateIssues extends React.Component {
                           item
                           sm={12}
                           xs={12}
-                          style={{ border: "1px solid black" }}
+                          className={styles.gridBorder}
                         >
                           <Wysiwyg
                             value={"jlkjkl"}
@@ -276,7 +257,7 @@ export class CreateIssues extends React.Component {
                           />
                         </Grid>
                         <Grid item sm={6} xs={12}>
-                          <FormControl style={{ width: "100%" }}>
+                          <FormControl className={styles.width100}>
                             <InputLabel htmlFor="age-simple">
                               {constants.REPORTER}
                             </InputLabel>
@@ -294,12 +275,7 @@ export class CreateIssues extends React.Component {
                               <MenuItem value={10}>
                                 <img
                                   src={require("../images/nikhilsir.png")}
-                                  style={{
-                                    width: "20px",
-                                    height: "20px",
-                                    marginRight: "2%",
-                                    borderRadius: "50%",
-                                  }}
+                                  className={styles.menuImgSize}
                                 />
                                 {/* TODO: To be removed after API integration */}
                                 Nikhil Agarwal
@@ -310,7 +286,7 @@ export class CreateIssues extends React.Component {
                           </FormControl>
                         </Grid>
                         <Grid item sm={6} xs={12}>
-                          <FormControl style={{ width: "100%" }}>
+                          <FormControl className={styles.width100}>
                             <InputLabel htmlFor="age-simple">
                               {constants.ASSIGNEE}
                             </InputLabel>
@@ -334,7 +310,7 @@ export class CreateIssues extends React.Component {
                           </FormControl>
                         </Grid>
                         <Grid item sm={6} xs={12}>
-                          <FormControl style={{ width: "100%" }}>
+                          <FormControl className={styles.width100}>
                             <InputLabel htmlFor="age-simple">
                               {constants.COMPONENTS}
                             </InputLabel>
@@ -358,7 +334,7 @@ export class CreateIssues extends React.Component {
                           </FormControl>
                         </Grid>
                         <Grid item sm={6} xs={12}>
-                          <FormControl style={{ width: "100%" }}>
+                          <FormControl className={styles.width100}>
                             <InputLabel htmlFor="age-simple">
                               {constants.FIX_VERSIONS}
                             </InputLabel>
@@ -382,7 +358,7 @@ export class CreateIssues extends React.Component {
                           </FormControl>
                         </Grid>
                         <Grid item sm={6} xs={12}>
-                          <FormControl style={{ width: "100%" }}>
+                          <FormControl className={styles.width100}>
                             <InputLabel htmlFor="age-simple">
                               {constants.PRIORITY}
                             </InputLabel>
@@ -406,7 +382,7 @@ export class CreateIssues extends React.Component {
                           </FormControl>
                         </Grid>
                         <Grid item sm={6} xs={12}>
-                          <FormControl style={{ width: "100%" }}>
+                          <FormControl className={styles.width100}>
                             <InputLabel htmlFor="age-simple">
                               {constants.SPRINT}
                             </InputLabel>
@@ -430,7 +406,7 @@ export class CreateIssues extends React.Component {
                           </FormControl>
                         </Grid>
                         <Grid item sm={6} xs={12}>
-                          <FormControl style={{ width: "100%" }}>
+                          <FormControl className={styles.width100}>
                             <InputLabel htmlFor="age-simple">
                               {constants.EPIC}
                             </InputLabel>
@@ -454,7 +430,7 @@ export class CreateIssues extends React.Component {
                           </FormControl>
                         </Grid>
                         <Grid item sm={6} xs={12}>
-                          <FormControl style={{ width: "100%" }}>
+                          <FormControl className={styles.width100}>
                             <InputLabel htmlFor="age-simple">
                               {constants.LABELS}
                             </InputLabel>
@@ -482,7 +458,7 @@ export class CreateIssues extends React.Component {
                             id="outlined-basic"
                             label="Original Estimate"
                             variant="outlined"
-                            className={styles.fullWidth}
+                            className={styles.width100}
                             value={createIssues.originalEstimate}
                             onChange={this.setOriginalEstimateField}
                           />
@@ -492,7 +468,7 @@ export class CreateIssues extends React.Component {
                             id="outlined-basic"
                             label="Story Points"
                             variant="outlined"
-                            className={styles.fullWidth}
+                            className={styles.width100}
                             value={createIssues.storyPoints}
                             onChange={this.setStoryPointsField}
                           />

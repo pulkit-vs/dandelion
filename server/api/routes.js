@@ -70,7 +70,7 @@ module.exports = function (app) {
  * This function comment is parsed by doctrine
  * @route GET /config
  * @group CONFIG - Operations about Configuration
- * @returns {array} 200 - An array of user info
+ * @returns {object} 200 - An array of user info
  * @returns {Error}  default - Unexpected error
  */
   app.route(BASE_API + CONFIG)
