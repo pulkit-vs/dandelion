@@ -12,6 +12,7 @@ import CardContent from "@material-ui/core/CardContent";
 
 import PaperSheet from "../../containers/UiElements/demos/Cards/PaperSheet";
 import styles from "dan-styles/AddProject.scss";
+import { constants } from "../../utils/constants";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -216,7 +217,7 @@ export default class AddProject extends Component {
                 {activeStep === steps.length ? (
                   <div>
                     <Typography className={classes.instructions}>
-                      Project Created
+                      {constants.PROJECT_CREATED}
                     </Typography>
                     <Button onClick={handleReset}>Reset</Button>
                   </div>
@@ -231,7 +232,7 @@ export default class AddProject extends Component {
                         onClick={handleBack}
                         className={classes.backButton}
                       >
-                        Back
+                        {constants.BACK}
                       </Button>
                       <Button
                         variant="contained"

@@ -8,6 +8,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import React from "react";
 import WorkIcon from "@material-ui/icons/Work";
 import { Link } from "react-router-dom";
+import { constants, toRoutes } from "../../utils/constants";
 
 export default function Dashboards(props) {
   const { open, handleClose, dashboardMenuPosition } = props;
@@ -27,7 +28,7 @@ export default function Dashboards(props) {
       <MenuItem
         component={Link}
         onClick={handleClose}
-        to="/dashboards/view-all-dashboards"
+        to={toRoutes.VIEW_ALL_DASHBOARDS}
       >
         <div>
           <ListItemAvatar>
@@ -35,14 +36,14 @@ export default function Dashboards(props) {
               <WorkIcon />
             </Avatar>
           </ListItemAvatar>
-          <ListItemText primary="View all dashboards" />
+          <ListItemText primary = {constants.VIEW_ALL_DASHBOARDS} />
         </div>
       </MenuItem>
       <Divider style={{ width: "100%" }} />
       <MenuItem
         component={Link}
         onClick={handleClose}
-        to="/dashboards/create-dashboard"
+        to={toRoutes.CREATE_DASHBOARD}
       >
         <div>
           <ListItemAvatar>
@@ -50,7 +51,7 @@ export default function Dashboards(props) {
               <Check />
             </Avatar>
           </ListItemAvatar>
-          <ListItemText primary="Create Dashboard" />
+          <ListItemText primary = {constants.CREATE_DASHBOARD} />
         </div>
       </MenuItem>
     </Menu>
