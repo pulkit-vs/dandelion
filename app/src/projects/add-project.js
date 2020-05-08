@@ -1,14 +1,14 @@
-import Grid from "@material-ui/core/Grid";
-import TextField from "@material-ui/core/TextField";
-import React, { Component, useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Stepper from "@material-ui/core/Stepper";
-import Step from "@material-ui/core/Step";
-import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
+import Grid from "@material-ui/core/Grid";
+import React, { Component } from "react";
+import Step from "@material-ui/core/Step";
+import StepLabel from "@material-ui/core/StepLabel";
+import Stepper from "@material-ui/core/Stepper";
+import TextField from "@material-ui/core/TextField";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
 
 import PaperSheet from "../../containers/UiElements/demos/Cards/PaperSheet";
 import styles from "dan-styles/AddProject.scss";
@@ -45,28 +45,28 @@ function getStepContent(stepIndex) {
         <Grid container spacing={2}>
           <Grid item xs={12} sm={3}>
             <TextField
+              className={styles.fullWidth}
               id="outlined-basic"
               label="Name"
               variant="outlined"
-              className={styles.fullWidth}
             />
           </Grid>
           <Grid item xs={12} sm={3}>
             <TextField
+              className={styles.fullWidth}
               id="outlined-basic"
               label="key"
               variant="outlined"
-              className={styles.fullWidth}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
             <TextField
+              className={styles.fullWidth}
               id="outlined-basic"
               label="Description"
-              variant="outlined"
               multiline
               rows={3}
-              className={styles.fullWidth}
+              variant="outlined"
             />
           </Grid>
         </Grid>
@@ -83,16 +83,15 @@ function getStepContent(stepIndex) {
             >
               <CardContent>
                 <Typography
+                  className={styles.textCenter}
                   color="textSecondary"
                   gutterBottom
-                  className={styles.textCenter}
                 >
-                  {" "}
-                  Software{" "}
+                  {constants.SOFTWARE}
                 </Typography>
                 <img
-                  src={require("../images/img-software.png")}
                   className={styles.img}
+                  src={require("../images/img-software.png")}
                 />
               </CardContent>
             </Card>
@@ -101,16 +100,15 @@ function getStepContent(stepIndex) {
             <Card className={styles.cardShadow}>
               <CardContent>
                 <Typography
+                  className={styles.textCenter}
                   color="textSecondary"
                   gutterBottom
-                  className={styles.textCenter}
                 >
-                  {" "}
-                  Management{" "}
+                  {constants.MANAGEMENT}
                 </Typography>
                 <img
-                  src={require("../images/management.png")}
                   className={styles.img}
+                  src={require("../images/management.png")}
                 />
               </CardContent>
             </Card>
@@ -127,16 +125,15 @@ function getStepContent(stepIndex) {
             <Card className={styles.cardShadow}>
               <CardContent>
                 <Typography
+                  className={styles.textCenter}
                   color="textSecondary"
                   gutterBottom
-                  className={styles.textCenter}
                 >
-                  {" "}
-                  Kanban Board{" "}
+                  {constants.KANBAN_BOARD}
                 </Typography>
                 <img
+                  className={styles.img}
                   src={require("../images/kanban-board.png")}
-                  className={styles.img}
                 />
               </CardContent>
             </Card>
@@ -145,16 +142,15 @@ function getStepContent(stepIndex) {
             <Card className={styles.cardShadow}>
               <CardContent>
                 <Typography
+                  className={styles.textCenter}
                   color="textSecondary"
                   gutterBottom
-                  className={styles.textCenter}
                 >
-                  {" "}
-                  Scrum Board{" "}
+                  {constants.SCRUM_BOARD}
                 </Typography>
                 <img
+                  className={styles.img}
                   src={require("../images/scrum-board.jpg")}
-                  className={styles.img}
                 />
               </CardContent>
             </Card>
@@ -163,16 +159,15 @@ function getStepContent(stepIndex) {
             <Card className={styles.cardShadow}>
               <CardContent>
                 <Typography
+                  className={styles.textCenter}
                   color="textSecondary"
                   gutterBottom
-                  className={styles.textCenter}
                 >
-                  {" "}
-                  Sprint Board{" "}
+                  {constants.SPRINT_BOARD}
                 </Typography>
                 <img
-                  src={require("../images/sprint-board.png")}
                   className={styles.img}
+                  src={require("../images/sprint-board.png")}
                 />
               </CardContent>
             </Card>
@@ -201,6 +196,7 @@ export default class AddProject extends Component {
     const handleReset = () => {
       setActiveStep(0);
     };
+
     return (
       <Grid container spacing={2}>
         <Grid item xs={12} sm={12}>
@@ -251,6 +247,7 @@ export default class AddProject extends Component {
       </Grid>
     );
   };
+
   render() {
     return (
       <Grid container spacing={3}>

@@ -40,6 +40,7 @@ export class AssignedToMe extends React.Component {
         <div style={{ width: "100%", marginTop: 30 }}>
           <Grid item sm={12}>
             <EnhancedTable
+              handleTableRowClick={identity}
               headCells={headCells}
               heading={heading}
               rows={assignedData}
@@ -49,7 +50,6 @@ export class AssignedToMe extends React.Component {
               starredTask={assignedStarredTasks}
               toggleAllStarredStatus={toggleAllStarredStatus}
               toggleStarredStatus={toggleStarredStatus}
-              handleTableRowClick={identity}
             />
           </Grid>
         </div>

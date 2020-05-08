@@ -159,8 +159,7 @@ export class CreateIssues extends React.Component {
                           style={{ borderBottom: "1px solid #d5dad8" }}
                         >
                           <h2 style={{ fontWeight: "normal" }}>
-                            {" "}
-                            <Icon>create</Icon> Create Task{" "}
+                            <Icon>create</Icon> Create Task
                           </h2>
                         </Grid>
                         <Grid
@@ -188,7 +187,7 @@ export class CreateIssues extends React.Component {
                         <Grid item sm={6} xs={12}>
                           <FormControl style={{ width: "100%" }}>
                             <InputLabel htmlFor="age-simple">
-                            {constants.PROJECT}
+                              {constants.PROJECT}
                             </InputLabel>
                             <Select
                               inputProps={{
@@ -210,6 +209,7 @@ export class CreateIssues extends React.Component {
                                     marginRight: "2%",
                                   }}
                                 />
+                                {/* TODO: To be removed after API integration */}
                                 Wonolo
                               </MenuItem>
                               <MenuItem value={20}>Synergy</MenuItem>
@@ -232,7 +232,7 @@ export class CreateIssues extends React.Component {
                               onChange={this.setIssueTypeField}
                             >
                               <MenuItem value="">
-                              <em>{constants.NONE}</em>
+                                <em>{constants.NONE}</em>
                               </MenuItem>
                               <MenuItem value={10}>
                                 <Icon
@@ -243,6 +243,7 @@ export class CreateIssues extends React.Component {
                                     marginRight: "2%",
                                   }}
                                 >
+                                  {/* TODO: To be removed after API integration */}
                                   bug_report
                                 </Icon>
                                 <em>{constants.BUG}</em>
@@ -277,7 +278,7 @@ export class CreateIssues extends React.Component {
                         <Grid item sm={6} xs={12}>
                           <FormControl style={{ width: "100%" }}>
                             <InputLabel htmlFor="age-simple">
-                            {constants.REPORTER}
+                              {constants.REPORTER}
                             </InputLabel>
                             <Select
                               inputProps={{
@@ -300,6 +301,7 @@ export class CreateIssues extends React.Component {
                                     borderRadius: "50%",
                                   }}
                                 />
+                                {/* TODO: To be removed after API integration */}
                                 Nikhil Agarwal
                               </MenuItem>
                               <MenuItem value={20}>Ashish Mangla</MenuItem>
@@ -310,7 +312,7 @@ export class CreateIssues extends React.Component {
                         <Grid item sm={6} xs={12}>
                           <FormControl style={{ width: "100%" }}>
                             <InputLabel htmlFor="age-simple">
-                            {constants.ASSIGNEE}
+                              {constants.ASSIGNEE}
                             </InputLabel>
                             <Select
                               inputProps={{
@@ -323,6 +325,8 @@ export class CreateIssues extends React.Component {
                               <MenuItem value="">
                                 <em> {constants.NONE}</em>
                               </MenuItem>
+
+                              {/* TODO: To be removed after API integration */}
                               <MenuItem value={10}>Nikhil Agarwal</MenuItem>
                               <MenuItem value={20}>Ashish Mangla</MenuItem>
                               <MenuItem value={30}>Kosal</MenuItem>
@@ -332,7 +336,7 @@ export class CreateIssues extends React.Component {
                         <Grid item sm={6} xs={12}>
                           <FormControl style={{ width: "100%" }}>
                             <InputLabel htmlFor="age-simple">
-                            {constants.COMPONENTS}
+                              {constants.COMPONENTS}
                             </InputLabel>
                             <Select
                               inputProps={{
@@ -345,6 +349,8 @@ export class CreateIssues extends React.Component {
                               <MenuItem value="">
                                 <em> {constants.NONE}</em>
                               </MenuItem>
+
+                              {/* TODO: To be removed after API integration */}
                               <MenuItem value={10}>Ten</MenuItem>
                               <MenuItem value={20}>Twenty</MenuItem>
                               <MenuItem value={30}>Thirty</MenuItem>
@@ -354,7 +360,7 @@ export class CreateIssues extends React.Component {
                         <Grid item sm={6} xs={12}>
                           <FormControl style={{ width: "100%" }}>
                             <InputLabel htmlFor="age-simple">
-                            {constants.FIX_VERSIONS}
+                              {constants.FIX_VERSIONS}
                             </InputLabel>
                             <Select
                               inputProps={{
@@ -367,6 +373,8 @@ export class CreateIssues extends React.Component {
                               <MenuItem value="">
                                 <em> {constants.NONE}</em>
                               </MenuItem>
+
+                              {/* TODO: To be removed after API integration */}
                               <MenuItem value={10}>Ten</MenuItem>
                               <MenuItem value={20}>Twenty</MenuItem>
                               <MenuItem value={30}>Thirty</MenuItem>
@@ -376,7 +384,7 @@ export class CreateIssues extends React.Component {
                         <Grid item sm={6} xs={12}>
                           <FormControl style={{ width: "100%" }}>
                             <InputLabel htmlFor="age-simple">
-                            {constants.PRIORITY}
+                              {constants.PRIORITY}
                             </InputLabel>
                             <Select
                               inputProps={{
@@ -389,6 +397,8 @@ export class CreateIssues extends React.Component {
                               <MenuItem value="">
                                 <em>{constants.NONE}</em>
                               </MenuItem>
+
+                              {/* TODO: To be removed after API integration */}
                               <MenuItem value={10}>High</MenuItem>
                               <MenuItem value={20}>Medium</MenuItem>
                               <MenuItem value={30}>Low</MenuItem>
@@ -397,7 +407,9 @@ export class CreateIssues extends React.Component {
                         </Grid>
                         <Grid item sm={6} xs={12}>
                           <FormControl style={{ width: "100%" }}>
-                            <InputLabel htmlFor="age-simple">{constants.SPRINT}</InputLabel>
+                            <InputLabel htmlFor="age-simple">
+                              {constants.SPRINT}
+                            </InputLabel>
                             <Select
                               inputProps={{
                                 name: "age",
@@ -409,6 +421,8 @@ export class CreateIssues extends React.Component {
                               <MenuItem value="">
                                 <em>{constants.NONE}</em>
                               </MenuItem>
+
+                              {/* TODO: To be removed after API integration */}
                               <MenuItem value={10}>Active Sprint</MenuItem>
                               <MenuItem value={20}>Sprint 10</MenuItem>
                               <MenuItem value={30}>Sprint 9</MenuItem>
@@ -417,7 +431,9 @@ export class CreateIssues extends React.Component {
                         </Grid>
                         <Grid item sm={6} xs={12}>
                           <FormControl style={{ width: "100%" }}>
-                            <InputLabel htmlFor="age-simple">{constants.EPIC}</InputLabel>
+                            <InputLabel htmlFor="age-simple">
+                              {constants.EPIC}
+                            </InputLabel>
                             <Select
                               inputProps={{
                                 name: "age",
@@ -429,6 +445,8 @@ export class CreateIssues extends React.Component {
                               <MenuItem value="">
                                 <em>{constants.SPRINT}</em>
                               </MenuItem>
+
+                              {/* TODO: To be removed after API integration */}
                               <MenuItem value={10}>Epic 1</MenuItem>
                               <MenuItem value={20}>Epic 2</MenuItem>
                               <MenuItem value={30}>Epic 3</MenuItem>
@@ -437,7 +455,9 @@ export class CreateIssues extends React.Component {
                         </Grid>
                         <Grid item sm={6} xs={12}>
                           <FormControl style={{ width: "100%" }}>
-                            <InputLabel htmlFor="age-simple">{constants.LABELS}</InputLabel>
+                            <InputLabel htmlFor="age-simple">
+                              {constants.LABELS}
+                            </InputLabel>
                             <Select
                               inputProps={{
                                 name: "age",
@@ -449,6 +469,8 @@ export class CreateIssues extends React.Component {
                               <MenuItem value="">
                                 <em>{constants.NONE}</em>
                               </MenuItem>
+
+                              {/* TODO: To be removed after API integration */}
                               <MenuItem value={10}>Label 1</MenuItem>
                               <MenuItem value={20}>Label 2</MenuItem>
                               <MenuItem value={30}>Label 3</MenuItem>
@@ -494,22 +516,35 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   setSummaryText: (summary) => dispatch(setSummaryText({ summary })),
+
   setOriginalEstimateText: (originalEstimate) =>
     dispatch(setOriginalEstimateText({ originalEstimate })),
+
   setStoryPointsText: (storyPoints) =>
     dispatch(setStoryPointsText({ storyPoints })),
+
   setLabelsText: (labels) => dispatch(setLabelsText({ labels })),
+
   setEpicText: (epic) => dispatch(setEpicText({ epic })),
+
   setSprintText: (sprint) => dispatch(setSprintText({ sprint })),
+
   setPriorityText: (priority) => dispatch(setPriorityText({ priority })),
+
   setFixVersionsText: (fixVersions) =>
     dispatch(setFixVersionsText({ fixVersions })),
+
   setComponentsText: (components) =>
     dispatch(setComponentsText({ components })),
+
   setAssigneeText: (assignee) => dispatch(setAssigneeText({ assignee })),
+
   setReporterText: (reporter) => dispatch(setReporterText({ reporter })),
+
   setProjectText: (project) => dispatch(setProjectText({ project })),
+
   setIssueTypeText: (issueType) => dispatch(setIssueTypeText({ issueType })),
+
   setDescriptionText: (description) =>
     dispatch(setDescriptionText({ description })),
 });
