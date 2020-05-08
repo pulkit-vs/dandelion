@@ -16,44 +16,21 @@ const ngrok = (isDev && process.env.ENABLE_TUNNEL) || argv.tunnel
   : false;
 const { resolve } = require('path');
 const app = express();
-
-// If you need a backend, e.g. an API, add your custom backend-specific middleware here
-// app.use('/api', myApi);
+const OPTIONS = require('../server/api/swagger');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// Swagger setup
 const expressSwagger = require('express-swagger-generator')(app);
-let options = {
-    swaggerDefinition: {
-        info: {
-            description: 'This is a sample server',
-            title: 'Swagger',
-            version: '1.0.0',
-        },
-        host: 'localhost:8000',
-        basePath: '/v1',
-        produces: [
-            "application/json",
-            "application/xml"
-        ],
-        schemes: ['http', 'https'],
-        securityDefinitions: {
-            JWT: {
-                type: 'apiKey',
-                in: 'header',
-                name: 'AuthToken',
-                description: "",
-            }
-        }
-    },
-    basedir: __dirname, //app absolute path
-    files: ['./api/routes.js'] //Path to the API handle folder
-};
-require('./api/routes.js')(app);
-expressSwagger(options);
-require('./sql-table');
+
+// load our routes and pass in our app 
+require('../server/api/routes')(app);
+
+// passing swagger config options to the expressgenerator
+expressSwagger(OPTIONS);
+
+// script create all the tables in database if not exist 
+require('../server/sql-table');
 
 
 // Load material icons

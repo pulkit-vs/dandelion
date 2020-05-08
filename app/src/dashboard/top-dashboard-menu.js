@@ -9,6 +9,8 @@ import React from "react";
 import WorkIcon from "@material-ui/icons/Work";
 import { Link } from "react-router-dom";
 import { constants, toRoutes } from "../../utils/constants";
+import styles from "dan-styles/TopDashboardMenu.scss";
+
 
 export default function Dashboards(props) {
   const { open, handleClose, dashboardMenuPosition } = props;
@@ -39,7 +41,7 @@ export default function Dashboards(props) {
           <ListItemText primary = {constants.VIEW_ALL_DASHBOARDS} />
         </div>
       </MenuItem>
-      <Divider style={{ width: "100%" }} />
+      <Divider className={styles.divider} />
       <MenuItem
         component={Link}
         onClick={handleClose}

@@ -10,11 +10,14 @@
  *  Nikhil Aggarwal, VectoScalar
  * 
  */
+const DbQueries = require('../common/db-queries');
+const BaseController = require('../common/base-controller'),
+  logger = require('../common/logger')
+
 class MyWorkController extends BaseController {
   constructor() {
-
+    super();
   }
-
 
   /**
    * @name workedOnProjects 
@@ -70,10 +73,40 @@ class MyWorkController extends BaseController {
    *    }
    * 
    */
-  async assignedToMeTickets(userId) {
+  async assignedToMeTickets(req, res) {
+    const projectId = req.params.projectId;
+    const employeeId = req.query.employeeId;
+    logger.info('projectId:', projectId);
+    if (projectId) {
+      try {
+        const sql = DbQueries.ASSIGN_TO_ME_TICKETS_QUERY(employeeId, projectId);
+        const response = await super.executeQueryWithBindParams(sql.query, sql.bindParams);
+        logger.info(`MyWorkController: assignedToMeTickets : query response : ${response}`);
+        const message = (response.length) ? "Issues Fetched Successfully " : `No Issues to show`;
+        if (Array.isArray(response) && response.length > 0) {
+          res.status(200);
+          res.json({
+            message: message,
+            db_response: response
+          });
+        } else {
+          res.status(200);
+          res.json({
+            message: message,
+            db_response: []
+          });
+        }
 
+      } catch (error) {
+        logger.error(`MyWorkController: assignedToMeTickets: Error while fetching the issues Info: `, error);
+        res.statusMessage = error;
+        res.status(400).end();
+      }
+    } else {
+      res.status(200);
+      res.json({ message: `MyWorkController : detail: Issues not found for projectId : ${projectId} ` });
+    }
   }
-
 
   /**
    * @name starredProjects
@@ -91,7 +124,7 @@ class MyWorkController extends BaseController {
    *    }
    * 
    */
-  async starredProjects(userId) {
+  async starredTickets(userId) {
 
   }
 
