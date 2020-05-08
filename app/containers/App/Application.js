@@ -1,21 +1,34 @@
 import React from "react";
 import { PropTypes } from "prop-types";
 import { Switch, Route } from "react-router-dom";
+
 import Dashboard from "../Templates/Dashboard";
 import {
+  AccessRequestsSetting,
   Accordion,
+  AccountPreferencesSetting,
   AddProject,
+  AdvanceIssueSearchFilter,
   AdvancedTable,
   Analytics,
   AppLayout,
+  ApplicationLinksSetting,
   AreaCharts,
   AreaFilledChart,
   AssignedToMe,
+  AttachmentsSetting,
+  AuditLogSetting,
   Autocomplete,
+  AutomationRulesSetting,
   Avatars,
+  BackupManagerSetting,
   Badges,
   BarCharts,
   BarDirection,
+  BillDetailsSetting,
+  BillEstimateSetting,
+  BillHistorySetting,
+  BillingAccessSetting,
   BlankPage,
   Breadcrumbs,
   Buttons,
@@ -25,69 +38,129 @@ import {
   CheckboxRadio,
   CheckoutPage,
   CompossedCharts,
+  ConnectedAppsAccessSetting,
+  ConnectedAppsSetting,
   Contact,
+  CreateDashboard,
   CreateIssues,
   CryptoDashboard,
+  CustomFieldsSetting,
+  DVCSAccountsSetting,
   DateTimePicker,
+  DefaultUserPreferencesSetting,
   DialButton,
   DialogModal,
+  DiscoverApplicationsAccessSetting,
   Dividers,
   DoughnutCharts,
   DrawerMenu,
   Ecommerce,
   EditableCell,
   Email,
+  EmailSetting,
+  EmojiAccessSetting,
   Error,
+  EventsSetting,
+  ExternalSystemImportSetting,
+  FieldConfigurationSchemesSetting,
+  FieldConfigurationsSetting,
+  FindNewAppsSetting,
+  GSuiteAccessSetting,
+  GeneralConfigurationSetting,
+  GiveFeedbackAccessSetting,
+  GlobalMailSetting,
+  GlobalPermissionSetting,
   Grid,
+  GroupsSetting,
   HelpSupport,
   Icons,
   ImageGrid,
   InfoUpdates,
-  Infographics,
   Invoice,
   IonIcons,
+  IssueCollectorsSetting,
+  IssueLinkingSetting,
+  IssueSecuritySchemesSetting,
+  IssueTypeSchemasSetting,
+  IssueTypeScreenSchemeSetting,
+  IssueTypesSetting,
+  KaryaAccessSetting,
+  KaryaSoftwareConfigurationSetting,
+  LexorankManagementSetting,
   LineCharts,
   LineScatterChart,
   List,
+  LookAndFeelSetting,
+  ManageAppsSetting,
+  ManageSubscriptionsAccessSetting,
+  ManageSubscriptionsSetting,
   ManageTeam,
   MapDirection,
   MapMarker,
-  MiniApps,
   NotFound,
+  NotificationHelperSetting,
+  NotificationSchemesSetting,
+  OAuthCredentialsSetting,
+  OutgoingMailSetting,
+  OverviewSetting,
   Paginations,
   Parent,
-  PersonalDashboard,
+  PermissionHelperSetting,
+  PermissionSchemesSetting,
   Photos,
   PieCharts,
   PopoverTooltip,
   Pricing,
+  PrioritiesSetting,
+  ProductAccessSetting,
   ProductPage,
+  ProductsAccessSetting,
+  ProductsSetting,
   Profile,
+  ProfileAndVisibilitySetting,
   Progress,
+  ProjectCategoriesSetting,
   ProjectHome,
+  ProjectRolesSetting,
+  ProjectsSetting,
   RadarCharts,
   RadarPolarCharts,
   Rating,
-  ReduxForm,
+  ResolutionsSetting,
+  RestoreSystemSetting,
   ScatterCharts,
+  ScreenSchemesSetting,
+  ScreensSetting,
   SearchMap,
+  SecurityAccessSetting,
+  SecuritySetting,
   Selectbox,
+  SendEmailSetting,
+  ServicesSetting,
   Settings,
+  SharedDashboardSetting,
+  SharedFiltersSetting,
   SimpleTable,
+  SiteAccessSetting,
   SliderCarousel,
   SliderRange,
   Snackbar,
   StarredTasks,
   Status,
+  StatutesSetting,
   Steppers,
+  StorageAccessSetting,
   StreetViewMap,
+  SubTasksSetting,
   Switches,
+  SystemDashboardSetting,
   TablePlayground,
   Tabs,
   Tags,
   TaskBoard,
   TextEditor,
   Textbox,
+  TimeTrackingSetting,
   Timeline,
   ToggleButton,
   TrafficIndicator,
@@ -95,83 +168,11 @@ import {
   Typography,
   Upload,
   UsersSetting,
-  AccessRequestsSetting,
-  SiteAccessSetting,
-  ProductAccessSetting,
-  GSuiteAccessSetting,
-  EmojiAccessSetting,
-  ConnectedAppsAccessSetting,
-  SecurityAccessSetting,
-  StorageAccessSetting,
-  BillingAccessSetting,
-  ManageSubscriptionsAccessSetting,
-  DiscoverApplicationsAccessSetting,
-  KaryaAccessSetting,
-  GiveFeedbackAccessSetting,
-  GroupsSetting,
-  BillEstimateSetting,
-  BillDetailsSetting,
-  BillHistorySetting,
-  OverviewSetting,
-  ManageSubscriptionsSetting,
-  GeneralConfigurationSetting,
-  AuditLogSetting,
-  GlobalPermissionSetting,
-  IssueCollectorsSetting,
-  DefaultUserPreferencesSetting,
-  SystemDashboardSetting,
-  LookAndFeelSetting,
-  BackupManagerSetting,
-  ExternalSystemImportSetting,
-  ProjectRolesSetting,
-  RestoreSystemSetting,
-  GlobalMailSetting,
-  OutgoingMailSetting,
-  NotificationHelperSetting,
-  PermissionHelperSetting,
-  SharedDashboardSetting,
-  SharedFiltersSetting,
-  AutomationRulesSetting,
-  AttachmentsSetting,
-  EventsSetting,
+  ViewAllFilters,
+  ViewDashboard,
   WebhooksSetting,
-  ServicesSetting,
-  LexorankManagementSetting,
-  KaryaSoftwareConfigurationSetting,
-  ProductsAccessSetting,
-  SendEmailSetting,
-  ApplicationLinksSetting,
-  DVCSAccountsSetting,
-  ProjectCategoriesSetting,
-  ProjectsSetting,
-  IssueTypesSetting,
-  IssueTypeSchemasSetting,
-  SubTasksSetting,
-  WorkflowsSetting,
   WorkflowsSchemesSetting,
-  ScreensSetting,
-  ScreenSchemesSetting,
-  IssueTypeScreenSchemeSetting,
-  CustomFieldsSetting,
-  FieldConfigurationsSetting,
-  FieldConfigurationSchemesSetting,
-  TimeTrackingSetting,
-  IssueLinkingSetting,
-  StatutesSetting,
-  ResolutionsSetting,
-  PrioritiesSetting,
-  IssueSecuritySchemesSetting,
-  NotificationSchemesSetting,
-  PermissionSchemesSetting,
-  FindNewAppsSetting,
-  ManageAppsSetting,
-  OAuthCredentialsSetting,
-  AccountPreferencesSetting,
-  ConnectedAppsSetting,
-  EmailSetting,
-  ProductsSetting,
-  ProfileAndVisibilitySetting,
-  SecuritySetting,
+  WorkflowsSetting,
 } from "../pageListAsync";
 
 class Application extends React.Component {
@@ -181,11 +182,14 @@ class Application extends React.Component {
       <Dashboard history={history} changeMode={changeMode}>
         <Switch>
           {/* My work */}
+
           <Route exact path="/" component={ProjectHome} />
           <Route path="/mywork/assigned-task" component={AssignedToMe} />
           <Route path="/mywork/starred" component={StarredTasks} />
           <Route path="/mywork/starred" component={CryptoDashboard} />
+
           {/* Projects */}
+
           <Route path="/projects/add-project" component={AddProject} />
           <Route path="/projects/project-board" component={ProjectHome} />
           <Route path="/projects/backlog" component={Analytics} />
@@ -194,50 +198,53 @@ class Application extends React.Component {
           <Route exact path="/projects/sprint-board" component={TaskBoard} />
           <Route path="/projects/roadmap" component={Grid} />
           <Route path="/projects/release" component={AppLayout} />
+
           {/* Create Task */}
+
           <Route path="/create-task" component={CreateIssues} />
+
           {/* Dashboards */}
+
           <Route
             path="/dashboards/view-all-dashboards"
-            component={AssignedToMe}
+            component={ViewDashboard}
           />
-          <Route path="/dashboards/create-dashboard" component={TaskBoard} />
+          <Route
+            path="/dashboards/create-dashboard"
+            component={CreateDashboard}
+          />
+
           {/* Account */}
+
           <Route path="/account/account-settings" component={StarredTasks} />
           <Route path="/account/profile" component={AddProject} />
           <Route path="/account/personal-settings" component={StarredTasks} />
           <Route path="/account/feedback" component={AddProject} />
 
-          {/* Settings */}
-          {/* <Route path="/settings/system" component={AddProject} /> */}
-          {/* <Route path="/settings/product" component={AddProject} /> */}
-          {/* <Route path="/settings/projects" component={AddProject} /> */}
-          {/* <Route path="/settings/issues" component={AddProject} /> */}
-          {/* <Route path="/settings/app" component={AddProject} /> */}
-          {/* <Route exact path="/settings/tool-settings" component={ProfileAndVisibilitySetting} /> */}
-          {/* <Route
-            path="/settings/personal-tool-settings"
-            component={AddProject}
-          /> */}
-          {/* <Route path="/settings/billing" component={AddProject} /> */}
-          {/* Filters */}
-          <Route path="/filters/view-all-filters" component={AddProject} />
+          {/* filters */}
+
+          <Route path="/filters/view-all-filters" component={ViewAllFilters} />
           <Route
             path="/filters/advanced-issue-search"
-            component={StarredTasks}
+            component={AdvanceIssueSearchFilter}
           />
+
           {/* Table */}
+
           <Route exact path="/tables" component={Parent} />
           <Route path="/tables/basic-table" component={SimpleTable} />
           <Route path="/tables/data-table" component={AdvancedTable} />
           <Route path="/tables/table-playground" component={TablePlayground} />
           <Route path="/tables/tree-table" component={TreeTable} />
           <Route path="/tables/editable-cell" component={EditableCell} />
+
           {/* UI Bundle */}
+
           <Route exact path="/people/manage-team" component={ManageTeam} />
-          {/* <Route path="/create/create-task" component={ReduxForm} /> */}
           <Route path="/configurations/edit" component={AddProject} />
+
           {/* Form & Button */}
+
           <Route path="/forms/date-time-picker" component={DateTimePicker} />
           <Route path="/forms/checkbox-radio" component={CheckboxRadio} />
           <Route path="/forms/switches" component={Switches} />
@@ -251,7 +258,9 @@ class Application extends React.Component {
           <Route path="/forms/autocomplete" component={Autocomplete} />
           <Route path="/forms/upload" component={Upload} />
           <Route path="/forms/wysiwyg-editor" component={TextEditor} />
+
           {/* Ui Components */}
+
           <Route exact path="/ui" component={Parent} />
           <Route path="/ui/avatars" component={Avatars} />
           <Route path="/ui/accordion" component={Accordion} />
@@ -274,7 +283,9 @@ class Application extends React.Component {
           <Route path="/ui/slider-carousel" component={SliderCarousel} />
           <Route path="/ui/tags" component={Tags} />
           <Route path="/ui/dividers" component={Dividers} />
+
           {/* Chart */}
+
           <Route exact path="/charts" component={Parent} />
           <Route path="/charts/line-charts" component={LineCharts} />
           <Route path="/charts/bar-charts" component={BarCharts} />
@@ -300,7 +311,9 @@ class Application extends React.Component {
             path="/charts/radar-polar-chart"
             component={RadarPolarCharts}
           />
+
           {/* Sample Apps */}
+
           <Route path="/pages/contact" component={Contact} />
           <Route path="/pages/chat" component={Chat} />
           <Route path="/pages/email" component={Email} />
@@ -310,7 +323,9 @@ class Application extends React.Component {
           <Route path="/pages/checkout" component={CheckoutPage} />
           <Route path="/pages/calendar" component={Calendar} />
           <Route path="/pages/invoice" component={Invoice} />
+
           {/* Pages */}
+
           <Route exact path="/pages" component={Parent} />
           <Route path="/pages/user-profile" component={Profile} />
           <Route path="/pages/blank-page" component={BlankPage} />
@@ -320,14 +335,18 @@ class Application extends React.Component {
           <Route path="/pages/error" component={Error} />
           <Route path="/pages/settings" component={Settings} />
           <Route path="/pages/help-support" component={HelpSupport} />
+
           {/* Map */}
+
           <Route exact path="/maps" component={Parent} />
           <Route path="/maps/map-marker" component={MapMarker} />
           <Route path="/maps/map-direction" component={MapDirection} />
           <Route path="/maps/map-searchbox" component={SearchMap} />
           <Route path="/maps/map-traffic" component={TrafficIndicator} />
           <Route path="/maps/street-view" component={StreetViewMap} />
+
           {/* User Management */}
+
           <Route
             path="/settings/user-management/user-management/users"
             component={UsersSetting}
@@ -388,7 +407,9 @@ class Application extends React.Component {
             path="/settings/user-management/admin-experience/give-feedback"
             component={GiveFeedbackAccessSetting}
           />
+
           {/* Billing */}
+
           <Route
             path="/settings/billing/billing/bill-estimate"
             component={BillEstimateSetting}
@@ -409,7 +430,9 @@ class Application extends React.Component {
             path="/settings/billing/billing/overview"
             component={ManageSubscriptionsSetting}
           />
+
           {/* System */}
+
           <Route
             path="/settings/system/general-configuration"
             component={GeneralConfigurationSetting}
@@ -506,7 +529,9 @@ class Application extends React.Component {
             path="/settings/system/advanced/lexo-rank-management"
             component={LexorankManagementSetting}
           />
+
           {/* Product */}
+
           <Route
             path="/settings/product/products/product-access"
             component={ProductsAccessSetting}
@@ -523,7 +548,9 @@ class Application extends React.Component {
             path="/settings/product/integrations/dvcs-accounts"
             component={DVCSAccountsSetting}
           />
+
           {/* Projects */}
+
           <Route
             path="/settings/projects/projects/projects"
             component={ProjectsSetting}
@@ -532,7 +559,9 @@ class Application extends React.Component {
             path="/settings/projects/projects/project-categories"
             component={ProjectCategoriesSetting}
           />
+
           {/* Issues */}
+
           <Route
             path="/settings/issues/issue-types/issue-types"
             component={IssueTypesSetting}
@@ -622,7 +651,9 @@ class Application extends React.Component {
             path="/settings/app/karya-market/oauth-credentials"
             component={OAuthCredentialsSetting}
           />
+
           {/* Account Settings */}
+
           <Route
             path="/settings/tool-settings/profile-and-visibility"
             component={ProfileAndVisibilitySetting}
@@ -647,7 +678,9 @@ class Application extends React.Component {
             path="/settings/tool-settings/products"
             component={ProductsSetting}
           />
+
           {/* Default */}
+
           <Route component={NotFound} />
         </Switch>
       </Dashboard>

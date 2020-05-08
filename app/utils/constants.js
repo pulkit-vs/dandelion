@@ -1,5 +1,3 @@
-import { createData } from "../utils/functions";
-
 export const RESTART_ON_REMOUNT = "@@saga-injector/restart-on-remount";
 export const DAEMON = "@@saga-injector/daemon";
 export const ONCE_TILL_UNMOUNT = "@@saga-injector/once-till-unmount";
@@ -18,10 +16,10 @@ export const headCells = [
   },
 ];
 
-export const BASE_URL = '/v1/';
+export const BASE_URL = "/v1/";
 
 export const APIS = {
-  PROJECTS: "projects"
+  PROJECTS: "projects",
 };
 
 export const projectHomeTickets = [

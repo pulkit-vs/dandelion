@@ -5,7 +5,7 @@ import { productSettings } from "../src/menus/settings/settings-products";
 import { projectsSettings } from "../src/menus/settings/settings-project";
 import { issuesSettings } from "../src/menus/settings/settings-issues";
 import { appSettings } from "../src/menus/settings/settings-apps";
-import { accountSettings } from "../src/menus/settings/settings-account-settings";
+import { accountSettings } from "../src/menus/settings/settings-tool-account";
 import { userManagementSettings } from "../src/menus/settings/settings-user-management";
 import { billingSettings } from "../src/menus/settings/settings-billing";
 //functions
