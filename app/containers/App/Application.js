@@ -149,6 +149,29 @@ import {
   SubTasksSetting,
   WorkflowsSetting,
   WorkflowsSchemesSetting,
+  ScreensSetting,
+  ScreenSchemesSetting,
+  IssueTypeScreenSchemeSetting,
+  CustomFieldsSetting,
+  FieldConfigurationsSetting,
+  FieldConfigurationSchemesSetting,
+  TimeTrackingSetting,
+  IssueLinkingSetting,
+  StatutesSetting,
+  ResolutionsSetting,
+  PrioritiesSetting,
+  IssueSecuritySchemesSetting,
+  NotificationSchemesSetting,
+  PermissionSchemesSetting,
+  FindNewAppsSetting,
+  ManageAppsSetting,
+  OAuthCredentialsSetting,
+  AccountPreferencesSetting,
+  ConnectedAppsSetting,
+  EmailSetting,
+  ProductsSetting,
+  ProfileAndVisibilitySetting,
+  SecuritySetting,
 } from "../pageListAsync";
 
 class Application extends React.Component {
@@ -187,15 +210,15 @@ class Application extends React.Component {
 
           {/* Settings */}
           {/* <Route path="/settings/system" component={AddProject} /> */}
-          <Route path="/settings/product" component={AddProject} />
-          <Route path="/settings/projects" component={AddProject} />
-          <Route path="/settings/issues" component={AddProject} />
-          <Route path="/settings/app" component={AddProject} />
-          <Route exact path="/settings/tool-settings" component={AddProject} />
-          <Route
+          {/* <Route path="/settings/product" component={AddProject} /> */}
+          {/* <Route path="/settings/projects" component={AddProject} /> */}
+          {/* <Route path="/settings/issues" component={AddProject} /> */}
+          {/* <Route path="/settings/app" component={AddProject} /> */}
+          {/* <Route exact path="/settings/tool-settings" component={ProfileAndVisibilitySetting} /> */}
+          {/* <Route
             path="/settings/personal-tool-settings"
             component={AddProject}
-          />
+          /> */}
           {/* <Route path="/settings/billing" component={AddProject} /> */}
           {/* Filters */}
           <Route path="/filters/view-all-filters" component={AddProject} />
@@ -532,97 +555,97 @@ class Application extends React.Component {
           />
           <Route
             path="/settings/issues/screens/screens"
-            component={ManageSubscriptionsSetting}
+            component={ScreensSetting}
           />
           <Route
             path="/settings/issues/screens/screens-schemes"
-            component={ManageSubscriptionsSetting}
+            component={ScreenSchemesSetting}
           />
           <Route
             path="/settings/issues/screens/issue-type-screen-scheme"
-            component={ManageSubscriptionsSetting}
+            component={IssueTypeScreenSchemeSetting}
           />
           <Route
             path="/settings/issues/fields/custom-fields"
-            component={ManageSubscriptionsSetting}
+            component={CustomFieldsSetting}
           />
           <Route
             path="/settings/issues/fields/field-configurations"
-            component={ManageSubscriptionsSetting}
+            component={FieldConfigurationsSetting}
           />
           <Route
             path="/settings/issues/fields/field-configuration-schemes"
-            component={ManageSubscriptionsSetting}
+            component={FieldConfigurationSchemesSetting}
           />
           <Route
             path="/settings/issues/issue-features/time-tracking"
-            component={ManageSubscriptionsSetting}
+            component={TimeTrackingSetting}
           />
           <Route
             path="/settings/issues/issue-features/issue-linking"
-            component={ManageSubscriptionsSetting}
+            component={IssueLinkingSetting}
           />
           <Route
             path="/settings/issues/issue-attributes/statuses"
-            component={ManageSubscriptionsSetting}
+            component={StatutesSetting}
           />
           <Route
             path="/settings/issues/issue-attributes/resolutions"
-            component={ManageSubscriptionsSetting}
+            component={ResolutionsSetting}
           />
           <Route
             path="/settings/issues/issue-attributes/priorities"
-            component={ManageSubscriptionsSetting}
+            component={PrioritiesSetting}
           />
           <Route
             path="/settings/issues/issue-attributes/issue-security-schemes"
-            component={ManageSubscriptionsSetting}
+            component={IssueSecuritySchemesSetting}
           />
           <Route
             path="/settings/issuesissue-attributes/notification-schemes"
-            component={ManageSubscriptionsSetting}
+            component={NotificationSchemesSetting}
           />
           <Route
             path="/settings/issues/issue-attributes/permission-schemes"
-            component={ManageSubscriptionsSetting}
+            component={PermissionSchemesSetting}
           />
           {/* App */}
           <Route
             path="/settings/app/karya-market/find-new-apps"
-            component={ManageSubscriptionsSetting}
+            component={FindNewAppsSetting}
           />
           <Route
             path="/settings/app/karya-market/manage-apps"
-            component={ManageSubscriptionsSetting}
+            component={ManageAppsSetting}
           />
           <Route
             path="/settings/app/karya-market/oauth-credentials"
-            component={ManageSubscriptionsSetting}
+            component={OAuthCredentialsSetting}
           />
           {/* Account Settings */}
           <Route
-            path="/settings/account-settings/profile-and-visibility"
-            component={ManageSubscriptionsSetting}
+            path="/settings/tool-settings/profile-and-visibility"
+            component={ProfileAndVisibilitySetting}
           />
           <Route
-            path="/settings/account-settings/email"
-            component={ManageSubscriptionsSetting}
+            path="/settings/tool-settings/email"
+            component={EmailSetting}
           />
           <Route
-            path="/settings/account-settings/security"
-            component={ManageSubscriptionsSetting}
+            path="/settings/tool-settings/security"
+            component={SecuritySetting}
           />
           <Route
-            path="/settings/account-settings/account-preferences"
-            component={ManageSubscriptionsSetting}
+            path="/settings/tool-settings/account-preferences"
+            component={AccountPreferencesSetting}
           />
           <Route
-            path="/settings/account-settings/connected-apps"
-            component={ManageSubscriptionsSetting}
+            path="/settings/tool-settings/connected-apps"
+            component={ConnectedAppsSetting}
           />
           <Route
-            path="/settings/account-settings/products"
-            component={ManageSubscriptionsSetting}
+            path="/settings/tool-settings/products"
+            component={ProductsSetting}
           />
           {/* Default */}
           <Route component={NotFound} />
