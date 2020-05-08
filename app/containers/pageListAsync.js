@@ -639,3 +639,100 @@ export const WorkflowsSetting = loadable(() => import("../src/settings/issues/wo
 export const WorkflowsSchemesSetting = loadable(() => import("../src/settings/issues/workflows/workflows-schemes"), {
   fallback: <Loading />,
 });
+
+export const ScreensSetting = loadable(() => import("../src/settings/issues/screens/screens"), {
+  fallback: <Loading />,
+});
+
+export const ScreenSchemesSetting = loadable(() => import("../src/settings/issues/screens/screen-schemes"), {
+  fallback: <Loading />,
+});
+
+export const IssueTypeScreenSchemeSetting = loadable(() => import("../src/settings/issues/screens/issue-type-screen-scheme"), {
+  fallback: <Loading />,
+});
+
+export const CustomFieldsSetting = loadable(() => import("../src/settings/issues/fields/custom-fields"), {
+  fallback: <Loading />,
+});
+
+export const FieldConfigurationsSetting = loadable(() => import("../src/settings/issues/fields/field-configurations"), {
+  fallback: <Loading />,
+});
+
+export const FieldConfigurationSchemesSetting = loadable(() => import("../src/settings/issues/fields/field-configuration-schemes"), {
+  fallback: <Loading />,
+});
+
+export const TimeTrackingSetting = loadable(() => import("../src/settings/issues/issue-features/time-tracking"), {
+  fallback: <Loading />,
+});
+
+export const IssueLinkingSetting = loadable(() => import("../src/settings/issues/issue-features/issue-linking"), {
+  fallback: <Loading />,
+});
+
+export const StatutesSetting = loadable(() => import("../src/settings/issues/issue-attributes/statuses"), {
+  fallback: <Loading />,
+});
+
+export const ResolutionsSetting = loadable(() => import("../src/settings/issues/issue-attributes/resolutions"), {
+  fallback: <Loading />,
+});
+
+export const PrioritiesSetting = loadable(() => import("../src/settings/issues/issue-attributes/priorities"), {
+  fallback: <Loading />,
+});
+
+export const IssueSecuritySchemesSetting = loadable(() => import("../src/settings/issues/issue-attributes/issue-security-schemes"), {
+  fallback: <Loading />,
+});
+
+export const NotificationSchemesSetting = loadable(() => import("../src/settings/issues/issue-attributes/notification-schemes"), {
+  fallback: <Loading />,
+});
+
+export const PermissionSchemesSetting = loadable(() => import("../src/settings/issues/issue-attributes/permission-schemes"), {
+  fallback: <Loading />,
+});
+
+// App
+
+export const FindNewAppsSetting = loadable(() => import("../src/settings/app/karya-market/find-new-apps"), {
+  fallback: <Loading />,
+});
+
+export const ManageAppsSetting = loadable(() => import("../src/settings/app/karya-market/manage-apps"), {
+  fallback: <Loading />,
+});
+
+export const OAuthCredentialsSetting = loadable(() => import("../src/settings/app/karya-market/oauth-credentials"), {
+  fallback: <Loading />,
+});
+
+// Tools Account Settings
+
+export const AccountPreferencesSetting = loadable(() => import("../src/settings/tool-account-settings/account-preferences"), {
+  fallback: <Loading />,
+});
+
+export const ConnectedAppsSetting = loadable(() => import("../src/settings/tool-account-settings/connected-apps"), {
+  fallback: <Loading />,
+});
+
+export const EmailSetting = loadable(() => import("../src/settings/tool-account-settings/email"), {
+  fallback: <Loading />,
+});
+
+export const ProductsSetting = loadable(() => import("../src/settings/tool-account-settings/products"), {
+  fallback: <Loading />,
+});
+
+export const ProfileAndVisibilitySetting = loadable(() => import("../src/settings/tool-account-settings/profile-and-visibility"), {
+  fallback: <Loading />,
+});
+
+export const SecuritySetting = loadable(() => import("../src/settings/tool-account-settings/security"), {
+  fallback: <Loading />,
+});
+

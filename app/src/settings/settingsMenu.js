@@ -6,7 +6,7 @@ export const settingsMenu = [
       {
         key: "userManagement",
         name: "User Management",
-        link: "/settings/user-management/users",
+        link: "/settings/user-management/user-management/users",
         icon:
           "https://i7.uihere.com/icons/746/134/366/management-b832946a3943486e5bf329849bc486a3.png",
         subtitle: "Add users, groups, and manage access requests.",
@@ -14,7 +14,7 @@ export const settingsMenu = [
       {
         key: "billing",
         name: "Billing",
-        link: "/settings/billing",
+        link: "/settings/billing/billing/overview",
         icon:
           "https://cdn.iconscout.com/icon/premium/png-256-thumb/billing-2166782-1838369.png",
         subtitle:
@@ -29,14 +29,14 @@ export const settingsMenu = [
       {
         key: "system",
         name: "System",
-        link: "/settings/system",
+        link: "/settings/system/general-configuration",
         icon: "https://cdn.onlinewebfonts.com/svg/img_110101.png",
         subtitle: "Manage your general configurations and global permissions.",
       },
       {
         key: "product",
         name: "Product",
-        link: "/settings/product",
+        link: "/settings/product/products/product-access",
         icon:
           "https://i7.uihere.com/icons/948/927/693/product-management-4389543a1ec767d92ed9b7c1cc76f570.png",
         subtitle: "Manage your tool's setting and integrations.",
@@ -44,7 +44,7 @@ export const settingsMenu = [
       {
         key: "projects",
         name: "Projects",
-        link: "/settings/projects",
+        link: "/settings/projects/projects/projects",
         icon:
           "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Checklist_Noun_project_5166.svg/983px-Checklist_Noun_project_5166.svg.png",
         subtitle: "Manage your project categories.",
@@ -52,7 +52,7 @@ export const settingsMenu = [
       {
         key: "issues",
         name: "Issues",
-        link: "/settings/issues",
+        link: "/settings/issues/issue-types/issue-types",
         icon: "https://cdn.onlinewebfonts.com/svg/img_528187.png",
         subtitle:
           "Configure your issues types, workflows, screens, custom fields etc.",
@@ -60,7 +60,7 @@ export const settingsMenu = [
       {
         key: "app",
         name: "App",
-        link: "/settings/app",
+        link: "/settings/app/karya-market/find-new-apps",
         icon: "ios-desktop-outline",
         subtitle: "Add and manage tool's Marketplace apps.",
       },
@@ -73,7 +73,7 @@ export const settingsMenu = [
       {
         key: "toolAccountSettings",
         name: "Tool's account settings",
-        link: "/settings/tool-settings",
+        link: "/settings/tool-settings/profile-and-visibility",
         icon: "https://cdn.onlinewebfonts.com/svg/img_324273.png",
         subtitle:
           "Manage your language,time zone,and other profile information.",
