@@ -132,7 +132,7 @@ export default function reducer(state = initialState, action = {}) {
 
     case types.SET_CONFIG_INFO: {
       const config = get(action, ["config", "config"], {});
-      const employeeData = get(action, ["config", "employee_map"], {});
+      const employeeData = get(action, ["config", "employeeMap"], {});
       console.log("employeeData", employeeData);
 
       console.log("configconfig", config);
