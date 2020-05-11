@@ -1,9 +1,22 @@
+/**
+ * @function MediaCard 
+ * 
+ * @description
+ *    MediaCard component
+ * 
+ * @author
+ *  Nikhil Aggarwal, VectoScalar
+ * 
+ */
+
 import Card from "@material-ui/core/Card";
 import Grid from "@material-ui/core/Grid";
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import styles from "dan-styles/Cards.scss";
 import { Link } from "react-router-dom";
+import Avatar from '@material-ui/core/Avatar';
+
 import { toRoutes } from "../../utils/constants";
 
 const useStyles = makeStyles({
@@ -38,7 +51,8 @@ export default function MediaCard(props) {
           to={toRoutes.PROJECT_SPRINT_BOARD}
         >
           <Grid item xs={12} sm={4}>
-            <img src={projectIconUrl} />
+          <Avatar alt="avatar" src={projectIconUrl} />
+            {/* <img src={projectIconUrl} alt="../images/mui.png"/> */}
           </Grid>
           <Grid item xs={12} sm={8}>
             <h2 className={styles.h2}>{projectName}</h2>

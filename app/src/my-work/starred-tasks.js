@@ -1,3 +1,14 @@
+/**
+ * @class StarredTasks
+ * 
+ * @description
+ *    Starred Tasks Screen
+ * 
+ * @author
+ *  Nikhil Aggarwal, VectoScalar
+ * 
+ */
+
 import Grid from "@material-ui/core/Grid";
 import React from "react";
 import { connect } from "react-redux";
