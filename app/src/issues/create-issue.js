@@ -1,3 +1,14 @@
+/**
+ * @class CreateIssues
+ * 
+ * @description
+ *    Create Issues Screen
+ * 
+ * @author
+ *  Nikhil Aggarwal, VectoScalar
+ * 
+ */
+
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";

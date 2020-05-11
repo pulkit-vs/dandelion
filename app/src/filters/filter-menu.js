@@ -1,3 +1,14 @@
+/**
+ * @function FiltersMenu
+ * 
+ * @description
+ *    Filter Menu dropdown
+ * 
+ * @author
+ *  Nikhil Aggarwal, VectoScalar
+ * 
+ */
+
 import Avatar from "@material-ui/core/Avatar";
 import Check from "@material-ui/icons/CheckCircle";
 import Divider from "@material-ui/core/Divider";

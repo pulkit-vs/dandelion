@@ -1,3 +1,14 @@
+/**
+ * @function MediaCard 
+ * 
+ * @description
+ *    MediaCard component
+ * 
+ * @author
+ *  Nikhil Aggarwal, VectoScalar
+ * 
+ */
+
 import Card from "@material-ui/core/Card";
 import Grid from "@material-ui/core/Grid";
 import React from "react";
