@@ -1,5 +1,6 @@
 import { takeEvery, call, put } from "redux-saga/effects";
 import DataService from "../../services/data-service";
+import history from "utils/history";
 
 import { types } from "../../karya-actions/projects/project-home-actions";
 import { types as addProjectTypes } from "../../karya-actions/projects/add-project-actions";
@@ -39,12 +40,15 @@ function* addProject(payload) {
     projectType: payload.selectedType,
     projectTemplateId: payload.selectedTemplate,
   };
-  const createProject = yield call(dataService.asyncExecuteApi, {
-    type: "add",
-    body: body,
-    path: "projects",
-  });
-  console.log("add-project", createProject);
+  try {
+    const createProject = yield call(dataService.asyncExecuteApi, {
+      type: "add",
+      body: body,
+      path: "projects",
+    });
+    console.log("add-project", createProject);
+    history.push("/projects/project-board");
+  } catch (error) {}
 }
 
 const projectBoardSagas = [

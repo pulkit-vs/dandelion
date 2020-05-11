@@ -1,12 +1,12 @@
 /**
  * @class AddProject
- * 
+ *
  * @description
  *    Add Project Screen
- * 
+ *
  * @author
  *  Nikhil Aggarwal, VectoScalar
- * 
+ *
  */
 
 import Button from "@material-ui/core/Button";
@@ -287,7 +287,7 @@ function form(
   const handleBack = () => {
     decrementActiveStep();
   };
-  
+
   return (
     <Grid container spacing={2}>
       <Grid item xs={12} sm={12}>
@@ -332,8 +332,17 @@ function form(
                       color="primary"
                       onClick={handleNext}
                       disabled={
-                        (activeStep == 0) ?
-                           (addProjectData.projectName).trim() == "" || (addProjectData.projectKey).trim() == "" || (addProjectData.projectDesc).trim() == "" : (activeStep == 1) ? (addProjectData.selectedCategory).trim() == "" : (activeStep == 2) ? (addProjectData.selectedTemplate).trim() == "" : (activeStep == 3) ? (addProjectData.selectedType).trim() == "" : true
+                        activeStep == 0
+                          ? addProjectData.projectName.trim() == "" ||
+                            addProjectData.projectKey.trim() == "" ||
+                            addProjectData.projectDesc.trim() == ""
+                          : activeStep == 1
+                          ? addProjectData.selectedCategory.trim() == ""
+                          : activeStep == 2
+                          ? addProjectData.selectedTemplate.trim() == ""
+                          : activeStep == 3
+                          ? addProjectData.selectedType.trim() == ""
+                          : true
                       }
                     >
                       {activeStep === steps.length - 1 ? "Finish" : "Next"}
@@ -372,6 +381,7 @@ export class AddProject extends Component {
         addProjectData.selectedTemplate,
         addProjectData.selectedType
       );
+      this.props.history.push("/projects/project-board");
     } else {
       this.setState({ activeStep: this.state.activeStep + 1 });
     }

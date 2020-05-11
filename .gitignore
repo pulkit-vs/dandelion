@@ -1,7 +1,16 @@
 # node.js
 #
+dist/*
 node_modules/*
+client/environments/*
+server/node_modules/*
+database/*
+.DS_Store
 .env
 npm-debug.log
-yarn-error.log
+logs
 tslint:disable
+yarn-error.log
+package-lock.json
+
+
