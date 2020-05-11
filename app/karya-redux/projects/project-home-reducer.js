@@ -2,12 +2,17 @@ import { get } from "lodash";
 import { types } from "../../karya-actions/projects/project-home-actions";
 
 const initialState = {
+  employeeData: [],
+  projectCategories: [],
   projectData: [],
   projectIcon: "",
   projectId: "",
   projectName: "",
-  starredProjects: [],
+  projectTable: [],
+  projectTemplates: [],
+  projectTypes: [],
   projectsListMap: [],
+  starredProjects: [],
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -16,11 +21,11 @@ export default function reducer(state = initialState, action = {}) {
       let updatedTask = [];
       const rowData = get(action, ["payload", "starredTask"], {});
       const RowAlreadyExists = state.starredProjects.find(
-        ({ id }) => id === rowData.id
+        ({ projectId }) => projectId === rowData.projectId
       );
       if (RowAlreadyExists) {
         updatedTask = state.starredProjects.filter(
-          ({ id }) => id !== RowAlreadyExists.id
+          ({ projectId }) => projectId !== RowAlreadyExists.projectId
         );
       } else {
         updatedTask = [...state.starredProjects, rowData];
@@ -30,22 +35,42 @@ export default function reducer(state = initialState, action = {}) {
 
     case types.SET_STARRED_TICKET_STATUS: {
       const status = get(action, ["payload", "status"], false);
-      const projectId = get(action, ["payload", "projectId"], "");
-      const index = state.projectData.findIndex(({ id }) => id === projectId);
-      state.projectData[index].starred = status;
+      const id = get(action, ["payload", "projectId"], "");
+      const index = state.projectTable.findIndex(
+        ({ projectId }) => projectId === id
+      );
+      state.projectTable[index].starred = status;
       return {
         ...state,
       };
     }
 
     case types.INIT: {
-      const projectList = get(action, ["payload", "projectList"], false);
-      const starredProjects = projectList.filter(
+      const projectList = get(action, ["projectList", "db_response"], []);
+      console.log("db_response", projectList);
+
+      const projectTable = projectList.map((project) => {
+        return {
+          starred: project.STARRED,
+          projectId: project.ID,
+          projectIcon: project.ICON,
+          data: {
+            projectName: project.NAME,
+            projectKey: project.PROJECT_KEY,
+            projectLead: project.PROJECT_LEAD,
+            projectType: project.PROJECT_TYPE,
+            projectCategory: project.PROJECT_CATEGORY,
+          },
+        };
+      });
+
+      const starredProjects = projectTable.filter(
         (item) => item.starred === true
       );
-      const projectsMap = projectList.map((project) => {
+
+      const projectsMap = projectTable.map((project) => {
         return {
-          projectId: project.id,
+          projectId: project.projectId,
           projectName: project.data.projectName,
           imgSrc: project.projectIcon,
         };
@@ -55,6 +80,7 @@ export default function reducer(state = initialState, action = {}) {
         projectData: projectList,
         starredProjects: starredProjects,
         projectsListMap: projectsMap,
+        projectTable: projectTable,
       };
     }
 
@@ -62,7 +88,7 @@ export default function reducer(state = initialState, action = {}) {
       const status = get(action, ["payload", "status"], false);
       let updatedTask = [];
       if (status) {
-        updatedTask = state.projectData;
+        updatedTask = state.projectTable;
       }
       return {
         ...state,
@@ -72,7 +98,7 @@ export default function reducer(state = initialState, action = {}) {
 
     case types.SET_ALL_STARRED_TICKET_STATUS: {
       const status = get(action, ["payload", "status"], false);
-      state.projectData.map((data) => {
+      state.projectTable.map((data) => {
         data.starred = status;
       });
       return {
@@ -101,6 +127,29 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         projectIcon: projectIcon,
+      };
+    }
+
+    case types.SET_CONFIG_INFO: {
+      const config = get(action, ["config", "config"], {});
+      const employeeData = get(action, ["config", "employee_map"], {});
+      console.log("employeeData", employeeData);
+
+      console.log("configconfig", config);
+      const projectCategories = get(config, "PROJECT_CATEGORY", []);
+      console.log("projectCategories", projectCategories);
+      const projectTemplates = get(config, "PROJECT_TEMPLATE", []);
+      console.log("projectTemplates", projectTemplates);
+
+      const projectTypes = get(config, "PROJECT_TYPE", []);
+      console.log("projectTypes", projectTypes);
+
+      return {
+        ...state,
+        projectCategories: projectCategories,
+        projectTemplates: projectTemplates,
+        projectTypes: projectTypes,
+        employeeData: employeeData,
       };
     }
 

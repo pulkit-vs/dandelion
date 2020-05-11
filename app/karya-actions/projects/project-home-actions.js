@@ -10,6 +10,8 @@ export const types = {
   SET_PROJECT_NAME: "SET_PROJECT_NAME",
   SET_STARRED_TASK: "SET_STARRED_TASK",
   SET_STARRED_TICKET_STATUS: "SET_STARRED_TICKET_STATUS",
+  SET_CONFIG_INFO: "SET_CONFIG_INFO",
+  // ADD_PROJECT: "ADD_PROJECT",
 };
 
 export const setStarredTask = (starredTask = {}) => ({
@@ -79,4 +81,11 @@ export const getAllTickets = () => ({
 
 export const getConfigInfo = () => ({
   type: types.GET_CONFIG_INFO,
+});
+
+export const setConfigInfo = (config = {}) => ({
+  type: types.SET_CONFIG_INFO,
+  payload: {
+    config,
+  },
 });

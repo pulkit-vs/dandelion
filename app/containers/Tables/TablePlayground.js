@@ -317,7 +317,7 @@ const EnhancedTable = (props) => {
                         <TableRow
                           hover
                           onClick={handleTableRowClick(
-                            row.id,
+                            row.projectId,
                             row.data.projectName,
                             row.projectIcon
                           )}
@@ -332,8 +332,10 @@ const EnhancedTable = (props) => {
                               aria-label="Menu"
                               className={row.starred ? styles.starredColor : ""}
                               onClick={(event) => {
+                                console.log("event", event);
                                 event.stopPropagation();
-                                handleClick(row, row.id, !row.starred);
+                                event.preventDefault();
+                                handleClick(row, row.projectId, !row.starred);
                               }}
                             >
                               <StarBorderIcon />
@@ -350,7 +352,7 @@ const EnhancedTable = (props) => {
                                   {row.projectIcon && index === 0 ? (
                                     <ListItemAvatar>
                                       <Avatar
-                                        alt="User Name"
+                                        alt="avatar"
                                         src={row.projectIcon}
                                       />
                                     </ListItemAvatar>

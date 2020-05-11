@@ -36,7 +36,7 @@ export class ProjectHome extends React.Component {
   }
 
   componentDidMount() {
-    this.props.setRows(); //TODO: Remove after API integration
+    // this.props.setRows(); //TODO: Remove after API integration
     this.props.getConfigInfo();
     this.props.fetchAllProjects();
   }
@@ -53,6 +53,7 @@ export class ProjectHome extends React.Component {
 
     const starredProjects = get(projectHome, "starredProjects", []);
     const projectData = get(projectHome, "projectData", []);
+    const projectTable = get(projectHome, "projectTable", []);
 
     return (
       <Grid container spacing={2}>
@@ -74,7 +75,7 @@ export class ProjectHome extends React.Component {
               headCells={projectHeadCells}
               heading={heading}
               projectHome={true}
-              rows={projectData}
+              rows={projectTable}
               setAllStarredTask={setAllStarredTask}
               setStarredTask={setStarredTask}
               showStarredButton={true}

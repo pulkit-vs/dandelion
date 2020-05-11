@@ -7,6 +7,7 @@ import { combineReducers } from "redux-immutable";
 import { connectRouter } from "connected-react-router/immutable";
 import { reducer as form } from "redux-form/immutable";
 
+import addProject from "../karya-redux/projects/add-project-reducer";
 import assignedTasks from "../karya-redux/my-work/assigned-task-reducer";
 import calendar from "./modules/calendar";
 import chat from "./modules/chat";
@@ -45,6 +46,7 @@ function branchReducer(reducerFunction, reducerName) {
  */
 export default function createReducer(injectedReducers = {}) {
   const rootReducer = combineReducers({
+    addProject,
     assignedTasks,
     calendar,
     chat,

@@ -106,7 +106,9 @@ class SidebarContent extends React.Component {
                 className={classNames(classes.avatar, classes.bigAvatar)}
               />
               <div style={{ width: "100%" }}>
-                <h4 style={{ width: "100%" }}>{projectName}</h4>
+                <h4 id="projectName" style={{ width: "100%" }}>
+                  {projectName}
+                </h4>
                 <Button
                   size="small"
                   onClick={openMenuStatus}
@@ -133,15 +135,25 @@ class SidebarContent extends React.Component {
                         )}
                         style={{ width: "100%" }}
                       >
-                        <img
+                        {/* <img
                           src={projects.imgSrc}
-                          alt="https://cdn.theorg.com/f740c607-065b-45a4-a725-76393fcc8747_medium.jpg"
+                          alt
                           style={{
                             width: "15px",
                             height: "15px",
                             marginRight: "4%",
                           }}
+                        /> */}
+                        <Avatar
+                          alt="avatar"
+                          src={projects.imgSrc}
+                          style={{
+                            width: "18px",
+                            height: "18px",
+                            marginRight: "4%",
+                          }}
                         />
+
                         {projects.projectName}
                       </MenuItem>
                     );

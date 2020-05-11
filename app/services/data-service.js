@@ -12,6 +12,7 @@ export default class DataService extends React.Component {
     // this.cookies = new Cookies();
     this.asyncGetAll = this.asyncGetAll.bind(this);
     this.asyncGetWithParam = this.asyncGetWithParam.bind(this);
+    this.asyncExecuteApi = this.asyncExecuteApi.bind(this);
   }
   getHttpHeaders() {
     let authToken = this.getCookie(AppConstants.COOKIE_KEY_AUTHTOKEN);
@@ -93,9 +94,13 @@ export default class DataService extends React.Component {
     }
   }
 
-  async asyncExecuteApi(id, api_path, data) {
+  async asyncExecuteApi(payload) {
     try {
-      data.authorId = this.getCookie(AppConstants.COOKIE_KEY_ID);
+      // data.authorId = this.getCookie(AppConstants.COOKIE_KEY_ID);
+      const id = get(payload, "type", "");
+      const api_path = get(payload, "path", "");
+      const data = get(payload, "body", {});
+      data.projectOwner = 1; //TODO: needs to be updated after login system integration
       const body = JSON.stringify(data);
       let method;
       let url = `${AppConstants.BASE_URL}${api_path}`;
