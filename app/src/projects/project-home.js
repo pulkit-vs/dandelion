@@ -68,13 +68,13 @@ export class ProjectHome extends React.Component {
 
     return (
       <Grid container spacing={2}>
-        {projectList.map((project, index) => (
+        {projectTable.slice(0,3).map((project, index) => (
           <Grid key={index} item xs={12} sm={12} md={4}>
             <MediaCard
               handleProjectCardClick={handleProjectCardClick}
               projectCategory={project.data.projectCategory}
               projectIconUrl={project.projectIcon}
-              projectId={project.id}
+              projectId={project.projectId}
               projectName={project.data.projectName}
             />
           </Grid>
