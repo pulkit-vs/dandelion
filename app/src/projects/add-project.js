@@ -9,23 +9,23 @@
  *
  */
 
-import Button from "@material-ui/core/Button";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import Grid from "@material-ui/core/Grid";
-import React, { Component } from "react";
-import Step from "@material-ui/core/Step";
-import StepLabel from "@material-ui/core/StepLabel";
-import Stepper from "@material-ui/core/Stepper";
-import TextField from "@material-ui/core/TextField";
-import Typography from "@material-ui/core/Typography";
-import { connect } from "react-redux";
-import { get } from "lodash";
-import { makeStyles } from "@material-ui/core/styles";
+import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Grid from '@material-ui/core/Grid';
+import React, { Component } from 'react';
+import Step from '@material-ui/core/Step';
+import StepLabel from '@material-ui/core/StepLabel';
+import Stepper from '@material-ui/core/Stepper';
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
+import { connect } from 'react-redux';
+import { get } from 'lodash';
+import { makeStyles } from '@material-ui/core/styles';
 
-import PaperSheet from "../../containers/UiElements/demos/Cards/PaperSheet";
-import styles from "dan-styles/AddProject.scss";
-import { constants } from "../../utils/constants";
+import PaperSheet from '../../containers/UiElements/demos/Cards/PaperSheet';
+import styles from 'dan-styles/AddProject.scss';
+import { constants } from '../../utils/constants';
 import {
   createProject,
   setProjectDesc,
@@ -34,11 +34,11 @@ import {
   setSelectedCategory,
   setSelectedTemplate,
   setSelectedType,
-} from "../../karya-actions/projects/add-project-actions";
+} from '../../karya-actions/projects/add-project-actions';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: "100%",
+    width: '100%',
   },
   backButton: {
     marginRight: theme.spacing(1),
@@ -50,12 +50,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function getSteps() {
-  return [
-    "Enter basic details",
-    "Select Category",
-    "Select Template",
-    "Select Type",
-  ];
+  return ['Enter basic details', 'Select Category', 'Select Template', 'Select Type'];
 }
 
 function getStepContent(
@@ -72,48 +67,48 @@ function getStepContent(
   templateIndex,
   typeIndex
 ) {
-  const projectCategories = get(projectHome, "projectCategories", []);
-  const projectTemplates = get(projectHome, "projectTemplates", []);
-  const projectTypes = get(projectHome, "projectTypes", []);
+  const projectCategories = get(projectHome, 'projectCategories', []);
+  const projectTemplates = get(projectHome, 'projectTemplates', []);
+  const projectTypes = get(projectHome, 'projectTypes', []);
 
-  const projectName = get(addProjectData, "projectName", "");
-  const projectKey = get(addProjectData, "projectKey", "");
-  const projectDesc = get(addProjectData, "projectDesc", "");
-  const selectedCategory = get(addProjectData, "selectedCategory", "");
-  const selectedTemplate = get(addProjectData, "selectedTemplate", "");
-  const selectedType = get(addProjectData, "selectedType", "");
-  console.log("selectedType", selectedType);
+  const projectName = get(addProjectData, 'projectName', '');
+  const projectKey = get(addProjectData, 'projectKey', '');
+  const projectDesc = get(addProjectData, 'projectDesc', '');
+  const selectedCategory = get(addProjectData, 'selectedCategory', '');
+  const selectedTemplate = get(addProjectData, 'selectedTemplate', '');
+  const selectedType = get(addProjectData, 'selectedType', '');
+  console.log('selectedType', selectedType);
 
-  const [nameInput, onNameInputChange] = React.useState("");
-  const [keyInput, onKeyInputChange] = React.useState("");
-  const [descInput, onDescInputChange] = React.useState("");
+  const [nameInput, onNameInputChange] = React.useState('');
+  const [keyInput, onKeyInputChange] = React.useState('');
+  const [descInput, onDescInputChange] = React.useState('');
 
   const [shadowChange, onShadowChange] = React.useState(false);
 
   const onShadowChangeClicked = (shadowChange) => {
     return () => {
       onShadowChange(shadowChange);
-      console.log("Calling", shadowChange);
+      console.log('Calling', shadowChange);
     };
   };
 
   const onNameChange = () => {
     onNameInputChange(event.target.value);
-    if (event.target.value === "") {
+    if (event.target.value === '') {
       setProjectName();
     }
   };
 
   const onKeyChange = () => {
     onKeyInputChange(event.target.value);
-    if (event.target.value === "") {
+    if (event.target.value === '') {
       setProjectKey();
     }
   };
 
   const onDescriptionChange = () => {
     onDescInputChange(event.target.value);
-    if (event.target.value === "") {
+    if (event.target.value === '') {
       setProjectDesc();
     }
   };
@@ -125,31 +120,31 @@ function getStepContent(
           <Grid item xs={12} sm={3}>
             <TextField
               className={styles.fullWidth}
-              label="Name"
+              label='Name'
               onBlur={setProjectName}
               onChange={onNameChange}
               value={nameInput ? nameInput : projectName}
-              variant="outlined"
+              variant='outlined'
             />
           </Grid>
           <Grid item xs={12} sm={3}>
             <TextField
               className={styles.fullWidth}
-              label="key"
+              label='key'
               onBlur={setProjectKey}
               onChange={onKeyChange}
               value={keyInput ? keyInput : projectKey}
-              variant="outlined"
+              variant='outlined'
             />
           </Grid>
           <Grid item xs={12} sm={6}>
             <TextField
               className={styles.fullWidth}
-              label="Description"
+              label='Description'
               onBlur={setProjectDesc}
               onChange={onDescriptionChange}
               value={descInput ? descInput : projectDesc}
-              variant="outlined"
+              variant='outlined'
             />
           </Grid>
         </Grid>
@@ -161,25 +156,14 @@ function getStepContent(
             return (
               <Grid item xs={12} sm={3} key={`cat-grid${index}`}>
                 <Card
-                  className={
-                    categoryIndex === index
-                      ? styles.selectedCardShadow
-                      : styles.cardShadow
-                  }
+                  className={categoryIndex === index ? styles.selectedCardShadow : styles.cardShadow}
                   onClick={handleCategoryClick(category.id, index)}
                 >
                   <CardContent>
-                    <Typography
-                      className={styles.textCenter}
-                      color="textSecondary"
-                      gutterBottom
-                    >
+                    <Typography className={styles.textCenter} color='textSecondary' gutterBottom>
                       {category.name}
                     </Typography>
-                    <img
-                      className={styles.img}
-                      src={require("../images/img-software.png")}
-                    />
+                    <img className={styles.img} src={require('../images/img-software.png')} />
                   </CardContent>
                 </Card>
               </Grid>
@@ -197,25 +181,14 @@ function getStepContent(
             return (
               <Grid item xs={12} sm={4} key={`templates${index}`}>
                 <Card
-                  className={
-                    templateIndex === index
-                      ? styles.selectedCardShadow
-                      : styles.cardShadow
-                  }
+                  className={templateIndex === index ? styles.selectedCardShadow : styles.cardShadow}
                   onClick={handleSelectedTemplate(template.id, index)}
                 >
                   <CardContent>
-                    <Typography
-                      className={styles.textCenter}
-                      color="textSecondary"
-                      gutterBottom
-                    >
+                    <Typography className={styles.textCenter} color='textSecondary' gutterBottom>
                       {template.name}
                     </Typography>
-                    <img
-                      className={styles.img}
-                      src={require("../images/kanban-board.png")}
-                    />
+                    <img className={styles.img} src={require('../images/kanban-board.png')} />
                   </CardContent>
                 </Card>
               </Grid>
@@ -230,25 +203,14 @@ function getStepContent(
             return (
               <Grid item xs={12} sm={4} key={`type${index}`}>
                 <Card
-                  className={
-                    typeIndex === index
-                      ? styles.selectedCardShadow
-                      : styles.cardShadow
-                  }
+                  className={typeIndex === index ? styles.selectedCardShadow : styles.cardShadow}
                   onClick={handleSelectedType(type.id, index)}
                 >
                   <CardContent>
-                    <Typography
-                      className={styles.textCenter}
-                      color="textSecondary"
-                      gutterBottom
-                    >
+                    <Typography className={styles.textCenter} color='textSecondary' gutterBottom>
                       {type.name}
                     </Typography>
-                    <img
-                      className={styles.img}
-                      src={require("../images/kanban-board.png")}
-                    />
+                    <img className={styles.img} src={require('../images/kanban-board.png')} />
                   </CardContent>
                 </Card>
               </Grid>
@@ -257,7 +219,7 @@ function getStepContent(
         </Grid>
       );
     default:
-      return "Unknown step";
+      return 'Unknown step';
   }
 }
 
@@ -320,32 +282,28 @@ function form(
                     )}
                   </Typography>
                   <div>
-                    <Button
-                      disabled={activeStep === 0}
-                      onClick={handleBack}
-                      className={classes.backButton}
-                    >
+                    <Button disabled={activeStep === 0} onClick={handleBack} className={classes.backButton}>
                       {constants.BACK}
                     </Button>
                     <Button
-                      variant="contained"
-                      color="primary"
+                      variant='contained'
+                      color='primary'
                       onClick={handleNext}
                       disabled={
                         activeStep == 0
-                          ? addProjectData.projectName.trim() == "" ||
-                            addProjectData.projectKey.trim() == "" ||
-                            addProjectData.projectDesc.trim() == ""
+                          ? addProjectData.projectName.trim() == '' ||
+                            addProjectData.projectKey.trim() == '' ||
+                            addProjectData.projectDesc.trim() == ''
                           : activeStep == 1
-                          ? addProjectData.selectedCategory.trim() == ""
+                          ? addProjectData.selectedCategory.trim() == ''
                           : activeStep == 2
-                          ? addProjectData.selectedTemplate.trim() == ""
+                          ? addProjectData.selectedTemplate.trim() == ''
                           : activeStep == 3
-                          ? addProjectData.selectedType.trim() == ""
+                          ? addProjectData.selectedType.trim() == ''
                           : true
                       }
                     >
-                      {activeStep === steps.length - 1 ? "Finish" : "Next"}
+                      {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
                     </Button>
                   </div>
                 </div>
@@ -381,7 +339,6 @@ export class AddProject extends Component {
         addProjectData.selectedTemplate,
         addProjectData.selectedType
       );
-      this.props.history.push("/projects/project-board");
     } else {
       this.setState({ activeStep: this.state.activeStep + 1 });
     }
@@ -430,7 +387,6 @@ export class AddProject extends Component {
 
   render() {
     const { addProjectData, projectHome } = this.props;
-    console.log("projectHome", projectHome);
     return (
       <Grid container spacing={3}>
         <Grid item md={12} xs={12}>
@@ -461,8 +417,8 @@ export class AddProject extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  addProjectData: state.get("addProject"),
-  projectHome: state.get("projectHome"),
+  addProjectData: state.get('addProject'),
+  projectHome: state.get('projectHome'),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -490,24 +446,8 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(setSelectedType(typeId));
   },
 
-  createProject: (
-    projectName,
-    projectKey,
-    projectDesc,
-    selectedCategory,
-    selectedTemplate,
-    selectedType
-  ) => {
-    dispatch(
-      createProject(
-        projectName,
-        projectKey,
-        projectDesc,
-        selectedCategory,
-        selectedTemplate,
-        selectedType
-      )
-    );
+  createProject: (projectName, projectKey, projectDesc, selectedCategory, selectedTemplate, selectedType) => {
+    dispatch(createProject(projectName, projectKey, projectDesc, selectedCategory, selectedTemplate, selectedType));
   },
 });
 
