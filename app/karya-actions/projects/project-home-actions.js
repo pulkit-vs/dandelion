@@ -1,17 +1,21 @@
 export const types = {
-  FETCH_ALL_PROJECTS: "FETCH_ALL_PROJECTS",
-  GET_ALL_TICKETS: "GET_ALL_TICKETS",
-  GET_CONFIG_INFO: "GET_CONFIG_INFO",
-  INIT: "INIT", //TODO, needs to be removed
-  SET_ALL_STARRED_TASK: "SET_ALL_STARRED_TASK",
-  SET_ALL_STARRED_TICKET_STATUS: "SET_ALL_STARRED_TICKET_STATUS",
-  SET_PROJECT_ICON: "SET_PROJECT_ICON",
-  SET_PROJECT_ID: "SET_PROJECT_ID",
-  SET_PROJECT_NAME: "SET_PROJECT_NAME",
-  SET_STARRED_TASK: "SET_STARRED_TASK",
-  SET_STARRED_TICKET_STATUS: "SET_STARRED_TICKET_STATUS",
-  SET_CONFIG_INFO: "SET_CONFIG_INFO",
-  // ADD_PROJECT: "ADD_PROJECT",
+  FETCH_ALL_PROJECTS: 'FETCH_ALL_PROJECTS',
+  GET_ALL_TICKETS: 'GET_ALL_TICKETS',
+  GET_CONFIG_INFO: 'GET_CONFIG_INFO',
+  INIT: 'INIT', //TODO, needs to be removed
+  SET_ALL_STARRED_TASK: 'SET_ALL_STARRED_TASK',
+  SET_ALL_STARRED_TICKET_STATUS: 'SET_ALL_STARRED_TICKET_STATUS',
+  SET_PROJECT_ICON: 'SET_PROJECT_ICON',
+  SET_PROJECT_ID: 'SET_PROJECT_ID',
+  SET_PROJECT_NAME: 'SET_PROJECT_NAME',
+  SET_STARRED_TASK: 'SET_STARRED_TASK',
+  SET_STARRED_TICKET_STATUS: 'SET_STARRED_TICKET_STATUS',
+  SET_CONFIG_INFO: 'SET_CONFIG_INFO',
+  SET_RECENT_PROJECTS: 'SET_RECENT_PROJECTS',
+  GET_RECENT_PROJECTS: 'GET_RECENT_PROJECTS',
+  GET_PROJECT_DETAILS: 'GET_PROJECT_DETAILS',
+  SET_PROJECT_DETAILS: 'SET_PROJECT_DETAILS',
+  SET_PROJECT_STARRED_STATUS: 'SET_PROJECT_STARRED_STATUS',
 };
 
 export const setStarredTask = (starredTask = {}) => ({
@@ -21,7 +25,7 @@ export const setStarredTask = (starredTask = {}) => ({
   },
 });
 
-export const toggleStarredStatus = (projectId = "", status = false) => ({
+export const toggleStarredStatus = (projectId = '', status = false) => ({
   type: types.SET_STARRED_TICKET_STATUS,
   payload: {
     projectId,
@@ -50,21 +54,21 @@ export const toggleAllStarredStatus = (status = false) => ({
   },
 });
 
-export const setProjectId = (projectId = "") => ({
+export const setProjectId = (projectId = '') => ({
   type: types.SET_PROJECT_ID,
   payload: {
     projectId,
   },
 });
 
-export const setProjectName = (projectName = "") => ({
+export const setProjectName = (projectName = '') => ({
   type: types.SET_PROJECT_NAME,
   payload: {
     projectName,
   },
 });
 
-export const setProjectIcon = (projectIcon = "") => ({
+export const setProjectIcon = (projectIcon = '') => ({
   type: types.SET_PROJECT_ICON,
   payload: {
     projectIcon,
@@ -88,4 +92,33 @@ export const setConfigInfo = (config = {}) => ({
   payload: {
     config,
   },
+});
+
+export const setRecentProjects = (recentProjects = []) => ({
+  type: types.SET_RECENT_PROJECTS,
+  payload: {
+    recentProjects,
+  },
+});
+
+export const getRecentProjects = () => ({
+  type: types.GET_RECENT_PROJECTS,
+});
+
+export const getProjectDetails = (projectId) => ({
+  type: types.GET_PROJECT_DETAILS,
+  payload: {
+    projectId,
+  },
+});
+
+export const setProjectDetails = (projectDetails) => ({
+  type: types.SET_PROJECT_DETAILS,
+  projectDetails,
+});
+
+export const setStarredProject = (projectId = 0, status = 'Star') => ({
+  type: types.SET_PROJECT_STARRED_STATUS,
+  projectId,
+  status,
 });

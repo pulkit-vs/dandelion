@@ -14,20 +14,21 @@
 module.exports = function (app) {
 
   // controllers
-  const ProjectController = require('./controllers/project/project-controller');
-  const SprintController = require('./controllers/sprint/sprint-controller');
-  const ConfigController = require('./controllers/config/config-controller');
-  const IssueController = require('./controllers/issue/issue-controller');
-  const MyWorkController = require('./controllers/my-work/my-work-controller');
+  const
+    ProjectController = require('./controllers/project/project-controller'),
+    ConfigController = require('./controllers/config/config-controller'),
+    IssueController = require('./controllers/issue/issue-controller'),
+    MyWorkController = require('./controllers/my-work/my-work-controller');
 
   // API Constants
-  const BASE_API = '/api/v1/';
-  const PROJECTS = 'projects';
-  const PROJECTID = '/:projectId';
-  const CONFIG = 'config';
-  const ISSUES = '/issues';
-  const ISSUEID = '/:issueId';
-  const ASSIGNED_TO_ME = '/assignedToMe';
+  const
+    BASE_API = '/api/v1/',
+    PROJECTS = 'projects',
+    PROJECTID = '/:projectId',
+    CONFIG = 'config',
+    ISSUES = '/issues',
+    ISSUEID = '/:issueId',
+    ASSIGNED_TO_ME = '/assignedToMe';
 
   // swagger models
   /**
@@ -62,6 +63,12 @@ module.exports = function (app) {
    * 
    */
 
+     /**
+   * @typedef ProjectPatchFields
+   * @property {string} action.required
+   * @property {integer} employeeId.required 
+   * 
+   */
 
   // -----------   Config API Routes   ---------------
   const configController = new ConfigController();
@@ -70,7 +77,7 @@ module.exports = function (app) {
  * This function comment is parsed by doctrine
  * @route GET /config
  * @group CONFIG - Operations about Configuration
- * @returns {object} 200 - An array of user info
+ * @returns {object} 200 - An object of config details
  * @returns {Error}  default - Unexpected error
  */
   app.route(BASE_API + CONFIG)
@@ -99,11 +106,23 @@ module.exports = function (app) {
  * @param {integer} projectId.query.required - // projectId = 0 for all project 
  * @param {string} type.query.required - // detail for detail info and list for short info like Name, Id, Icon
  * @param {integer} employeeId.query.required - // employee Id of the User
- * @returns {array} 200 - An array of user info
+ * @returns {array} 200 - An array of object for project details
  * @returns {Error}  default - Unexpected error
  */
   app.route(BASE_API + PROJECTS)
     .get(projectController.info);
+
+  /**
+ * 
+ * @route PATCH /projects/{projectId}
+ * @group PROJECT - Operations about Project
+ * @param {integer} projectId.path.required - // project Id to be be starred or unstarred 
+ * @param {ProjectPatchFields.model} ProjectFields.body.required - Project properties model
+ * @returns {string} 200 - An array of object for project details
+ * @returns {Error}  default - Unexpected error
+ */
+  app.route(BASE_API + PROJECTS + PROJECTID)
+    .patch(projectController.patch);
 
   // -----------   Issues API Routes   ---------------
 
@@ -115,7 +134,7 @@ module.exports = function (app) {
  * @param {integer} projectId.path.required - valid projectId 
  * @param {integer} issueId.path.required - // issueId = 0 for all issues for the project 
  * @param {integer} employeeId.query.required
- * @returns {array} 200 - An array of user info
+ * @returns {array} 200 - An array of object for the project detail
  * @returns {Error}  default - Unexpected error
  */
   app.route(BASE_API + PROJECTS + PROJECTID + ISSUES + ISSUEID)
@@ -144,7 +163,7 @@ module.exports = function (app) {
  * @group My WORK - Operations about Project
  * @param {integer} projectId.path.required - valid projectId 
  * @param {integer} employeeId.query.required
- * @returns {array} 200 - An array of user info
+ * @returns {array} 200 - An array of object for issues with issue details 
  * @returns {Error}  default - Unexpected error
  */
   app.route(BASE_API + PROJECTS + PROJECTID + ASSIGNED_TO_ME)

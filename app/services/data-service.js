@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 
-import { get } from "lodash";
-const axios = require("axios").default;
+import { get } from 'lodash';
+const axios = require('axios').default;
 // import Cookies from 'universal-cookie';
 
-import * as AppConstants from "../utils/constants";
+import * as AppConstants from '../utils/constants';
 
 export default class DataService extends React.Component {
   constructor(props) {
@@ -16,35 +16,33 @@ export default class DataService extends React.Component {
   }
   getHttpHeaders() {
     let authToken = this.getCookie(AppConstants.COOKIE_KEY_AUTHTOKEN);
-    authToken = `${AppConstants.API_TOKEN_TYPE} ${
-      authToken ? authToken : AppConstants.N_A
-    }`;
+    authToken = `${AppConstants.API_TOKEN_TYPE} ${authToken ? authToken : AppConstants.N_A}`;
 
     const empId = this.getCookie(AppConstants.COOKIE_KEY_ID);
 
     const headers = {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
       Authorization: authToken,
-      "X-Auth-Token": empId ? empId : AppConstants.N_A,
+      'X-Auth-Token': empId ? empId : AppConstants.N_A,
     };
     return headers;
   }
 
   async asyncGetAll(payload) {
-    const type = get(payload, "type", "");
+    const type = get(payload, 'type', '');
     try {
       const response = await axios.get(`${AppConstants.BASE_URL}${type}`, {
         headers: this.getHttpHeaders(),
       });
       let data = [];
-      console.log("asyncGetAll: response", response);
+      console.log('asyncGetAll: response', response);
       if (response && response.status === 200) {
         data = response.data || [];
       }
-      console.log("asyncGetAll: data", data);
+      console.log('asyncGetAll: data', data);
       return data;
     } catch (error) {
-      console.log("asyncGetAll: error", error);
+      console.log('asyncGetAll: error', error);
       this.handleError(error);
       throw error;
     }
@@ -52,43 +50,40 @@ export default class DataService extends React.Component {
 
   async asyncGetOne(type, id) {
     try {
-      const response = await axios.get(
-        `${AppConstants.BASE_URL}${type}/${id}`,
-        {
-          headers: this.getHttpHeaders(),
-        }
-      );
+      const response = await axios.get(`${AppConstants.BASE_URL}${type}/${id}`, {
+        headers: this.getHttpHeaders(),
+      });
       let data = [];
-      console.log("asyncGetOne: response", response);
+      console.log('asyncGetOne: response', response);
       if (response && response.status === 200) {
         data = response.data || [];
       }
-      console.log("asyncGetOne: data", data);
+      console.log('asyncGetOne: data', data);
       return data;
     } catch (error) {
-      console.log("asyncGetOne: error", error);
+      console.log('asyncGetOne: error', error);
       this.handleError(error);
       throw error;
     }
   }
 
   async asyncGetWithParam(payload) {
-    const type = get(payload, "type", "");
-    const queryParams = get(payload, "queryParams", {});
+    const type = get(payload, 'type', '');
+    const queryParams = get(payload, 'queryParams', {});
     try {
       const response = await axios.get(`${AppConstants.BASE_URL}${type}`, {
         params: queryParams,
         headers: this.getHttpHeaders(),
       });
       let data = [];
-      console.log("asyncGetWithParam: response", response);
+      console.log('asyncGetWithParam: response', response);
       if (response && response.status === 200) {
         data = response.data || [];
       }
-      console.log("asyncGetWithParam: data", data);
+      console.log('asyncGetWithParam: data', data);
       return data;
     } catch (error) {
-      console.log("asyncGetWithParam: error", error);
+      console.log('asyncGetWithParam: error', error);
       this.handleError(error);
       throw error;
     }
@@ -97,19 +92,21 @@ export default class DataService extends React.Component {
   async asyncExecuteApi(payload) {
     try {
       // data.authorId = this.getCookie(AppConstants.COOKIE_KEY_ID);
-      const id = get(payload, "type", "");
-      const api_path = get(payload, "path", "");
-      const data = get(payload, "body", {});
+      const id = get(payload, 'type', '');
+      const api_path = get(payload, 'path', '');
+      const data = get(payload, 'body', {});
       data.projectOwner = 1; //TODO: needs to be updated after login system integration
       const body = JSON.stringify(data);
       let method;
       let url = `${AppConstants.BASE_URL}${api_path}`;
-      if (id === "add") {
-        method = "POST";
-      } else if (id === "update") {
-        method = "PUT";
+      if (id === 'add') {
+        method = 'POST';
+      } else if (id === 'update') {
+        method = 'PUT';
+      } else if (id === 'edit') {
+        method = 'PATCH';
       } else {
-        method = "PUT";
+        method = 'PUT';
         url = `${AppConstants.BASE_URL}${api_path}/${id}`;
       }
       const options = {
@@ -118,17 +115,17 @@ export default class DataService extends React.Component {
         data: body,
         url,
       };
-      console.log("asyncExecuteApi: options", options);
+      console.log('asyncExecuteApi: options', options);
       let response = await axios(options);
       let res = [];
-      console.log("asyncExecuteApi: response", response);
+      console.log('asyncExecuteApi: response', response);
       if (response && response.status === 200) {
         res = response.data || [];
       }
-      console.log("asyncExecuteApi: res", res);
+      console.log('asyncExecuteApi: res', res);
       return res;
     } catch (error) {
-      console.log("asyncExecuteApi: error", error);
+      console.log('asyncExecuteApi: error', error);
       this.handleError(error);
       throw error;
     }
@@ -138,7 +135,7 @@ export default class DataService extends React.Component {
     try {
       // return CryptoJS.AES.encrypt(JSON.stringify(data), this.getEnv(AppConstants.ENV_VARS.DATA_SECRET_KEY)).toString();
     } catch (e) {
-      console.log("encryptData: error", e);
+      console.log('encryptData: error', e);
     }
   }
 
@@ -150,7 +147,7 @@ export default class DataService extends React.Component {
       // }
       return data;
     } catch (e) {
-      console.log("decryptData: error", e);
+      console.log('decryptData: error', e);
     }
   }
 
@@ -159,37 +156,27 @@ export default class DataService extends React.Component {
       case 0:
         this.resetCookies();
         this.goToLogin();
-        console.log(
-          "Error",
-          "Network Error has occurred, please check with office network team !! "
-        );
+        console.log('Error', 'Network Error has occurred, please check with office network team !! ');
         break;
       case 400:
-        console.log("Error", "Bad Request.");
+        console.log('Error', 'Bad Request.');
         break;
       case 401:
-        console.log("Error", "UnAuthorized access.");
+        console.log('Error', 'UnAuthorized access.');
         break;
       case 408:
-        console.log("Error", "Session has been expired.");
+        console.log('Error', 'Session has been expired.');
         this.goToLogin();
         break;
       case 412:
-        console.log("Error", "Invalid OAuth access token signature.");
+        console.log('Error', 'Invalid OAuth access token signature.');
         this.goToLogin();
         break;
       default:
         if (error && error.status) {
-          console.log(
-            "Error",
-            `Server Error: ${error.status} ${error.statusText}`
-          );
+          console.log('Error', `Server Error: ${error.status} ${error.statusText}`);
         } else {
-          console.log(
-            "Error",
-            "Server/Network Error has occurred, please contact support team.: error",
-            error
-          );
+          console.log('Error', 'Server/Network Error has occurred, please contact support team.: error', error);
         }
     }
   }
@@ -239,7 +226,7 @@ export default class DataService extends React.Component {
   async viewDocument() {}
 
   async getFileNameFromURL(url) {
-    return url.replace(/.*\//g, "");
+    return url.replace(/.*\//g, '');
   }
 
   async deleteAttachments() {}
@@ -250,6 +237,6 @@ export default class DataService extends React.Component {
   async asyncSecureUploadToS3(folderName, file) {}
 
   render() {
-    return <div className="App" />;
+    return <div className='App' />;
   }
 }

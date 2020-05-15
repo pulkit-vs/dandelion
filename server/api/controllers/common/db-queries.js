@@ -20,20 +20,20 @@ class DBQueries {
 
   static PROJECT_LIST_QUERY(projectId) {
     return {
-      query: `SELECT ID, PROJECT_KEY, NAME, ICON, STARRED, PROJECT_LEAD , PROJECT_CATEGORY, PROJECT_TYPE, PROJECT_MEMBERS FROM PROJECT WHERE ACTIVE = ${ServerConstants.STATUS().ACTIVE} ${projectId ? `AND ID = ?` : ``} order by CREATED_TS DESC ;`, bindParams: projectId ? [projectId] : []
+      query: `SELECT ID, PROJECT_KEY, NAME, ICON, STARRED, PROJECT_LEAD , PROJECT_CATEGORY, PROJECT_TYPE, PROJECT_MEMBERS FROM PROJECT WHERE ACTIVE = ${ServerConstants.STATUS().ACTIVE} ${projectId ? `AND ID = ?` : ``} order by CREATED_TS DESC ;`, bindParams: projectId ? [projectId] : null
     };
   };
 
   static PROJECT_DETAIL_QUERY(projectId) {
     return {
       query: `SELECT pro.ID, pro.PROJECT_KEY, pro.NAME, pro.ICON, pro.DESCRIPTION, pro.PROJECT_LEAD, pro.OWNER, pro.PROJECT_CATEGORY, pro.PROJECT_TYPE, pro.TEMPLATE_ID, pro.PROJECT_MEMBERS, pro.STARRED, its.TYPE as ISSUE_TYPE_SCHEMA, wf.TYPE WORKFLOW_SCHEMA, ip.TYPE as ISSUE_PRIORITY_SCHEMA, ns.TYPE as NOTIFICATION_SCHEMA FROM PROJECT pro, ISSUE_TYPE_SCHEMA its, ISSUE_PRIORITY_SCHEMA as ip, WORKFLOW_SCHEMA wf, NOTIFICATION_SCHEMA as ns WHERE pro.ISSUE_TYPE_SCHEMA=its.CODE AND  pro.WORKFLOW_SCHEMA = wf.CODE AND pro.ISSUE_PRIORITY_SCHEMA = ip.CODE AND pro.NOTIFICATION_SCHEMA=ns.CODE AND pro.ACTIVE = ${ServerConstants.STATUS().ACTIVE} ${projectId ? `AND pro.ID = ?` : ``} ORDER BY pro.CREATED_TS DESC ;`,
-      bindParams: projectId ? [projectId] : []
+      bindParams: projectId ? [projectId] : null
     };
   };
 
   static RECENT_PROJECT_LIST_QUERY(employeeId) {
     return {
-      query: `SELECT DISTINCT pro.ID, pro.NAME, pro.ICON, pro.PROJECT_KEY , pro.PROJECT_MEMBERS FROM PROJECT_TRACKER as prot, PROJECT AS pro WHERE  pro.ID=prot.PROJECT_ID AND prot.AUTHOR_ID = ? AND prot.ACTION_DATE > DATE_SUB(NOW(), INTERVAL 24 HOUR) ORDER BY prot.ACTION_DATE DESC;`,
+      query: `SELECT DISTINCT pro.ID, pro.NAME, pro.ICON, pro.PROJECT_KEY , pro.PROJECT_MEMBERS, pro.PROJECT_CATEGORY FROM PROJECT_TRACKER as prot, PROJECT AS pro WHERE  pro.ID=prot.PROJECT_ID AND prot.AUTHOR_ID = ? AND prot.ACTION_DATE >= DATE_SUB(NOW(), INTERVAL 24 HOUR) ORDER BY prot.ACTION_DATE DESC;`,
       bindParams: [employeeId]
     }
   };

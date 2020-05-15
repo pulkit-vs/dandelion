@@ -10,13 +10,19 @@
  * 
  */
 
-const BaseController = require('../common/base-controller');
-const DbQueries = require('../common/db-queries');
-const ServerConstants = require('../common/db-constants'),
-  logger = require('../common/logger'),
+const
+  BaseController = require('../common/base-controller'),
+  DbQueries = require('../common/db-queries'),
+  ServerConstants = require('../common/db-constants'),
+  Logger = require('../common/logger'),
+  Constants = require('../common/constants'),
   Utility = require('../common/utils');
-const PROJECT_DB_TABLE = 'project';
-const PROJECT_TRACKER_TABLE = 'project_tracker'
+
+
+const
+  PROJECT_DB_TABLE = 'PROJECT',
+  PROJECT_TRACKER_DB_TABLE = 'PROJECT_TRACKER';
+
 class ProjectController extends BaseController {
   constructor() {
     super();
@@ -51,7 +57,7 @@ class ProjectController extends BaseController {
   /**
    * @class ProjectController
    * 
-   * @method setLoggerModelData
+   * @method setProjectLoggerModelData 
    * 
    * @description
    *      this method is to create the model to insert row in the project_tracker table. 
@@ -59,7 +65,7 @@ class ProjectController extends BaseController {
    * @param {*} data
    * 
    * */
-  static setLoggerModelData(data) {
+  static setProjectLoggerModelData(data) {
     return {
       PROJECT_ID: data.ID,
       NAME: data.NAME,
@@ -89,23 +95,25 @@ class ProjectController extends BaseController {
    *
    */
   async add(req, res) {
-    const model = ProjectController.setModelData(req.body);
+
     try {
+      const model = ProjectController.setModelData(req.body);
       const response = await super.post(model, PROJECT_DB_TABLE);
-      logger.info(`ProjectController: add : query response : ${JSON.stringify(response)}`);
+      Logger.info(`ProjectController: add : query response : ${JSON.stringify(response)}`);
       const diff = await Utility.createDataDiffOnCreation(model);
+
       model.DIFFERENCE = JSON.stringify(diff);
       model.PROJECT_ID = response.insertId;
       model.ACTION_TYPE = ServerConstants.ACTION_TYPES().CREATED;
       model.AUTHOR_ID = req.body.projectOwner;
-      await super.post(model, PROJECT_TRACKER_TABLE);
+      await super.post(model, PROJECT_TRACKER_DB_TABLE);
       res.status(201);
       res.json({
-        message: "Project Successfully created",
-        db_response: response
+        message: Constants.CLIENT_MESSAGES().PROJECT_CREATED,
+        data: response
       });
     } catch (error) {
-      logger.error(`ProjectController: add: Error occured while creating a new project, req.body: ${JSON.stringify(req.body)}, error: `, error);
+      Logger.error(`ProjectController: add: Error occured while creating a new project, req.body: ${JSON.stringify(req.body)}, error: %s`, JSON.stringify(error));
       res.statusMessage = error;
       res.status(400).end();
     }
@@ -143,8 +151,20 @@ class ProjectController extends BaseController {
    *    HTTP Response code based on DB Query execution response
    *
    */
-  async patch(projectId, attributeNameValuePair) {
-
+  async patch(req, res) {
+    const action = req.body.action;
+    const self = new ProjectController();
+    switch (action) {
+      case ServerConstants.STAR_ACTIONS().STAR:
+        self.markProjectStar(req, res);
+        break;
+      case ServerConstants.STAR_ACTIONS().UNSTAR:
+        self.markProjectUnstar(req, res);
+        break;
+      default:
+        res.statusMessage = Constants.CLIENT_MESSAGES().UNSUPPORT_ACTION;
+        res.status(400).end();
+    }
   }
 
   /**
@@ -196,7 +216,7 @@ class ProjectController extends BaseController {
         self.listRecentProjects(req, res);
         break;
       default:
-        res.statusMessage = 'Un-support type';
+        res.statusMessage = Constants.CLIENT_MESSAGES().UNSUPPORT_ACTION;
         res.status(400).end();
     }
   }
@@ -216,44 +236,46 @@ class ProjectController extends BaseController {
  *
  */
   async listRecentProjects(req, res) {
-    if (req.query && req.query.employeeId) {
-      const employeeId = req.query.employeeId;
-      try {
-        const sql = DbQueries.RECENT_PROJECT_LIST_QUERY(employeeId);
-        const response = await super.executeQueryWithBindParams(sql.query, sql.bindParams);
-        logger.info(`ProjectController: listRecentProjects : query response : ${JSON.stringify(response)}`);
-        if (Array.isArray(response)) {
-          const message = "Projects Fetched Successfully ";
-          const projects_list = response.filter(row => row.PROJECT_MEMBERS && Array.isArray(JSON.parse(row.PROJECT_MEMBERS)) && JSON.parse(row.PROJECT_MEMBERS).includes(Number(employeeId)));
-          logger.info(`ProjectController: listRecentProjects : query response : ${JSON.stringify(projects_list)}`);
-          res.status(200);
-          res.json({
-            message: message,
-            db_response: projects_list
-          });
-        } else {
-          const message = "No Projects exist";
-          res.status(200);
-          res.json({
-            message: message,
-            db_response: []
-          });
-        }
-
-      } catch (error) {
-        logger.error(`ProjectController: listRecentProjects: Error occured while fetching the all projects List error: ${error}`);
-        res.statusMessage = error;
-        res.status(400).end();
-      }
-
-    } else {
-      res.status(200);
-      res.json({
-        message: `No projects found for user : employeeId = ${req.query.employeeId}`,
-        db_response: []
+    let message = Constants.CLIENT_MESSAGES().PROJECTS_DO_NOT_EXIST;
+    if (!req.query || !req.query.employeeId) {
+      res.status(204);
+      return res.json({
+        message: message,
+        data: []
       });
     }
+    try {
+      const employeeId = req.query.employeeId;
+      const sql = DbQueries.RECENT_PROJECT_LIST_QUERY(employeeId);
+      const response = await super.executeQueryWithBindParams(sql.query, sql.bindParams);
+      Logger.info(`ProjectController: listRecentProjects : query response : ${JSON.stringify(response)}`);
+      let projectsList = [], statusCode = 204;
+      if (Array.isArray(response) && response.length > 0) {
+        message = Constants.CLIENT_MESSAGES().PROJECTS_EXIST;
+        projectsList = response.filter(row => {
+          const arr = row.PROJECT_MEMBERS ? JSON.parse(row.PROJECT_MEMBERS) : [];
+          if (Array.isArray(arr) && arr.includes(Number(employeeId))) {
+            return true;
+          }
+          return false;
+        });
+        Logger.info(`ProjectController: listRecentProjects : projectList : ${JSON.stringify(projectsList)}`);
+        statusCode = 200;
+      }
+      res.status(statusCode);
+      res.json({
+        message: message,
+        data: projectsList
+      });
+
+    } catch (error) {
+      Logger.error(`ProjectController: listRecentProjects: Error occured while fetching the all projects List error: %s`, JSON.stringify(error));
+      res.statusMessage = error;
+      res.status(400).end();
+    }
+
   }
+
 
   /**
    * @name list
@@ -277,35 +299,34 @@ class ProjectController extends BaseController {
     try {
       const sql = DbQueries.PROJECT_LIST_QUERY(projectId);
       const response = await super.executeQueryWithBindParams(sql.query, sql.bindParams);
-      logger.info(`ProjectController: list : query response : ${JSON.stringify(response)}`);
-      if (Array.isArray(response)) {
-        const message = "Projects Fetched Successfully ";
-        const projects_list = response.filter(row => row.PROJECT_MEMBERS && Array.isArray(JSON.parse(row.PROJECT_MEMBERS)) && JSON.parse(row.PROJECT_MEMBERS).includes(Number(employeeId)));
-        projects_list.forEach(row => {
+      Logger.info(`ProjectController: list : query response : ${JSON.stringify(response)}`);
+      let projectsList = [], statusCode = 204;
+      if (Array.isArray(response) && response.length > 0) {
+        projectsList = response.filter(row => {
+          const arr = row.PROJECT_MEMBERS ? JSON.parse(row.PROJECT_MEMBERS) : [];
+          if (Array.isArray(arr) && arr.includes(Number(employeeId))) {
+            return true;
+          }
+          return false;
+        });
+        projectsList.forEach(row => {
           try {
-            const starred = (row.STARRED) ? (JSON.parse(row.STARRED)).includes(Number(employeeId)) : false;
-            row.STARRED = (starred) ? starred : false
+            row.STARRED = (row.STARRED) ? (JSON.parse(row.STARRED)).includes(Number(employeeId)) : false;
           } catch (err) {
-            logger.error(`ProjectController : detail: Error while parsing the schema : error`, err);
+            row.STARRED = false;
+            Logger.error(`ProjectController : detail: Error while parsing the schema : error : %s`, JSON.stringify(err));
           }
         });
-        logger.info(`ProjectController: list : query response : ${JSON.stringify(projects_list)}`);
-        res.status(200);
-        res.json({
-          message: message,
-          db_response: projects_list
-        });
-      } else {
-        const message = "No Projects exist";
-        res.status(200);
-        res.json({
-          message: message,
-          db_response: []
-        });
+        Logger.info(`ProjectController: list : filtered projectList : ${JSON.stringify(projectsList)}`);
+        statusCode = 200;
       }
-
+      res.status(statusCode);
+      res.json({
+        message: (projectsList.length) ? Constants.CLIENT_MESSAGES().PROJECTS_EXIST : Constants.CLIENT_MESSAGES().PROJECTS_DO_NOT_EXIST,
+        data: projectsList
+      });
     } catch (error) {
-      logger.error(`ProjectController: list: Error occured while fetching the all projects List error: ${error}`);
+      Logger.error(`ProjectController: list: Error occured while fetching the all projects List error: %s`, JSON.stringify(error));
       res.statusMessage = error;
       res.status(400).end();
     }
@@ -333,43 +354,47 @@ class ProjectController extends BaseController {
     try {
       const sql = DbQueries.PROJECT_DETAIL_QUERY(projectId);
       const response = await super.executeQueryWithBindParams(sql.query, sql.bindParams);
-      if (Array.isArray(response)) {
+      let projectsList = [], statusCode = 204;
+      if (Array.isArray(response) && response.length > 0) {
         if (projectId) {
-          const model = ProjectController.setLoggerModelData(response[0]);
+          const model = ProjectController.setProjectLoggerModelData(response[0]);
           model.ACTION_TYPE = ServerConstants.ACTION_TYPES().VIEWED;
           model.AUTHOR_ID = employeeId;
-          await super.post(model, PROJECT_TRACKER_TABLE);
+          await super.post(model, PROJECT_TRACKER_DB_TABLE);
         }
-        const message = "Projects Fetched Successfully ";
-        const projects_list = response.filter(row => row.PROJECT_MEMBERS && Array.isArray(JSON.parse(row.PROJECT_MEMBERS)) && JSON.parse(row.PROJECT_MEMBERS).includes(Number(employeeId)));
-        projects_list.forEach(row => {
+        projectsList = response.filter(row => {
+          const arr = row.PROJECT_MEMBERS ? JSON.parse(row.PROJECT_MEMBERS) : [];
+          if (Array.isArray(arr) && arr.includes(Number(employeeId))) {
+            return true;
+          }
+          return false;
+        });
+        projectsList.forEach(row => {
           try {
-            row.ISSUE_TYPE_SCHEMA = JSON.parse(row.ISSUE_TYPE_SCHEMA)
-            row.ISSUE_PRIORITY_SCHEMA = JSON.parse(row.ISSUE_PRIORITY_SCHEMA)
-            row.WORKFLOW_SCHEMA = JSON.parse(row.WORKFLOW_SCHEMA)
-            row.NOTIFICATION_SCHEMA = JSON.parse(row.NOTIFICATION_SCHEMA)
-            const starred = (row.STARRED) ? (JSON.parse(row.STARRED)).includes(Number(employeeId)) : false;
-            row.STARRED = (starred) ? starred : false
+            row.ISSUE_TYPE_SCHEMA = row.ISSUE_TYPE_SCHEMA = row.ISSUE_TYPE_SCHEMA ? JSON.parse(row.ISSUE_TYPE_SCHEMA) : []
+            row.ISSUE_PRIORITY_SCHEMA = row.ISSUE_PRIORITY_SCHEMA = row.ISSUE_PRIORITY_SCHEMA ? JSON.parse(row.ISSUE_PRIORITY_SCHEMA) : []
+            row.WORKFLOW_SCHEMA = row.WORKFLOW_SCHEMA = row.WORKFLOW_SCHEMA ? JSON.parse(row.WORKFLOW_SCHEMA) : []
+            row.NOTIFICATION_SCHEMA = row.NOTIFICATION_SCHEMA = row.NOTIFICATION_SCHEMA ? JSON.parse(row.NOTIFICATION_SCHEMA) : []
+            row.STARRED = (row.STARRED) ? (JSON.parse(row.STARRED)).includes(Number(employeeId)) : false;
           } catch (err) {
-            logger.error(`ProjectController : detail: Error while parsing the schema : error`, err);
+            row.ISSUE_TYPE_SCHEMA = [];
+            row.ISSUE_PRIORITY_SCHEMA = [];
+            row.WORKFLOW_SCHEMA = [];
+            row.NOTIFICATION_SCHEMA = [];
+            row.STARRED = false;
+            Logger.error(`ProjectController : detail: Error while parsing the schema : error : %s`, JSON.stringify(err));
           }
         });
-        logger.info(`ProjectController: detail : query response : ${JSON.stringify(projects_list)}`);
-        res.status(200);
-        res.json({
-          message: message,
-          db_response: projects_list
-        });
-      } else {
-        const message = "No Projects exist";
-        res.status(200);
-        res.json({
-          message: message,
-          db_response: []
-        });
+        Logger.info(`ProjectController: detail : projectsList : ${JSON.stringify(projectsList)}`);
+        statusCode = 200;
       }
+      res.status(statusCode);
+      res.json({
+        message: (projectsList.length) ? Constants.CLIENT_MESSAGES().PROJECTS_EXIST : Constants.CLIENT_MESSAGES().PROJECTS_DO_NOT_EXIST,
+        data: projectsList
+      });
     } catch (error) {
-      logger.error(`ProjectController: detail : Error while fetching the Project Info: `, error);
+      Logger.error(`ProjectController: detail : Error while fetching the Project Info: %s`, JSON.stringify(error));
       res.statusMessage = error;
       res.status(400).end();
     }
@@ -415,6 +440,91 @@ class ProjectController extends BaseController {
   async updateTracker(projectId, data) {
 
   }
+
+  /**
+   * @name markProjectStar
+   * @memberof ProjectController
+   * 
+   * @description
+   *  update only one attribute i.e. starred the project 
+   * 
+   * @param {*} req
+   * @param {*} res
+   * 
+   * @returns
+   *    HTTP Response code based on DB Query execution response
+   *
+   */
+
+  async markProjectStar(req, res) {
+    const projectId = Number(req.params.projectId);
+    const employeeId = Number(req.body.employeeId);
+
+    try {
+      const sql = DbQueries.PROJECT_LIST_QUERY(projectId);
+      const response = await super.executeQueryWithBindParams(sql.query, sql.bindParams);
+      if (Array.isArray(response) && response.length > 0) {
+        const starred = (response[0].STARRED) ? JSON.parse(response[0].STARRED) : [];
+        if (!Array.isArray(starred) || starred.indexOf(employeeId) > -1) {
+          return res.status(200).end();
+        }
+        var set = new Set(starred.concat([employeeId]));
+        const body = { STARRED: JSON.stringify([...set]) };
+        console.log(body);
+        const markStar = await super.patch(projectId, PROJECT_DB_TABLE, body);
+        Logger.info(`ProjectController: markProjectStar : markStar : %s`, JSON.stringify(markStar));
+        return res.status(200).end();
+      }
+      res.status(200).end();
+    } catch (error) {
+      Logger.error(`ProjectController: markProjectStar : Error while starring the Project : %s`, JSON.stringify(error));
+      res.statusMessage = error;
+      res.status(400).end();
+    }
+
+  }
+
+  /**
+   * @name markProjectUnstar
+   * @memberof ProjectController
+   * 
+   * @description
+   *  update only one attribute i.e. starred the project 
+   * 
+   * @param {*} req
+   * @param {*} res
+   * 
+   * @returns
+   *    HTTP Response code based on DB Query execution response
+   *
+   */
+  async markProjectUnstar(req, res) {
+    const projectId = Number(req.params.projectId);
+    const employeeId = Number(req.body.employeeId);
+    try {
+      const sql = DbQueries.PROJECT_LIST_QUERY(projectId);
+      const response = await super.executeQueryWithBindParams(sql.query, sql.bindParams);
+      if (Array.isArray(response) && response.length > 0) {
+        let starred = (response[0].STARRED) ? JSON.parse(response[0].STARRED) : [];
+        const filteredStarred = starred.filter((empId) => {
+          return empId !== employeeId
+        });
+        if (filteredStarred.length === starred.length) {
+          Logger.info(`ProjectController: markProjectUnstar: Employee ${employeeId} does exist in project Starred list ${JSON.stringify(starred)}`);
+          return res.status(200).end();
+        }
+        const body = { STARRED: JSON.stringify(filteredStarred) };
+        const queryResponse = await super.patch(projectId, PROJECT_DB_TABLE, body);
+        Logger.info(`ProjectController: markProjectUnstar : queryResponse : %s`, JSON.stringify(queryResponse));
+      }
+      res.status(200).end();
+    } catch (error) {
+      Logger.error(`ProjectController: markProjectUnstar : Error while un-starring the Project : %s`, JSON.stringify(error));
+      res.statusMessage = error;
+      res.status(400).end();
+    }
+  }
+
 }
 
 module.exports = ProjectController;
