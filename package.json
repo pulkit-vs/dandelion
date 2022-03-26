@@ -126,7 +126,7 @@
     "jss-rtl": "^0.3.0",
     "keycode": "^2.2.0",
     "lodash": "^4.17.15",
-    "minimist": "1.2.0",
+    "minimist": "1.2.6",
     "moment": "^2.22.2",
     "mui-datatables": "^2.13.1",
     "mysql": "^2.18.1",
